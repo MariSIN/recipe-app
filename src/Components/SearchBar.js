@@ -5,7 +5,6 @@ import Context from '../Context/Context';
 
 function SearchBar({ title }) {
   const { handleChange, searchFilter, setSearchResult } = useContext(Context);
-
   const history = useHistory();
 
   const fetchMeals = async () => {
@@ -13,7 +12,7 @@ function SearchBar({ title }) {
       const url = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchFilter.searchName}`;
       const response = await fetch(url);
       const data = await response.json();
-      setSearchResult(data);
+      setSearchResult(data.meals);
       if (data.meals.length === 1) {
         const { idMeal } = data.meals[0];
         history.push(`/meals/${idMeal}`);
@@ -23,7 +22,7 @@ function SearchBar({ title }) {
       const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchFilter.searchName}`;
       const response = await fetch(url);
       const data = await response.json();
-      setSearchResult(data);
+      setSearchResult(data.meals);
       if (data.meals.length === 1) {
         const { idMeal } = data.meals[0];
         history.push(`/meals/${idMeal}`);
@@ -36,8 +35,7 @@ function SearchBar({ title }) {
       const url = `https://www.themealdb.com/api/json/v1/1/search.php?f=${searchFilter.searchName}`;
       const response = await fetch(url);
       const data = await response.json();
-      console.log(data.meals.length);
-      setSearchResult(data);
+      setSearchResult(data.meals);
       if (data.meals.length === 1) {
         const { idMeal } = data.meals[0];
         history.push(`/meals/${idMeal}`);
@@ -50,7 +48,7 @@ function SearchBar({ title }) {
       const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${searchFilter.searchName}`;
       const response = await fetch(url);
       const data = await response.json();
-      setSearchResult(data);
+      setSearchResult(data.drinks);
       if (data.drinks.length === 1) {
         const { idDrink } = data.drinks[0];
         history.push(`/drinks/${idDrink}`);
@@ -60,7 +58,7 @@ function SearchBar({ title }) {
       const url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchFilter.searchName}`;
       const response = await fetch(url);
       const data = await response.json();
-      setSearchResult(data);
+      setSearchResult(data.drinks);
       if (data.drinks.length === 1) {
         const { idDrink } = data.drinks[0];
         history.push(`/drinks/${idDrink}`);
@@ -73,7 +71,7 @@ function SearchBar({ title }) {
       const url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${searchFilter.searchName}`;
       const response = await fetch(url);
       const data = await response.json();
-      setSearchResult(data);
+      setSearchResult(data.drinks);
       if (data.drinks.length === 1) {
         const { idDrink } = data.drinks[0];
         history.push(`/drinks/${idDrink}`);
@@ -122,7 +120,6 @@ function SearchBar({ title }) {
         onClick={ title === 'Meals' ? fetchMeals : fetchDrinks }
       >
         Search
-
       </button>
     </>
   );
