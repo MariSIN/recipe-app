@@ -1,13 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import './App.css';
-import Header from './Components/Header';
+import { Route, Switch } from 'react-router-dom';
+import Login from './Pages/Login';
 
 function App() {
   return (
-    <div className="meals">
-      <Header />
-    </div>
+    <Switch>
+      <Route exact path="/" component={ Login } />
+    </Switch>
   );
 }
 
