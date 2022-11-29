@@ -1,10 +1,21 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import App from '../App';
+import renderWithRouter from '../renderWithRouter';
+import ContextProvider from '../Context/ContextProvider';
 
-test('Farewell, front-end', () => {
-  // Este arquivo pode ser modificado ou deletado sem problemas
-  render(<App />);
-  const linkElement = screen.getByText(/TRYBE/i);
-  expect(linkElement).toBeInTheDocument();
+describe('Testes tela de login', () => {
+  test('Testando se há os elementos na tela', () => {
+    renderWithRouter(
+      <ContextProvider>
+        <App />
+        ,
+      </ContextProvider>,
+
+    );
+    expect(screen.getByRole('heading', { name: 'Login', level: 1 }));
+    expect(screen.getByRole('button', { name: 'Enter' }));
+    expect(screen.getByPlaceholderText('Digite seu email')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Digite sua senha')).toBeInTheDocument();
+  });
 });
