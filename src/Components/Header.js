@@ -28,7 +28,37 @@ function Header({ title }) {
         />
       </button>
       {show && (
-        <input data-testid="search-input" type="text" placeholder="Search" />
+        <div>
+          <input data-testid="search-input" type="text" placeholder="Search Recipe" />
+          <label htmlFor="ingredient">
+            Ingredient
+            <input
+              data-testid="ingredient-search-radio"
+              type="radio"
+              name="ingredient"
+              id="ingredient"
+            />
+          </label>
+          <label htmlFor="name">
+            Name
+            <input
+              data-testid="name-search-radio"
+              type="radio"
+              name="name"
+              id="name"
+            />
+          </label>
+          <label htmlFor="first-letter">
+            First Letter
+            <input
+              data-testid="first-letter-search-radio"
+              type="radio"
+              name="first-letter"
+              id="first-letter"
+            />
+          </label>
+          <button data-testid="exec-search-btn" type="button">Search</button>
+        </div>
       )}
     </header>
   );
