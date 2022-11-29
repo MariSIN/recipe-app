@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import Context from '../Context/Context';
 
 function SearchBar({ title }) {
   const { handleChange, searchFilter, setSearchResult } = useContext(Context);
+
+  const history = useHistory();
 
   const fetchMeals = async () => {
     if (searchFilter.selectedFilter === 'Ingredient') {
@@ -11,12 +14,20 @@ function SearchBar({ title }) {
       const response = await fetch(url);
       const data = await response.json();
       setSearchResult(data);
+      if (data.meals.length === 1) {
+        const { idMeal } = data.meals[0];
+        history.push(`/meals/${idMeal}`);
+      }
     }
     if (searchFilter.selectedFilter === 'Name') {
       const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchFilter.searchName}`;
       const response = await fetch(url);
       const data = await response.json();
       setSearchResult(data);
+      if (data.meals.length === 1) {
+        const { idMeal } = data.meals[0];
+        history.push(`/meals/${idMeal}`);
+      }
     }
     if (searchFilter.selectedFilter === 'First Letter') {
       if (searchFilter.searchName.length > 1) {
@@ -25,7 +36,12 @@ function SearchBar({ title }) {
       const url = `https://www.themealdb.com/api/json/v1/1/search.php?f=${searchFilter.searchName}`;
       const response = await fetch(url);
       const data = await response.json();
+      console.log(data.meals.length);
       setSearchResult(data);
+      if (data.meals.length === 1) {
+        const { idMeal } = data.meals[0];
+        history.push(`/meals/${idMeal}`);
+      }
     }
   };
 
@@ -35,12 +51,20 @@ function SearchBar({ title }) {
       const response = await fetch(url);
       const data = await response.json();
       setSearchResult(data);
+      if (data.drinks.length === 1) {
+        const { idDrink } = data.drinks[0];
+        history.push(`/drinks/${idDrink}`);
+      }
     }
     if (searchFilter.selectedFilter === 'Name') {
       const url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchFilter.searchName}`;
       const response = await fetch(url);
       const data = await response.json();
       setSearchResult(data);
+      if (data.drinks.length === 1) {
+        const { idDrink } = data.drinks[0];
+        history.push(`/drinks/${idDrink}`);
+      }
     }
     if (searchFilter.selectedFilter === 'First Letter') {
       if (searchFilter.searchName.length > 1) {
@@ -50,6 +74,10 @@ function SearchBar({ title }) {
       const response = await fetch(url);
       const data = await response.json();
       setSearchResult(data);
+      if (data.drinks.length === 1) {
+        const { idDrink } = data.drinks[0];
+        history.push(`/drinks/${idDrink}`);
+      }
     }
   };
 
