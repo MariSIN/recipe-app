@@ -6,11 +6,11 @@ import search from '../images/searchIcon.svg';
 function Header({ title }) {
   return (
     <header>
+      <h1 data-testid="page-title">{title}</h1>
       <Link to="/profile">
         <img data-testid="profile-top-btn" src={ profile } alt="profile" />
       </Link>
       <img data-testid="search-top-btn" src={ search } alt="search" />
-      <h1 data-testid="page-title">{title}</h1>
     </header>
   );
 }
