@@ -49,7 +49,7 @@ Ao iniciar este projeto, você concorda com as diretrizes do Código de Conduta 
   
   * Este projeto é em grupo;
   * Serão `9` dias de projeto;
-  * Data para entrega final do projeto: `13/01/2023 15:00`.
+  * Data para entrega final do projeto: `13/01/2023 14:00`.
 
 </details><br />
 
@@ -207,7 +207,7 @@ Ao iniciar este projeto, você concorda com as diretrizes do Código de Conduta 
 
   Para rodar somente um arquivo de teste, você precisa utilizar o comando:
 
-  `npm run cy -- --spec cypress/integration/login_spec.js`
+  `npm run cy -- --spec cypress/e2e/<NomeDoArquivo>.js`
 
   **Obs**: após o "spec" é preciso acrescentar todo o caminho até o arquivo de testes.
 
