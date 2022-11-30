@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { DRINKS_TOKEN_KEY, MEALS_TOKEN_KEY, USER_KEY } from '../utilit/globalVariables';
 
 const tamanhoSenha = 6;
 
 function Login() {
+  const history = useHistory();
+
   const inputsLogin = {
     email: '',
     senha: '',
   };
   const [inputs, setInputs] = useState(inputsLogin);
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const history = useHistory();
 
   useEffect(() => {
     const emailValidation = /\S+@\S+\.\S+/;
@@ -31,42 +33,46 @@ function Login() {
     });
   };
 
-  const entrar = () => {
-    const email = {
-      email: inputs.email,
-    };
-    localStorage.setItem('user', JSON.stringify(email));
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    localStorage.setItem(USER_KEY, JSON.stringify({ email: inputs.email }));
+    localStorage.setItem(MEALS_TOKEN_KEY, 1);
+    localStorage.setItem(DRINKS_TOKEN_KEY, 1);
     history.push('/meals');
   };
+
   return (
     <>
       <h1>Login</h1>
       <br />
-      <input
-        type="text"
-        placeholder="Digite seu email"
-        data-testid="email-input"
-        value={ inputs.email }
-        onChange={ mudarInput }
-        name="email"
-      />
-      <input
-        type="password"
-        placeholder="Digite sua senha"
-        data-testid="password-input"
-        value={ inputs.senha }
-        onChange={ mudarInput }
-        name="senha"
-      />
-      <button
-        type="button"
-        data-testid="login-submit-btn"
-        disabled={ buttonDisabled }
-        onClick={ entrar }
-      >
-        Enter
 
-      </button>
+      <form onSubmit={ handleSubmit }>
+
+        <input
+          type="text"
+          placeholder="Digite seu email"
+          data-testid="email-input"
+          value={ inputs.email }
+          onChange={ mudarInput }
+          name="email"
+        />
+        <input
+          type="password"
+          placeholder="Digite sua senha"
+          data-testid="password-input"
+          value={ inputs.senha }
+          onChange={ mudarInput }
+          name="senha"
+        />
+        <button
+          type="button"
+          data-testid="login-submit-btn"
+          disabled={ buttonDisabled }
+        >
+          Enter
+
+        </button>
+      </form>
 
     </>
   );
