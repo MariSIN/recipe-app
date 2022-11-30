@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const tamanhoSenha = 6;
 
@@ -9,6 +10,7 @@ function Login() {
   };
   const [inputs, setInputs] = useState(inputsLogin);
   const [buttonDisabled, setButtonDisabled] = useState(true);
+  const history = useHistory();
 
   useEffect(() => {
     const emailValidation = /\S+@\S+\.\S+/;
@@ -27,6 +29,14 @@ function Login() {
       ...inputs,
       [name]: value,
     });
+  };
+
+  const entrar = () => {
+    const email = {
+      email: inputs.email,
+    };
+    localStorage.setItem('user', JSON.stringify(email));
+    history.push('/meals');
   };
   return (
     <>
@@ -52,6 +62,7 @@ function Login() {
         type="button"
         data-testid="login-submit-btn"
         disabled={ buttonDisabled }
+        onClick={ entrar }
       >
         Enter
 
