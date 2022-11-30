@@ -23,7 +23,7 @@ function Drinks() {
   return (
     <>
       <Header title="Drinks" />
-      <Show />
+      <Show title="Drinks" />
       {drinks.map((drink, index) => (
         <div key={ drink.idDrink } data-testid={ `${index}-recipe-card` }>
           <h2 data-testid={ `${index}-card-name` }>{drink.strDrink}</h2>
