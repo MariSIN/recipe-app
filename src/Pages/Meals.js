@@ -23,7 +23,7 @@ function Meals() {
   return (
     <>
       <Header title="Meals" />
-      <Show />
+      <Show title="Meals" />
       {recipes.map((recipe, index) => (
         <div key={ recipe.idMeal } data-testid={ `${index}-recipe-card` }>
           <h2 data-testid={ `${index}-card-name` }>{recipe.strMeal}</h2>
