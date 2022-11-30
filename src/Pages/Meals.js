@@ -13,7 +13,7 @@ function Meals() {
     if (searchResult === null) {
       return global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
-    if (searchResult.length > maxRender) {
+    if (searchResult?.length > maxRender) {
       const top12 = searchResult.filter((item, index) => index <= maxRender);
       setRecipes(top12);
     } else {
@@ -25,7 +25,7 @@ function Meals() {
     <>
       <Header title="Meals" />
       <Show title="Meals" />
-      {recipes.map((recipe, index) => (
+      {recipes?.map((recipe, index) => (
         <div key={ recipe.idMeal } data-testid={ `${index}-recipe-card` }>
           <h2 data-testid={ `${index}-card-name` }>{recipe.strMeal}</h2>
           <img

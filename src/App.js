@@ -14,11 +14,11 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={ Login } />
+        <Route path="/meals/:id" component={ Details } />
+        <Route path="/drinks/:id" component={ Details } />
         <Route path="/profile" component={ Profile } />
         <Route path="/meals" component={ Meals } />
         <Route path="/drinks" component={ Drinks } />
-        <Route path="/meals/:id-meals" component={ Details } />
-        <Route path="/drinks/:id-drink" component={ Details } />
         <Route path="/done-recipes" component={ DoneRecipes } />
         <Route path="/favorite-recipes" component={ FavoriteRecipes } />
       </Switch>

@@ -7,74 +7,94 @@ function SearchBar({ title }) {
   const { handleChange, searchFilter, setSearchResult } = useContext(Context);
   const history = useHistory();
 
+  const dataMeals = () => {
+    if (data.meals.length === 1) {
+      const { idMeal } = data.meals[0];
+      history.push(`/meals/${idMeal}`);
+    }
+  };
+
+  const dataDrink = () => {
+    if (data.drinks.length === 1) {
+      const { idDrink } = data.drinks[0];
+      history.push(`/drinks/${idDrink}`);
+    }
+  };
+
   const fetchMeals = async () => {
     if (searchFilter.selectedFilter === 'Ingredient') {
-      const url = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchFilter.searchName}`;
-      const response = await fetch(url);
-      const data = await response.json();
-      setSearchResult(data.meals);
-      if (data.meals.length === 1) {
-        const { idMeal } = data.meals[0];
-        history.push(`/meals/${idMeal}`);
+      try {
+        const url = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchFilter.searchName}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        setSearchResult(data.meals);
+        dataMeals();
+      } catch (error) {
+        console.log(error);
       }
     }
     if (searchFilter.selectedFilter === 'Name') {
-      const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchFilter.searchName}`;
-      const response = await fetch(url);
-      const data = await response.json();
-      setSearchResult(data.meals);
-      if (data.meals?.length === 1) {
-        const { idMeal } = data.meals[0];
-        history.push(`/meals/${idMeal}`);
+      try {
+        const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchFilter.searchName}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        setSearchResult(data.meals);
+        dataMeals();
+      } catch (error) {
+        console.log(error);
       }
     }
     if (searchFilter.selectedFilter === 'First Letter') {
-      if (searchFilter.searchName.length > 1) {
-        return global.alert('Your search must have only 1 (one) character');
-      }
-      const url = `https://www.themealdb.com/api/json/v1/1/search.php?f=${searchFilter.searchName}`;
-      const response = await fetch(url);
-      const data = await response.json();
-      setSearchResult(data.meals);
-      if (data.meals.length === 1) {
-        const { idMeal } = data.meals[0];
-        history.push(`/meals/${idMeal}`);
+      try {
+        if (searchFilter.searchName.length > 1) {
+          return global.alert('Your search must have only 1 (one) character');
+        }
+        const url = `https://www.themealdb.com/api/json/v1/1/search.php?f=${searchFilter.searchName}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        setSearchResult(data.meals);
+        dataMeals();
+      } catch (error) {
+        console.log(error);
       }
     }
   };
 
   const fetchDrinks = async () => {
     if (searchFilter.selectedFilter === 'Ingredient') {
-      const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${searchFilter.searchName}`;
-      const response = await fetch(url);
-      const data = await response.json();
-      setSearchResult(data.drinks);
-      if (data.drinks.length === 1) {
-        const { idDrink } = data.drinks[0];
-        history.push(`/drinks/${idDrink}`);
+      try {
+        const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${searchFilter.searchName}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        setSearchResult(data.drinks);
+        dataDrink();
+      } catch (error) {
+        console.log(error);
       }
     }
     if (searchFilter.selectedFilter === 'Name') {
-      const url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchFilter.searchName}`;
-      const response = await fetch(url);
-      const data = await response.json();
-      setSearchResult(data.drinks);
-      if (data.drinks?.length === 1) {
-        const { idDrink } = data.drinks[0];
-        history.push(`/drinks/${idDrink}`);
+      try {
+        const url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchFilter.searchName}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        setSearchResult(data.drinks);
+        dataDrink();
+      } catch (error) {
+        console.log(error);
       }
     }
     if (searchFilter.selectedFilter === 'First Letter') {
-      if (searchFilter.searchName.length > 1) {
-        return global.alert('Your search must have only 1 (one) character');
-      }
-      const url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${searchFilter.searchName}`;
-      const response = await fetch(url);
-      const data = await response.json();
-      setSearchResult(data.drinks);
-      if (data.drinks.length === 1) {
-        const { idDrink } = data.drinks[0];
-        history.push(`/drinks/${idDrink}`);
+      try {
+        if (searchFilter.searchName.length > 1) {
+          return global.alert('Your search must have only 1 (one) character');
+        }
+        const url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${searchFilter.searchName}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        setSearchResult(data.drinks);
+        dataDrink();
+      } catch (error) {
+        console.log(error);
       }
     }
   };
