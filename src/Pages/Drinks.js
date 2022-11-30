@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import Show from '../Components/Show';
 import Context from '../Context/Context';
@@ -35,6 +36,7 @@ function Drinks() {
           />
         </div>
       ))}
+      <Footer />
     </>
   );
 }
