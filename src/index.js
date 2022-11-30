@@ -14,7 +14,7 @@ ReactDOM
       <ContextProvider>
         <App />
       </ContextProvider>
-      ,
+
     </BrowserRouter>,
 
   );
