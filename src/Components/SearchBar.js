@@ -23,7 +23,7 @@ function SearchBar({ title }) {
       const response = await fetch(url);
       const data = await response.json();
       setSearchResult(data.meals);
-      if (data.meals.length === 1) {
+      if (data.meals?.length === 1) {
         const { idMeal } = data.meals[0];
         history.push(`/meals/${idMeal}`);
       }
@@ -59,7 +59,7 @@ function SearchBar({ title }) {
       const response = await fetch(url);
       const data = await response.json();
       setSearchResult(data.drinks);
-      if (data.drinks.length === 1) {
+      if (data.drinks?.length === 1) {
         const { idDrink } = data.drinks[0];
         history.push(`/drinks/${idDrink}`);
       }
