@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import Show from '../Components/Show';
@@ -26,15 +27,17 @@ function Meals() {
       <Header title="Meals" />
       <Show title="Meals" />
       {recipes.map((recipe, index) => (
-        <div key={ recipe.idMeal } data-testid={ `${index}-recipe-card` }>
-          <h2 data-testid={ `${index}-card-name` }>{recipe.strMeal}</h2>
-          <img
-            data-testid={ `${index}-card-img` }
-            src={ recipe.strMealThumb }
-            alt={ recipe.strMeal }
-            style={ { maxWidth: '200px' } }
-          />
-        </div>
+        <Link to={ `/meals/${recipe.idMeal}` } key={ recipe.idMeal }>
+          <div data-testid={ `${index}-recipe-card` }>
+            <h2 data-testid={ `${index}-card-name` }>{recipe.strMeal}</h2>
+            <img
+              data-testid={ `${index}-card-img` }
+              src={ recipe.strMealThumb }
+              alt={ recipe.strMeal }
+              style={ { maxWidth: '200px' } }
+            />
+          </div>
+        </Link>
       ))}
       <Footer />
     </>
