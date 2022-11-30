@@ -5,6 +5,7 @@ import Header from '../Components/Header';
 function Profile() {
   const history = useHistory();
   const email = JSON.parse(localStorage.getItem('user'));
+  console.log(email);
 
   const login = () => {
     localStorage.clear();
@@ -13,7 +14,7 @@ function Profile() {
   return (
     <>
       <Header title="Profile" />
-      <p data-testid="profile-email">{email.email}</p>
+      <p data-testid="profile-email">{email?.email}</p>
       <button
         data-testid="profile-done-btn"
         type="button"
