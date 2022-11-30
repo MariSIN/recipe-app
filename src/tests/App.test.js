@@ -78,28 +78,4 @@ describe('Testes tela de login', () => {
 
     expect(button).toBeDisabled();
   });
-
-  test('Testando se o botão vai na rota certa', () => {
-    const { history } = renderWithRouter(
-      <ContextProvider>
-        <App />
-        ,
-      </ContextProvider>,
-
-    );
-
-    const button = screen.getByRole('button', { name: 'Enter' });
-    const inputEmail = screen.getByPlaceholderText(placeholderEmail);
-    const inputSenha = screen.getByPlaceholderText(placeholderSenha);
-
-    userEvent.type(inputEmail, email);
-    userEvent.type(inputSenha, '1234567');
-
-    expect(button).not.toBeDisabled();
-
-    userEvent.click(button);
-
-    const { pathname } = history.location;
-    expect(pathname).toBe('/meals');
-  });
 });
