@@ -8,6 +8,9 @@ function Meals() {
 
   useEffect(() => {
     const maxRender = 11;
+    if (searchResult === null) {
+      return global.alert('Sorry, we haven\'t found any recipes for these filters.');
+    }
     if (searchResult.length > maxRender) {
       const top12 = searchResult.filter((item, index) => index <= maxRender);
       setRecipes(top12);
