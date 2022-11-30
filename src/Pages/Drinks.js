@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import Header from '../Components/Header';
+import Show from '../Components/Show';
 import Context from '../Context/Context';
 
 function Drinks() {
@@ -22,6 +23,7 @@ function Drinks() {
   return (
     <>
       <Header title="Drinks" />
+      <Show />
       {drinks.map((drink, index) => (
         <div key={ drink.idDrink } data-testid={ `${index}-recipe-card` }>
           <h2 data-testid={ `${index}-card-name` }>{drink.strDrink}</h2>
