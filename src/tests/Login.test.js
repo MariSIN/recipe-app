@@ -4,9 +4,10 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 import ContextProvider from '../Context/ContextProvider';
+import { placeholderEmail, placeholderSenha, email } from './dataBase';
 
-describe('Testa <App />', () => {
-  it('Testa se há os elementos na tela', () => {
+describe('Testes tela de login', () => {
+  test('Testando se há os elementos na tela', () => {
     renderWithRouter(
       <ContextProvider>
         <App />
@@ -16,11 +17,11 @@ describe('Testa <App />', () => {
     );
     expect(screen.getByRole('heading', { name: 'Login', level: 1 }));
     expect(screen.getByRole('button', { name: 'Enter' }));
-    expect(screen.getByPlaceholderText('Digite seu email')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('Digite sua senha')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(placeholderEmail)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(placeholderSenha)).toBeInTheDocument();
   });
 
-  it('Testa se é possível escrever nos inputs', () => {
+  test('Testando se o botão fica valido ao ao escrever email e senhas corretas', () => {
     renderWithRouter(
       <ContextProvider>
         <App />
@@ -28,14 +29,16 @@ describe('Testa <App />', () => {
       </ContextProvider>,
 
     );
-    const inputEmail = screen.getByTestId('email-input');
-    const inputPassword = screen.getByTestId('password-input');
-
-    userEvent.type(inputEmail, 'nome@nome.com');
-    userEvent.type(inputPassword, '1234567');
+    const button = screen.getByRole('button', { name: 'Enter' });
+    const inputEmail = screen.getByPlaceholderText(placeholderEmail);
+    const inputSenha = screen.getByPlaceholderText(placeholderSenha);
+    expect(button).toBeDisabled();
+    userEvent.type(inputEmail, email);
+    userEvent.type(inputSenha, '1234567');
+    expect(button).toBeEnabled();
   });
 
-  it('Testa se o botão é habilitado quando digitado corretamente nos inputs', () => {
+  test('Testando se o botão fica invalido ao ao escrever email incorreto', () => {
     renderWithRouter(
       <ContextProvider>
         <App />
@@ -44,16 +47,32 @@ describe('Testa <App />', () => {
 
     );
 
-    const buttonPlay = screen.getByTestId('login-submit-btn');
+    const button = screen.getByRole('button', { name: 'Enter' });
+    const inputEmail = screen.getByPlaceholderText(placeholderEmail);
+    const inputSenha = screen.getByPlaceholderText(placeholderSenha);
 
-    expect(buttonPlay).toBeDisabled();
+    userEvent.type(inputEmail, 'leonardoelias80gmail.com');
+    userEvent.type(inputSenha, '1234567');
 
-    const inputEmail = screen.getByTestId('email-input');
-    const inputPassword = screen.getByTestId('password-input');
+    expect(button).toBeDisabled();
+  });
 
-    userEvent.type(inputEmail, 'nome@nome.com');
-    userEvent.type(inputPassword, '1234567');
+  test('Testando se o botão fica invalido ao ao escrever senha incorreta', () => {
+    renderWithRouter(
+      <ContextProvider>
+        <App />
+        ,
+      </ContextProvider>,
 
-    expect(buttonPlay).toBeEnabled();
+    );
+
+    const button = screen.getByRole('button', { name: 'Enter' });
+    const inputEmail = screen.getByPlaceholderText(placeholderEmail);
+    const inputSenha = screen.getByPlaceholderText(placeholderSenha);
+
+    userEvent.type(inputEmail, email);
+    userEvent.type(inputSenha, '1234');
+
+    expect(button).toBeDisabled();
   });
 });
