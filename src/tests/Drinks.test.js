@@ -1,11 +1,11 @@
-import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import renderWithRouter from '../renderWithRouter';
-import ContextProvider from '../Context/ContextProvider';
+import React from 'react';
 import App from '../App';
+import ContextProvider from '../Context/ContextProvider';
+import renderWithRouter from '../renderWithRouter';
+import { drinkBtn, execSearch, searchIngredient, searchInput, searchLetter, searchName, showButton } from './dataBase';
 import fetch from './mocks/fetch';
-import { showButton, searchInput, execSearch, searchLetter, searchIngredient, drinkBtn, searchName } from './dataBase';
 
 describe('Testa as bebidas', () => {
   global.fetch = fetch;
