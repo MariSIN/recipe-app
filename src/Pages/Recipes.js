@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import CardRecipes from '../Components/CardRecipes';
+import ButtonRecipes from '../Components/ButtonRecipes';
+import { MEALS_CATEGORY, DRINK_CATEGORY } from '../utilit/globalVariables';
 
 const maxFood = 12;
 
@@ -24,6 +26,7 @@ function Recipes({ endpoit, chave }) {
       <h1>Recipes</h1>
       {(chave === 'meals') ? (
         <>
+          <ButtonRecipes endpoit={ MEALS_CATEGORY } chave="meals" />
           {foodFilter.map((e, i) => (
             <CardRecipes
               key={ i }
@@ -35,6 +38,7 @@ function Recipes({ endpoit, chave }) {
 
       ) : (
         <>
+          <ButtonRecipes endpoit={ DRINK_CATEGORY } chave="drinks" />
           {foodFilter.map((e, i) => (
             <CardRecipes
               key={ i }
