@@ -9,6 +9,7 @@ function RecipeDetails({ title }) {
   const [recomendations, setRecomendations] = useState([]);
 
   const history = useHistory();
+  console.log(recomendations);
 
   const pathNameId = history.location.pathname;
   const fecthItens = async () => {
@@ -22,7 +23,7 @@ function RecipeDetails({ title }) {
       const url2 = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
       const response2 = await fetch(url2);
       const data2 = await response2.json();
-      setRecomendations(data2.drinks);
+      setRecomendations(data2.drinks.slice(0, 6));
     } else {
       const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
       const response = await fetch(url);
@@ -32,7 +33,7 @@ function RecipeDetails({ title }) {
       const url2 = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
       const response2 = await fetch(url2);
       const data2 = await response2.json();
-      setRecomendations(data2.meals);
+      setRecomendations(data2.meals.slice(0, 6));
     }
   };
 
@@ -63,7 +64,6 @@ function RecipeDetails({ title }) {
           data-testid={ `${index}-ingredient-name-and-measure` }
           key={ index }
         >
-          {console.log(index)}
           {`${i} : ${measure[index]}`}
         </li>
       ))}
@@ -95,6 +95,18 @@ function RecipeDetails({ title }) {
           />
         </div>
       ))}
+      <div style={ { display: 'flex', overflowY: 'hidden', overflowX: 'scroll' } }>
+        {recomendations && recomendations.map((i, index) => (
+          <div key={ i.idDrink } data-testid={ `${index}-recommendation-card` }>
+            <img
+              src={ i.strDrinkThumb }
+              alt={ i.strDrink }
+              style={ { maxWidth: '300px' } }
+            />
+            <p data-testid={ `${index}-recommendation-title` }>{ i.strDrink }</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 
@@ -114,6 +126,18 @@ function RecipeDetails({ title }) {
           <p data-testid="instructions">{item.strInstructions}</p>
         </div>
       ))}
+      <div style={ { display: 'flex', overflowY: 'hidden', overflowX: 'scroll' } }>
+        {recomendations && recomendations.map((i, index) => (
+          <div key={ i.idMeal } data-testid={ `${index}-recommendation-card` }>
+            <img
+              src={ i.strMealThumb }
+              alt={ i.strMeal }
+              style={ { maxWidth: '300px' } }
+            />
+            <p data-testid={ `${index}-recommendation-title` }>{ i.strMeal }</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 
