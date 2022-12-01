@@ -4,8 +4,8 @@ import React from 'react';
 import App from '../App';
 import ContextProvider from '../Context/ContextProvider';
 import renderWithRouter from '../renderWithRouter';
-import { drinkBtn, execSearch, searchIngredient, searchInput, searchLetter, searchName, showButton } from './dataBase';
 import fetch from './mocks/fetch';
+import { showButton, searchInput, execSearch, searchName, searchLetter, searchIngredient, btnLogin, inputEmail, inputPassword, userEmail, drinkBtn } from './dataBase';
 
 describe('Testa as bebidas', () => {
   global.fetch = fetch;
@@ -19,16 +19,14 @@ describe('Testa as bebidas', () => {
       </ContextProvider>,
     );
 
-    const buttonPlay = screen.getByTestId('login-submit-btn');
+    const login = screen.getByTestId(btnLogin);
 
-    expect(buttonPlay).toBeDisabled();
+    const email = screen.getByTestId(inputEmail);
+    const password = screen.getByTestId(inputPassword);
 
-    const inputEmail = screen.getByTestId('email-input');
-    const inputPassword = screen.getByTestId('password-input');
-
-    userEvent.type(inputEmail, 'nome@nome.com');
-    userEvent.type(inputPassword, '1234567');
-    userEvent.click(buttonPlay);
+    userEvent.type(email, userEmail);
+    userEvent.type(password, '1234567');
+    userEvent.click(login);
 
     userEvent.click(screen.getByTestId(drinkBtn));
 
@@ -52,6 +50,15 @@ describe('Testa as bebidas', () => {
       </ContextProvider>,
     );
 
+    const login = screen.getByTestId(btnLogin);
+
+    const email = screen.getByTestId(inputEmail);
+    const password = screen.getByTestId(inputPassword);
+
+    userEvent.type(email, userEmail);
+    userEvent.type(password, '1234567');
+    userEvent.click(login);
+
     userEvent.click(screen.getByTestId(drinkBtn));
 
     const button = screen.getByTestId(showButton);
@@ -73,6 +80,15 @@ describe('Testa as bebidas', () => {
         ,
       </ContextProvider>,
     );
+
+    const login = screen.getByTestId(btnLogin);
+
+    const email = screen.getByTestId(inputEmail);
+    const password = screen.getByTestId(inputPassword);
+
+    userEvent.type(email, userEmail);
+    userEvent.type(password, '1234567');
+    userEvent.click(login);
 
     userEvent.click(screen.getByTestId(drinkBtn));
 

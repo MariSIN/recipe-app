@@ -1,34 +1,55 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Header from '../Components/Header';
+import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 import ContextProvider from '../Context/ContextProvider';
+import { btnLogin, inputEmail, inputPassword, searchInput, showButton, userEmail } from './dataBase';
 
 describe('Testa <Header />', () => {
   it('Testa se é renderizado um elemento <h1> na tela', () => {
     renderWithRouter(
       <ContextProvider>
-        <Header />
+        <App />
         ,
       </ContextProvider>,
     );
+
+    const login = screen.getByTestId(btnLogin);
+
+    const email = screen.getByTestId(inputEmail);
+    const password = screen.getByTestId(inputPassword);
+
+    userEvent.type(email, userEmail);
+    userEvent.type(password, '1234567');
+    userEvent.click(login);
+
     expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
   });
 
   it('Testa se é renderizado um botão que mostra e esconde um input', () => {
     renderWithRouter(
       <ContextProvider>
-        <Header />
+        <App />
         ,
       </ContextProvider>,
     );
-    const buttonShow = screen.getByTestId('search-top-btn');
+
+    const login = screen.getByTestId(btnLogin);
+
+    const email = screen.getByTestId(inputEmail);
+    const password = screen.getByTestId(inputPassword);
+
+    userEvent.type(email, userEmail);
+    userEvent.type(password, '1234567');
+    userEvent.click(login);
+
+    const buttonShow = screen.getByTestId(showButton);
     expect(buttonShow).toBeInTheDocument();
 
     userEvent.click(buttonShow);
 
-    expect(screen.getByTestId('search-input')).toBeInTheDocument();
+    expect(screen.getByTestId(searchInput)).toBeInTheDocument();
 
     expect(screen.getByTestId('ingredient-search-radio')).toBeInTheDocument();
 
@@ -42,29 +63,46 @@ describe('Testa <Header />', () => {
   it('Testa se é possível escrever no input', () => {
     renderWithRouter(
       <ContextProvider>
-        <Header />
+        <App />
         ,
       </ContextProvider>,
 
     );
+
+    const login = screen.getByTestId(btnLogin);
+
+    const email = screen.getByTestId(inputEmail);
+    const password = screen.getByTestId(inputPassword);
+
+    userEvent.type(email, userEmail);
+    userEvent.type(password, '1234567');
+    userEvent.click(login);
 
     const buttonShow = screen.getByTestId('search-top-btn');
     expect(buttonShow).toBeInTheDocument();
 
     userEvent.click(buttonShow);
 
-    const searchInput = screen.getByTestId('search-input');
+    const search = screen.getByTestId(searchInput);
 
-    userEvent.type(searchInput, 'chicken');
+    userEvent.type(search, 'chicken');
   });
 
   it('Testa se é renderizado um ícone que redireciona para a página profile', () => {
     const { history } = renderWithRouter(
       <ContextProvider>
-        <Header />
+        <App />
         ,
       </ContextProvider>,
     );
+    const login = screen.getByTestId(btnLogin);
+
+    const email = screen.getByTestId(inputEmail);
+    const password = screen.getByTestId(inputPassword);
+
+    userEvent.type(email, userEmail);
+    userEvent.type(password, '1234567');
+    userEvent.click(login);
 
     const profileIcon = screen.getByTestId('profile-top-btn');
     expect(profileIcon).toBeInTheDocument();
