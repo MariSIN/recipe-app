@@ -4,7 +4,7 @@ import React from 'react';
 import App from '../App';
 import ContextProvider from '../Context/ContextProvider';
 import renderWithRouter from '../renderWithRouter';
-import fetch from './mocks/fetch';
+import fetch from '../../cypress/mocks/fetch';
 import { showButton, searchInput, execSearch, searchName, searchLetter, searchIngredient, btnLogin, inputEmail, inputPassword, userEmail, drinkBtn } from './dataBase';
 
 describe('Testa as bebidas', () => {

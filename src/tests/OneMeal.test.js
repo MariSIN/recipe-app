@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import ContextProvider from '../Context/ContextProvider';
 import App from '../App';
-import fetch from './mocks/fetch';
+import fetch from '../../cypress/mocks/fetch';
 import { showButton, searchInput, execSearch, searchName, btnLogin, inputEmail, inputPassword, userEmail } from './dataBase';
 
 describe('Testa as receitas', () => {
@@ -27,6 +27,7 @@ describe('Testa as receitas', () => {
     const password = screen.getByTestId(inputPassword);
 
     userEvent.type(email, userEmail);
+
     userEvent.type(password, '1234567');
     userEvent.click(login);
     const button = screen.getByTestId(showButton);
