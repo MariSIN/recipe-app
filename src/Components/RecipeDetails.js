@@ -10,11 +10,10 @@ function RecipeDetails({ title }) {
   const [recomendations, setRecomendations] = useState([]);
 
   const history = useHistory();
-  console.log(recomendations);
 
   const pathNameId = history.location.pathname;
+  const id = pathNameId.split('/')[2];
   const fecthItens = async () => {
-    const id = pathNameId.split('/')[2];
     if (title === 'Meals') {
       const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
       const response = await fetch(url);
@@ -112,6 +111,7 @@ function RecipeDetails({ title }) {
         data-testid="start-recipe-btn"
         type="button"
         style={ { position: 'fixed', bottom: '0px' } }
+        onClick={ () => history.push(`/meals/${id}/in-progress`) }
       >
         Start Recipe
       </button>
@@ -150,6 +150,7 @@ function RecipeDetails({ title }) {
         data-testid="start-recipe-btn"
         type="button"
         style={ { position: 'fixed', bottom: '0px' } }
+        onClick={ () => history.push(`/drinks/${id}/in-progress`) }
       >
         Start Recipe
       </button>
