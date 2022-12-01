@@ -21,6 +21,14 @@ function App() {
         path="/drinks/:id"
         render={ () => <RecipeDetails title="Drinks" /> }
       />
+      <Route
+        path="/meals/:id/in-progress"
+        render={ () => <RecipeDetails title="Meals" /> }
+      />
+      <Route
+        path="/drinks/:id/in-progress"
+        render={ () => <RecipeDetails title="Meals" /> }
+      />
       <Route path="/meals" component={ Meals } />
       <Route path="/profile" component={ Profile } />
       <Route path="/drinks" component={ Drinks } />
