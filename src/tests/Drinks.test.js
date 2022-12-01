@@ -1,9 +1,9 @@
-import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import renderWithRouter from '../renderWithRouter';
-import ContextProvider from '../Context/ContextProvider';
+import React from 'react';
 import App from '../App';
+import ContextProvider from '../Context/ContextProvider';
+import renderWithRouter from '../renderWithRouter';
 import fetch from './mocks/fetch';
 import { showButton, searchInput, execSearch, searchName, searchLetter, searchIngredient, btnLogin, inputEmail, inputPassword, userEmail, drinkBtn } from './dataBase';
 
