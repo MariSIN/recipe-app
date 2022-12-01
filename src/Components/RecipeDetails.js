@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { MAX_RECOM_VALUE } from '../utilit/globalVariables';
 
 function RecipeDetails({ title }) {
   const [recipe, setRecipe] = useState([]);
@@ -23,7 +24,7 @@ function RecipeDetails({ title }) {
       const url2 = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
       const response2 = await fetch(url2);
       const data2 = await response2.json();
-      setRecomendations(data2.drinks.slice(0, 6));
+      setRecomendations(data2.drinks.slice(0, MAX_RECOM_VALUE));
     } else {
       const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
       const response = await fetch(url);
@@ -33,7 +34,7 @@ function RecipeDetails({ title }) {
       const url2 = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
       const response2 = await fetch(url2);
       const data2 = await response2.json();
-      setRecomendations(data2.meals.slice(0, 6));
+      setRecomendations(data2.meals.slice(0, MAX_RECOM_VALUE));
     }
   };
 
@@ -107,6 +108,13 @@ function RecipeDetails({ title }) {
           </div>
         ))}
       </div>
+      <button
+        data-testid="start-recipe-btn"
+        type="button"
+        style={ { position: 'fixed', bottom: '0px' } }
+      >
+        Start Recipe
+      </button>
     </div>
   );
 
@@ -138,6 +146,13 @@ function RecipeDetails({ title }) {
           </div>
         ))}
       </div>
+      <button
+        data-testid="start-recipe-btn"
+        type="button"
+        style={ { position: 'fixed', bottom: '0px' } }
+      >
+        Start Recipe
+      </button>
     </div>
   );
 
