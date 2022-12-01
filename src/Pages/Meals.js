@@ -4,6 +4,8 @@ import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import Show from '../Components/Show';
 import Context from '../Context/Context';
+import { MEALS_RECIPES } from '../utilit/globalVariables';
+import Recipes from './Recipes';
 
 function Meals() {
   const [recipes, setRecipes] = useState([]);
@@ -26,6 +28,7 @@ function Meals() {
     <>
       <Header title="Meals" />
       <Show title="Meals" />
+      <Recipes endpoit={ MEALS_RECIPES } chave="meals" />
       {recipes?.map((recipe, index) => (
         <Link to={ `/meals/${recipe.idMeal}` } key={ recipe.idMeal }>
           <div data-testid={ `${index}-recipe-card` }>
