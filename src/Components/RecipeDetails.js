@@ -8,6 +8,8 @@ function RecipeDetails({ title }) {
   const [ingredient, setIngredient] = useState([]);
   const [measure, setMeasure] = useState([]);
   const [recomendations, setRecomendations] = useState([]);
+  const [continueRecipes, setContinueRecipes] = useState();
+  const [isSaved, setIsSaved] = useState(false);
 
   const history = useHistory();
 
@@ -39,7 +41,65 @@ function RecipeDetails({ title }) {
 
   useEffect(() => {
     fecthItens();
+    const savedRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+
+    if (!savedRecipes) {
+      localStorage.setItem('inProgressRecipes', JSON.stringify({
+        drinks: {
+
+        },
+        meals: {
+        },
+      }));
+    }
+    setContinueRecipes(JSON.parse(localStorage.getItem('inProgressRecipes')));
   }, []);
+
+  useEffect(() => {
+    if (continueRecipes !== undefined && title === 'Meals') {
+      const verify = Object.keys(continueRecipes.meals).includes(id);
+      setIsSaved(verify);
+    }
+    if (continueRecipes !== undefined && title === 'Drinks') {
+      const verify = Object.keys(continueRecipes.drinks).includes(id);
+      setIsSaved(verify);
+    }
+  }, [continueRecipes]);
+
+  const inProgressRecipe = () => {
+    const savedRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (title === 'Meals') {
+      history.push(`/meals/${id}/in-progress`);
+
+      const newSavedMeal = {
+        meals: {
+          ...savedRecipes.meals,
+          [id]: ingredient,
+        },
+        drinks: {
+          ...savedRecipes.drinks,
+        },
+      };
+
+      localStorage.setItem('inProgressRecipes', JSON.stringify(newSavedMeal));
+      setContinueRecipes(JSON.parse(localStorage.getItem('inProgressRecipes')));
+    } else {
+      history.push(`/drinks/${id}/in-progress`);
+
+      const newSavedDrinks = {
+        meals: {
+          ...savedRecipes.meals,
+        },
+        drinks: {
+          ...savedRecipes.drinks,
+          [id]: ingredient,
+        },
+      };
+
+      localStorage.setItem('inProgressRecipes', JSON.stringify(newSavedDrinks));
+      setContinueRecipes(JSON.parse(localStorage.getItem('inProgressRecipes')));
+    }
+  };
 
   useEffect(() => {
     if (recipe[0]) {
@@ -111,9 +171,9 @@ function RecipeDetails({ title }) {
         data-testid="start-recipe-btn"
         type="button"
         style={ { position: 'fixed', bottom: '0px' } }
-        onClick={ () => history.push(`/meals/${id}/in-progress`) }
+        onClick={ inProgressRecipe }
       >
-        Start Recipe
+        {isSaved ? 'Continue Recipe' : 'Start Recipe'}
       </button>
     </div>
   );
@@ -150,9 +210,10 @@ function RecipeDetails({ title }) {
         data-testid="start-recipe-btn"
         type="button"
         style={ { position: 'fixed', bottom: '0px' } }
-        onClick={ () => history.push(`/drinks/${id}/in-progress`) }
+        onClick={ inProgressRecipe }
       >
-        Start Recipe
+        {isSaved ? 'Continue Recipe' : 'Start Recipe'}
+
       </button>
     </div>
   );

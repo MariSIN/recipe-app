@@ -37,6 +37,7 @@ function Login() {
     localStorage.setItem(USER_KEY, JSON.stringify({ email: inputs.email }));
     localStorage.setItem(MEALS_TOKEN_KEY, 1);
     localStorage.setItem(DRINKS_TOKEN_KEY, 1);
+
     history.push('/meals');
   };
 
