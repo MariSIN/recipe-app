@@ -27,6 +27,7 @@ describe('Testa as receitas', () => {
     const password = screen.getByTestId(inputPassword);
 
     userEvent.type(email, userEmail);
+
     userEvent.type(password, '1234567');
     userEvent.click(login);
     const button = screen.getByTestId(showButton);
