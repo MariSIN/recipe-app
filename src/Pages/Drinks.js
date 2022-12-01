@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import Show from '../Components/Show';
@@ -26,15 +27,17 @@ function Drinks() {
       <Header title="Drinks" />
       <Show title="Drinks" />
       {drinks.map((drink, index) => (
-        <div key={ drink.idDrink } data-testid={ `${index}-recipe-card` }>
-          <h2 data-testid={ `${index}-card-name` }>{drink.strDrink}</h2>
-          <img
-            data-testid={ `${index}-card-img` }
-            src={ drink.strDrinkThumb }
-            alt={ drink.strDrink }
-            style={ { maxWidth: '200px' } }
-          />
-        </div>
+        <Link to={ `/drinks/${drink.idDrink}` } key={ drink.idDrink }>
+          <div data-testid={ `${index}-recipe-card` }>
+            <h2 data-testid={ `${index}-card-name` }>{drink.strDrink}</h2>
+            <img
+              data-testid={ `${index}-card-img` }
+              src={ drink.strDrinkThumb }
+              alt={ drink.strDrink }
+              style={ { maxWidth: '200px' } }
+            />
+          </div>
+        </Link>
       ))}
       <Footer />
     </>
