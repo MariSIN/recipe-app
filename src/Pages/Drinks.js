@@ -4,6 +4,8 @@ import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import Show from '../Components/Show';
 import Context from '../Context/Context';
+import { DRINK_RECIPES } from '../utilit/globalVariables';
+import Recipes from './Recipes';
 
 function Drinks() {
   const [drinks, setDrinks] = useState([]);
@@ -26,6 +28,7 @@ function Drinks() {
     <>
       <Header title="Drinks" />
       <Show title="Drinks" />
+      <Recipes endpoit={ DRINK_RECIPES } chave="drinks" />
       {drinks.map((drink, index) => (
         <Link to={ `/drinks/${drink.idDrink}` } key={ drink.idDrink }>
           <div data-testid={ `${index}-recipe-card` }>
