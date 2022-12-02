@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { MAX_RECOM_VALUE } from '../utilit/globalVariables';
+import shareIcon from '../images/shareIcon.svg';
+import { LINK_COPIED_TIME, MAX_RECOM_VALUE } from '../utilit/globalVariables';
 import { notEmptyLocalStorage, notUndefinedLocalStorage } from './LocalStorage';
+
+const copy = require('clipboard-copy');
 
 function RecipeDetails({ title }) {
   const [recipe, setRecipe] = useState([]);
@@ -11,11 +14,13 @@ function RecipeDetails({ title }) {
   const [recomendations, setRecomendations] = useState([]);
   const [continueRecipes, setContinueRecipes] = useState();
   const [isSaved, setIsSaved] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
 
   const history = useHistory();
 
   const pathNameId = history.location.pathname;
   const id = pathNameId.split('/')[2];
+
   const fecthItens = async () => {
     if (title === 'Meals') {
       const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
@@ -55,6 +60,7 @@ function RecipeDetails({ title }) {
       setMeasure(recipeMeasure);
     }
   };
+
   const inProgressRecipe = () => {
     const savedRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
     if (title === 'Meals') {
@@ -89,6 +95,15 @@ function RecipeDetails({ title }) {
       setContinueRecipes(JSON.parse(localStorage.getItem('inProgressRecipes')));
     }
   };
+
+  const copyLink = (() => {
+    copy('Link');
+    setIsCopied(true);
+
+    setInterval(() => {
+      setIsCopied(false);
+    }, LINK_COPIED_TIME);
+  });
 
   useEffect(() => {
     fecthItens();
@@ -127,9 +142,13 @@ function RecipeDetails({ title }) {
             style={ { maxWidth: '200px' } }
           />
           <div>
-            <button type="button" data-testid="share-btn">Share</button>
+            <button type="button" data-testid="share-btn" onClick={ copyLink }>
+              <img src={ shareIcon } alt="share-icon" />
+            </button>
             <button type="button" data-testid="favorite-btn">Favorite</button>
+            {isCopied && <p>Link copied!</p>}
           </div>
+
           <h1 data-testid="recipe-title">{item.strMeal}</h1>
           <p data-testid="recipe-category">{item.strCategory}</p>
           {ingredientList}
@@ -178,8 +197,13 @@ function RecipeDetails({ title }) {
             alt={ item.strDrink }
             style={ { maxWidth: '200px' } }
           />
-          <button type="button" data-testid="share-btn">Share</button>
-          <button type="button" data-testid="favorite-btn">Favorite</button>
+          <div>
+            <button type="button" data-testid="share-btn" onClick={ copyLink }>
+              <img src={ shareIcon } alt="share-icon" />
+            </button>
+            <button type="button" data-testid="favorite-btn">Favorite</button>
+            {isCopied && <p>Link copied!</p>}
+          </div>
           <h1 data-testid="recipe-title">{item.strDrink}</h1>
           <p data-testid="recipe-category">{item.strAlcoholic}</p>
           {ingredientList}
@@ -222,8 +246,3 @@ RecipeDetails.propTypes = {
 };
 
 export default RecipeDetails;
-
-// allow="a
-// ccelerometer; autoplay;
-// clipboard-write; encrypited-media; gyroscop; picture-in-picture"
-// allowFullScreen
