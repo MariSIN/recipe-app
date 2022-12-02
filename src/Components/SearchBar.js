@@ -7,14 +7,14 @@ function SearchBar({ title }) {
   const { handleChange, searchFilter, setSearchResult } = useContext(Context);
   const history = useHistory();
 
-  const dataMeals = () => {
+  const dataMeals = (data) => {
     if (data.meals.length === 1) {
       const { idMeal } = data.meals[0];
       history.push(`/meals/${idMeal}`);
     }
   };
 
-  const dataDrink = () => {
+  const dataDrink = (data) => {
     if (data.drinks.length === 1) {
       const { idDrink } = data.drinks[0];
       history.push(`/drinks/${idDrink}`);
@@ -28,7 +28,7 @@ function SearchBar({ title }) {
         const response = await fetch(url);
         const data = await response.json();
         setSearchResult(data.meals);
-        dataMeals();
+        dataMeals(data);
       } catch (error) {
         console.log(error);
       }
@@ -39,7 +39,7 @@ function SearchBar({ title }) {
         const response = await fetch(url);
         const data = await response.json();
         setSearchResult(data.meals);
-        dataMeals();
+        dataMeals(data);
       } catch (error) {
         console.log(error);
       }
@@ -53,7 +53,7 @@ function SearchBar({ title }) {
         const response = await fetch(url);
         const data = await response.json();
         setSearchResult(data.meals);
-        dataMeals();
+        dataMeals(data);
       } catch (error) {
         console.log(error);
       }
@@ -67,7 +67,7 @@ function SearchBar({ title }) {
         const response = await fetch(url);
         const data = await response.json();
         setSearchResult(data.drinks);
-        dataDrink();
+        dataDrink(data);
       } catch (error) {
         console.log(error);
       }
@@ -78,7 +78,7 @@ function SearchBar({ title }) {
         const response = await fetch(url);
         const data = await response.json();
         setSearchResult(data.drinks);
-        dataDrink();
+        dataDrink(data);
       } catch (error) {
         console.log(error);
       }
