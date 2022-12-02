@@ -38,11 +38,8 @@ function RecipeDetails({ title }) {
       setRecomendations(data2.meals.slice(0, MAX_RECOM_VALUE));
     }
   };
-
-  useEffect(() => {
-    fecthItens();
+  const notEmptyLocalStorage = () => {
     const savedRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
-
     if (!savedRecipes) {
       localStorage.setItem('inProgressRecipes', JSON.stringify({
         drinks: {
@@ -53,9 +50,9 @@ function RecipeDetails({ title }) {
       }));
     }
     setContinueRecipes(JSON.parse(localStorage.getItem('inProgressRecipes')));
-  }, []);
+  };
 
-  useEffect(() => {
+  const notUndefinedLocalStorage = () => {
     if (continueRecipes !== undefined && title === 'Meals') {
       const verify = Object.keys(continueRecipes.meals).includes(id);
       setIsSaved(verify);
@@ -64,8 +61,23 @@ function RecipeDetails({ title }) {
       const verify = Object.keys(continueRecipes.drinks).includes(id);
       setIsSaved(verify);
     }
-  }, [continueRecipes]);
+  };
 
+  const ingredientEndMeasure = () => {
+    if (recipe[0]) {
+      const recipeIngredient = Object.entries(recipe[0])
+        .filter((i) => i[0].includes('strIngredient'))
+        .filter((i) => i[1] !== null && i[1] !== '')
+        .map((i) => i[1]);
+      setIngredient(recipeIngredient);
+
+      const recipeMeasure = Object.entries(recipe[0])
+        .filter((i) => i[0].includes('strMeasure'))
+        .filter((i) => i[1] !== '' && i[1] !== null)
+        .map((i) => i[1]);
+      setMeasure(recipeMeasure);
+    }
+  };
   const inProgressRecipe = () => {
     const savedRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
     if (title === 'Meals') {
@@ -102,19 +114,16 @@ function RecipeDetails({ title }) {
   };
 
   useEffect(() => {
-    if (recipe[0]) {
-      const recipeIngredient = Object.entries(recipe[0])
-        .filter((i) => i[0].includes('strIngredient'))
-        .filter((i) => i[1] !== null && i[1] !== '')
-        .map((i) => i[1]);
-      setIngredient(recipeIngredient);
+    fecthItens();
+    notEmptyLocalStorage();
+  }, []);
 
-      const recipeMeasure = Object.entries(recipe[0])
-        .filter((i) => i[0].includes('strMeasure'))
-        .filter((i) => i[1] !== '' && i[1] !== null)
-        .map((i) => i[1]);
-      setMeasure(recipeMeasure);
-    }
+  useEffect(() => {
+    notUndefinedLocalStorage();
+  }, [continueRecipes]);
+
+  useEffect(() => {
+    ingredientEndMeasure();
   }, [recipe]);
 
   const ingredientList = (
