@@ -1,17 +1,19 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import useFetch from '../hooks/useFetch';
 import shareIcon from '../images/shareIcon.svg';
-import { LINK_COPIED_TIME, MAX_RECOM_VALUE } from '../utilit/globalVariables';
-import { notEmptyLocalStorage, notUndefinedLocalStorage } from './LocalStorage';
+import {
+  favoriteLocalStorage, notEmptyLocalStorage,
+  notUndefinedLocalStorage
+} from './LocalStorage';
 
 const copy = require('clipboard-copy');
 
 function RecipeDetails({ title }) {
-  const [recipe, setRecipe] = useState([]);
+  const { recipe, recomendations } = useFetch();
   const [ingredient, setIngredient] = useState([]);
   const [measure, setMeasure] = useState([]);
-  const [recomendations, setRecomendations] = useState([]);
   const [continueRecipes, setContinueRecipes] = useState();
   const [isSaved, setIsSaved] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
@@ -20,30 +22,6 @@ function RecipeDetails({ title }) {
 
   const pathNameId = history.location.pathname;
   const id = pathNameId.split('/')[2];
-
-  const fecthItens = async () => {
-    if (title === 'Meals') {
-      const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
-      const response = await fetch(url);
-      const data = await response.json();
-      setRecipe(data.meals);
-
-      const url2 = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
-      const response2 = await fetch(url2);
-      const data2 = await response2.json();
-      setRecomendations(data2.drinks.slice(0, MAX_RECOM_VALUE));
-    } else {
-      const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
-      const response = await fetch(url);
-      const data = await response.json();
-      setRecipe(data.drinks);
-
-      const url2 = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
-      const response2 = await fetch(url2);
-      const data2 = await response2.json();
-      setRecomendations(data2.meals.slice(0, MAX_RECOM_VALUE));
-    }
-  };
 
   const ingredientEndMeasure = () => {
     if (recipe[0]) {
@@ -97,16 +75,11 @@ function RecipeDetails({ title }) {
   };
 
   const copyLink = (() => {
-    copy('Link');
+    copy(`http://localhost:3000${pathNameId}`);
     setIsCopied(true);
-
-    setInterval(() => {
-      setIsCopied(false);
-    }, LINK_COPIED_TIME);
   });
 
   useEffect(() => {
-    fecthItens();
     notEmptyLocalStorage(setContinueRecipes);
   }, []);
 
@@ -145,7 +118,15 @@ function RecipeDetails({ title }) {
             <button type="button" data-testid="share-btn" onClick={ copyLink }>
               <img src={ shareIcon } alt="share-icon" />
             </button>
-            <button type="button" data-testid="favorite-btn">Favorite</button>
+            <button
+              type="button"
+              data-testid="favorite-btn"
+              onClick={ () => favoriteLocalStorage(recipe, title) }
+
+            >
+              Favorite
+
+            </button>
             {isCopied && <p>Link copied!</p>}
           </div>
 
@@ -201,7 +182,14 @@ function RecipeDetails({ title }) {
             <button type="button" data-testid="share-btn" onClick={ copyLink }>
               <img src={ shareIcon } alt="share-icon" />
             </button>
-            <button type="button" data-testid="favorite-btn">Favorite</button>
+            <button
+              type="button"
+              data-testid="favorite-btn"
+              onClick={ () => favoriteLocalStorage(recipe, title) }
+            >
+              Favorite
+
+            </button>
             {isCopied && <p>Link copied!</p>}
           </div>
           <h1 data-testid="recipe-title">{item.strDrink}</h1>
