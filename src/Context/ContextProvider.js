@@ -8,7 +8,6 @@ function ContextProvider({ children }) {
     selectedFilter: '',
   });
   const [searchResult, setSearchResult] = useState([]);
-  const [continueRecipes, setContinueRecipes] = useState();
 
   const handleChange = useCallback(({ target }) => {
     setSearchFilter({
@@ -23,9 +22,7 @@ function ContextProvider({ children }) {
     handleChange,
     setSearchResult,
     searchResult,
-    continueRecipes,
-    setContinueRecipes,
-  }), [searchFilter, handleChange, searchResult, continueRecipes]);
+  }), [searchFilter, handleChange, searchResult]);
 
   return (
     <Context.Provider value={ value }>

@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { MAX_RECOM_VALUE } from '../utilit/globalVariables';
+import { notEmptyLocalStorage, notUndefinedLocalStorage } from './LocalStorage';
 
 function RecipeDetails({ title }) {
   const [recipe, setRecipe] = useState([]);
@@ -36,30 +37,6 @@ function RecipeDetails({ title }) {
       const response2 = await fetch(url2);
       const data2 = await response2.json();
       setRecomendations(data2.meals.slice(0, MAX_RECOM_VALUE));
-    }
-  };
-  const notEmptyLocalStorage = () => {
-    const savedRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (!savedRecipes) {
-      localStorage.setItem('inProgressRecipes', JSON.stringify({
-        drinks: {
-
-        },
-        meals: {
-        },
-      }));
-    }
-    setContinueRecipes(JSON.parse(localStorage.getItem('inProgressRecipes')));
-  };
-
-  const notUndefinedLocalStorage = () => {
-    if (continueRecipes !== undefined && title === 'Meals') {
-      const verify = Object.keys(continueRecipes.meals).includes(id);
-      setIsSaved(verify);
-    }
-    if (continueRecipes !== undefined && title === 'Drinks') {
-      const verify = Object.keys(continueRecipes.drinks).includes(id);
-      setIsSaved(verify);
     }
   };
 
@@ -115,11 +92,11 @@ function RecipeDetails({ title }) {
 
   useEffect(() => {
     fecthItens();
-    notEmptyLocalStorage();
+    notEmptyLocalStorage(setContinueRecipes);
   }, []);
 
   useEffect(() => {
-    notUndefinedLocalStorage();
+    notUndefinedLocalStorage(continueRecipes, title, id, setIsSaved);
   }, [continueRecipes]);
 
   useEffect(() => {
