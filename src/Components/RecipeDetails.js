@@ -5,7 +5,7 @@ import useFetch from '../hooks/useFetch';
 import shareIcon from '../images/shareIcon.svg';
 import {
   favoriteLocalStorage, notEmptyLocalStorage,
-  notUndefinedLocalStorage
+  notUndefinedLocalStorage,
 } from './LocalStorage';
 
 const copy = require('clipboard-copy');
