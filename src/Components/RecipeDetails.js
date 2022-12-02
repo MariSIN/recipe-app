@@ -126,6 +126,10 @@ function RecipeDetails({ title }) {
             alt={ item.strMeal }
             style={ { maxWidth: '200px' } }
           />
+          <div>
+            <button type="button" data-testid="share-btn">Share</button>
+            <button type="button" data-testid="favorite-btn">Favorite</button>
+          </div>
           <h1 data-testid="recipe-title">{item.strMeal}</h1>
           <p data-testid="recipe-category">{item.strCategory}</p>
           {ingredientList}
@@ -142,8 +146,8 @@ function RecipeDetails({ title }) {
         </div>
       ))}
       <div style={ { display: 'flex', overflowY: 'hidden', overflowX: 'scroll' } }>
-        {recomendations && recomendations.map((i, index) => (
-          <div key={ i.idDrink } data-testid={ `${index}-recommendation-card` }>
+        {recomendations.map((i, index) => (
+          <div key={ Number(i.idDrink) } data-testid={ `${index}-recommendation-card` }>
             <img
               src={ i.strDrinkThumb }
               alt={ i.strDrink }
@@ -174,6 +178,8 @@ function RecipeDetails({ title }) {
             alt={ item.strDrink }
             style={ { maxWidth: '200px' } }
           />
+          <button type="button" data-testid="share-btn">Share</button>
+          <button type="button" data-testid="favorite-btn">Favorite</button>
           <h1 data-testid="recipe-title">{item.strDrink}</h1>
           <p data-testid="recipe-category">{item.strAlcoholic}</p>
           {ingredientList}
@@ -181,8 +187,8 @@ function RecipeDetails({ title }) {
         </div>
       ))}
       <div style={ { display: 'flex', overflowY: 'hidden', overflowX: 'scroll' } }>
-        {recomendations && recomendations.map((i, index) => (
-          <div key={ i.idMeal } data-testid={ `${index}-recommendation-card` }>
+        {recomendations.map((i, index) => (
+          <div key={ Number(i.idMeal) } data-testid={ `${index}-recommendation-card` }>
             <img
               src={ i.strMealThumb }
               alt={ i.strMeal }
