@@ -1,0 +1,90 @@
+.content-meals, .meals-card {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.card-img {
+  border: 0.5px solid rgba(0, 0, 0, 0.418);
+  border-radius: 5px 5px 0 0;
+  margin-bottom: -10px;
+  width: 165px;
+}
+
+.card-recipe {
+  align-items: center;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  height: 202px;
+  justify-content: center;
+  width: 166px;
+}
+
+.card-name {
+  align-self: flex-start;
+  border: 0.5px solid rgba(0, 0, 0, 0.418);
+  border-radius: 0 0 5px 5px;
+  color: black;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-top: 5px;
+  width: 165px;
+}
+
+.link-meals {
+  text-decoration: none;
+}
+
+.text-name {
+  flex-flow: wrap;
+  height: 42px;
+  margin-top: -40px;
+  order: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 165px;
+  word-wrap: break-word;
+}
+
+.meals-column {
+  align-items: center;
+  display: grid;
+  gap: 50px;
+  grid-template-columns: repeat(auto-fit, minmax(163px, 1fr));
+  justify-content: center;
+  width: 100%;
+}
+
+.container-button-filter {
+  align-self: center;
+  display: flex;
+  gap: 15px;
+  grid-column: 1/-1;
+  justify-self: center;
+  margin-top: -100px;
+}
+
+.button-filter {
+  border-radius: 100%;
+  height: 45px;
+  width: 45px;
+}
+
+.map-meals-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -22px;
+}
+
+.title-recipes {
+  align-self: center;
+  text-align: center;
+}

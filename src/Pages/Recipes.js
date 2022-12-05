@@ -23,7 +23,7 @@ function Recipes({ endpoit, chave }) {
   }, [food]);
   return (
     <>
-      <h1>Recipes</h1>
+      <h1 className="title-recipes">Recipes</h1>
       {(chave === 'meals') ? (
         <>
           <ButtonRecipes endpoit={ MEALS_CATEGORY } chave="meals" />

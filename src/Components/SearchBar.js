@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Context from '../Context/Context';
+import '../style/header.css';
 
 function SearchBar({ title }) {
   const { handleChange, searchFilter, setSearchResult } = useContext(Context);
@@ -100,7 +101,7 @@ function SearchBar({ title }) {
   };
 
   return (
-    <>
+    <div className="search-bar">
       <label htmlFor="ingredient">
         Ingredient
         <input
@@ -108,6 +109,7 @@ function SearchBar({ title }) {
           type="radio"
           name="selectedFilter"
           value="Ingredient"
+          className="ingredient search-option"
           onChange={ handleChange }
           id="ingredient"
         />
@@ -118,6 +120,7 @@ function SearchBar({ title }) {
           data-testid="name-search-radio"
           type="radio"
           name="selectedFilter"
+          className="name search-option"
           value="Name"
           onChange={ handleChange }
           id="name"
@@ -129,6 +132,7 @@ function SearchBar({ title }) {
           data-testid="first-letter-search-radio"
           type="radio"
           name="selectedFilter"
+          className="first-letter search-option"
           value="First Letter"
           onChange={ handleChange }
           id="first-letter"
@@ -136,12 +140,13 @@ function SearchBar({ title }) {
       </label>
       <button
         data-testid="exec-search-btn"
+        className="btn-search"
         type="button"
         onClick={ title === 'Meals' ? fetchMeals : fetchDrinks }
       >
         Search
       </button>
-    </>
+    </div>
   );
 }
 
