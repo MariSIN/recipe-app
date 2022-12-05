@@ -2,10 +2,11 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import {
-  favoriteLocalStorage, notEmptyLocalStorage,
-  notUndefinedLocalStorage,
+  favoriteLocalStorage, notEmptyLocalStorage, notUndefinedLocalStorage
 } from './LocalStorage';
 
 const copy = require('clipboard-copy');
@@ -17,6 +18,7 @@ function RecipeDetails({ title }) {
   const [continueRecipes, setContinueRecipes] = useState();
   const [isSaved, setIsSaved] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
+  const [isFav, setIsFav] = useState(false);
 
   const history = useHistory();
 
@@ -81,6 +83,10 @@ function RecipeDetails({ title }) {
 
   useEffect(() => {
     notEmptyLocalStorage(setContinueRecipes);
+    const favoritedRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (!favoritedRecipes) {
+      localStorage.setItem('favoriteRecipes', JSON.stringify([]));
+    }
   }, []);
 
   useEffect(() => {
@@ -89,6 +95,14 @@ function RecipeDetails({ title }) {
 
   useEffect(() => {
     ingredientEndMeasure();
+    const favorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (title === 'Meals') {
+      const isFavorite = favorites?.some((i) => i.id === recipe[0]?.idMeal);
+      setIsFav(isFavorite);
+    } else {
+      const isFavorite = favorites?.some((i) => i.id === recipe[0]?.idDrink);
+      setIsFav(isFavorite);
+    }
   }, [recipe]);
 
   const ingredientList = (
@@ -120,12 +134,13 @@ function RecipeDetails({ title }) {
             </button>
             <button
               type="button"
-              data-testid="favorite-btn"
-              onClick={ () => favoriteLocalStorage(recipe, title) }
-
+              onClick={ () => favoriteLocalStorage(recipe, title, setIsFav) }
             >
-              Favorite
-
+              <img
+                data-testid="favorite-btn"
+                src={ isFav ? blackHeartIcon : whiteHeartIcon }
+                alt="favoriteIcon"
+              />
             </button>
             {isCopied && <p>Link copied!</p>}
           </div>
@@ -184,10 +199,13 @@ function RecipeDetails({ title }) {
             </button>
             <button
               type="button"
-              data-testid="favorite-btn"
-              onClick={ () => favoriteLocalStorage(recipe, title) }
+              onClick={ () => favoriteLocalStorage(recipe, title, setIsFav) }
             >
-              Favorite
+              <img
+                data-testid="favorite-btn"
+                src={ isFav ? blackHeartIcon : whiteHeartIcon }
+                alt="favoriteIcon"
+              />
 
             </button>
             {isCopied && <p>Link copied!</p>}
