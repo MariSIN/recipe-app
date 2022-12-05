@@ -19,16 +19,17 @@ function ButtonRecipes({ endpoit, chave }) {
     }
   }, [categorias]);
   return (
-    <>
+    <div className="container-button-filter">
       {categoriasFilter.map((e, i) => (
         <button
           type="button"
           key={ i }
           data-testid={ `${e.strCategory}-category-filter` }
+          className="button-filter"
         >
           {e.strCategory}
         </button>))}
-    </>
+    </div>
   );
 }
 

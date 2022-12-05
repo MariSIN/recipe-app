@@ -6,6 +6,7 @@ import Show from '../Components/Show';
 import Context from '../Context/Context';
 import { MEALS_RECIPES } from '../utilit/globalVariables';
 import Recipes from './Recipes';
+import '../style/meals.css';
 
 function Meals() {
   const [recipes, setRecipes] = useState([]);
@@ -25,25 +26,42 @@ function Meals() {
   }, [searchResult]);
 
   return (
-    <>
+    <div className="content-meals">
       <Header title="Meals" />
       <Show title="Meals" />
-      <Recipes endpoit={ MEALS_RECIPES } chave="meals" />
-      {recipes?.map((recipe, index) => (
-        <Link to={ `/meals/${recipe.idMeal}` } key={ recipe.idMeal }>
-          <div data-testid={ `${index}-recipe-card` }>
-            <h2 data-testid={ `${index}-card-name` }>{recipe.strMeal}</h2>
-            <img
-              data-testid={ `${index}-card-img` }
-              src={ recipe.strMealThumb }
-              alt={ recipe.strMeal }
-              style={ { maxWidth: '200px' } }
-            />
+      <div className="meals-column">
+        <Recipes endpoit={ MEALS_RECIPES } chave="meals" />
+        {recipes?.map((recipe, index) => (
+          <div key={ index } className="map-meals-container card-recipe">
+            <Link
+              to={ `/meals/${recipe.idMeal}` }
+              key={ recipe.idMeal }
+              className="link-meals"
+            >
+              <div
+                data-testid={ `${index}-recipe-card` }
+                className="meals-card meals-column"
+              >
+                <h2
+                  data-testid={ `${index}-card-name` }
+                  className="card-name text-name"
+                >
+                  {recipe.strMeal}
+                </h2>
+                <img
+                  data-testid={ `${index}-card-img` }
+                  src={ recipe.strMealThumb }
+                  alt={ recipe.strMeal }
+                  style={ { maxWidth: '200px' } }
+                  className="card-img"
+                />
+              </div>
+            </Link>
           </div>
-        </Link>
-      ))}
+        ))}
+      </div>
       <Footer />
-    </>
+    </div>
   );
 }
 
