@@ -65,6 +65,36 @@ function DrinksDetails({ title }) {
       .setItem('inProgressRecipes', JSON.stringify({ ...inProgreesRecipes, drinks }));
   };
 
+  const isDisabled = () => {
+    const ingredientNumber = ingredient.length;
+    const inProgreesRecipes = JSON
+      .parse((localStorage.getItem('inProgressRecipes')));
+    const { drinks } = inProgreesRecipes;
+    const ingredientCheck = (drinks[id] || []).length;
+    return ingredientCheck === ingredientNumber;
+  };
+
+  const finishRecipe = () => {
+    const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+
+    const finishObj = {
+      id: recipe[0].idDrink,
+      type: 'drink',
+      nationality: '',
+      category: recipe[0].strCategory,
+      alcoholicOrNot: recipe[0].strAlcoholic,
+      name: recipe[0].strDrink,
+      image: recipe[0].strDrinkThumb,
+      doneDate: new Date().toISOString(),
+      tags: (recipe.strTags || []),
+    };
+
+    localStorage
+      .setItem('doneRecipes', JSON.stringify([...(doneRecipes || []), finishObj]));
+
+    history.push('/done-recipes');
+  };
+
   const ingredientList = (
     <ul>
       {ingredient.map((i, index) => (
@@ -153,6 +183,9 @@ function DrinksDetails({ title }) {
           data-testid="finish-recipe-btn"
           type="button"
           style={ { position: 'fixed', bottom: '0px' } }
+          disabled={ !isDisabled() }
+          onClick={ finishRecipe }
+
         >
           Finish Recipe
         </button>

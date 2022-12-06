@@ -19,7 +19,6 @@ function useRecipeDetails() {
   const pathName = history.location.pathname;
   const path = pathName.split('/')[1];
   const id = pathName.split('/')[2];
-  const progress = pathName.split('/')[3];
 
   const fetchItems = async () => {
     if (path === 'meals') {
