@@ -51,7 +51,6 @@ function MealsDetails({ title }) {
       .parse((localStorage.getItem('inProgressRecipes')));
     const { meals } = inProgreesRecipes;
     const { name, checked } = target;
-    console.log(id);
     if (checked) {
       setChecksObj({ ...checksObj, [name]: true });
       meals[id] = [...(meals[id] || []), name];
@@ -62,6 +61,37 @@ function MealsDetails({ title }) {
     }
     localStorage
       .setItem('inProgressRecipes', JSON.stringify({ ...inProgreesRecipes, meals }));
+  };
+
+  const isDisabled = () => {
+    const ingredientNumber = ingredient.length;
+    const inProgreesRecipes = JSON
+      .parse((localStorage.getItem('inProgressRecipes')));
+    const { meals } = inProgreesRecipes;
+    const ingredientCheck = (meals[id] || []).length;
+    return ingredientCheck === ingredientNumber;
+  };
+
+  const finishRecipe = () => {
+    const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+
+    const finishObj = {
+      id: recipe[0].idMeal,
+      type: 'meal',
+      nationality: recipe[0].strArea,
+      category: recipe[0].strCategory,
+      alcoholicOrNot: '',
+      name: recipe[0].strMeal,
+      image: recipe[0].strMealThumb,
+      doneDate: new Date().toISOString(),
+      // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+      tags: recipe[0].strTags.split(','),
+    };
+
+    localStorage
+      .setItem('doneRecipes', JSON.stringify([...(doneRecipes || []), finishObj]));
+
+    history.push('/done-recipes');
   };
 
   const ingredientList = (
@@ -160,6 +190,8 @@ function MealsDetails({ title }) {
           data-testid="finish-recipe-btn"
           type="button"
           style={ { position: 'fixed', bottom: '0px' } }
+          disabled={ !isDisabled() }
+          onClick={ finishRecipe }
         >
           Finish Recipe
         </button>

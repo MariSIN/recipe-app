@@ -28,7 +28,6 @@ function CardRecipes({ img, name, index, id, rota }) {
           data-testid={ `${index}-card-img` }
           className="card-img"
         />
-
       </div>
     </>
 
