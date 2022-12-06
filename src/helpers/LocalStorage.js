@@ -58,9 +58,9 @@ export const favoriteLocalStorage = (recipe, title, setIsFav) => {
     }
   } else if (title === 'Meals') {
     if (isFavMeal) {
-      const teste = favoritedRecipes.filter((i) => i.id !== mealObj(recipe).id);
+      const favFiltered = favoritedRecipes.filter((i) => i.id !== mealObj(recipe).id);
       setIsFav(false);
-      localStorage.setItem('favoriteRecipes', JSON.stringify(teste));
+      localStorage.setItem('favoriteRecipes', JSON.stringify(favFiltered));
     } else {
       localStorage
         .setItem(
@@ -70,9 +70,9 @@ export const favoriteLocalStorage = (recipe, title, setIsFav) => {
       setIsFav(true);
     }
   } else if (isFavDrink) {
-    const teste = favoritedRecipes.filter((i) => i.id !== drinkObj(recipe).id);
+    const favFiltered = favoritedRecipes.filter((i) => i.id !== drinkObj(recipe).id);
     setIsFav(false);
-    localStorage.setItem('favoriteRecipes', JSON.stringify(teste));
+    localStorage.setItem('favoriteRecipes', JSON.stringify(favFiltered));
   } else {
     localStorage.setItem(
       'favoriteRecipes',
