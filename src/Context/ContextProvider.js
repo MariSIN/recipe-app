@@ -13,6 +13,7 @@ function ContextProvider({ children }) {
   const [searchResult, setSearchResult] = useState([]);
   const [foodFilter, setFoodFilter] = useState([]);
   const [initialFoodFilter, setInitialFoodFilter] = useState([]);
+  const [toggle, setToggle] = useState(false);
 
   const createFilter = (ArrayFilter) => {
     setFoodFilter(ArrayFilter);
@@ -40,7 +41,13 @@ function ContextProvider({ children }) {
     const data = await result.json();
     const arrayFood = data[chave];
     const novoArray = arrayFood.filter((e, i) => i < maxFood);
-    setFoodFilter(novoArray);
+    if (toggle === false) {
+      setFoodFilter(novoArray);
+      setToggle(true);
+    } else {
+      setToggle(false);
+      setFoodFilter(initialFoodFilter);
+    }
   };
 
   const handleChange = useCallback(({ target }) => {
