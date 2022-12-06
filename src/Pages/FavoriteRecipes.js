@@ -3,6 +3,7 @@ import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import shareIcon from '../images/shareIcon.svg';
 
 function FavoriteRecipes() {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
@@ -29,13 +30,31 @@ function FavoriteRecipes() {
       <header>
         <Header title="Favorite Recipes" />
       </header>
+      <button
+        type="button"
+        data-testid="filter-by-all-btn"
+      >
+        All
+      </button>
+      <button
+        type="button"
+        data-testid="filter-by-meal-btn"
+      >
+        Meals
+      </button>
+      <button
+        type="button"
+        data-testid="filter-by-drink-btn"
+      >
+        Drinks
+      </button>
       {favoriteRecipes
         ?.map((item, index) => (
           <main key={ index }>
             <h3
               data-testid={ `${index}-horizontal-top-text` }
             >
-              {item.category} - {item.nationality}
+              {`${item.category} - ${item.nationality}`}
             </h3>
             <h4
               data-testid={ `${index}-horizontal-name` }
@@ -52,7 +71,17 @@ function FavoriteRecipes() {
               onClick={ () => toggleSave(item, index) }
             >
               <img
-                data-testid="favorite-btn"
+                data-testid={ `${index}-horizontal-share-btn` }
+                src={ shareIcon }
+                alt="shareIcon"
+              />
+            </button>
+            <button
+              type="button"
+              onClick={ () => toggleSave(item, index) }
+            >
+              <img
+                data-testid={ `${index}-horizontal-favorite-btn` }
                 src={ savedFavorites ? whiteHeartIcon : blackHeartIcon }
                 alt="favoriteIcon"
               />
