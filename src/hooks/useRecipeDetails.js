@@ -16,9 +16,10 @@ function useRecipeDetails() {
 
   const history = useHistory();
 
-  const pathNameId = history.location.pathname;
-  const path = pathNameId.split('/')[1];
-  const id = pathNameId.split('/')[2];
+  const pathName = history.location.pathname;
+  const path = pathName.split('/')[1];
+  const id = pathName.split('/')[2];
+  const progress = pathName.split('/')[3];
 
   const fetchItems = async () => {
     if (path === 'meals') {
@@ -52,7 +53,7 @@ function useRecipeDetails() {
       const newSavedMeal = {
         meals: {
           ...savedRecipes.meals,
-          [id]: ingredient,
+          [id]: [],
         },
         drinks: {
           ...savedRecipes.drinks,
@@ -70,7 +71,7 @@ function useRecipeDetails() {
         },
         drinks: {
           ...savedRecipes.drinks,
-          [id]: ingredient,
+          [id]: [],
         },
       };
 
@@ -132,7 +133,7 @@ function useRecipeDetails() {
   }, [recipe]);
 
   const copyLink = (() => {
-    copy(`http://localhost:3000${pathNameId}`);
+    copy(`http://localhost:3000/${path}/${id}`);
     setIsCopied(true);
   });
 

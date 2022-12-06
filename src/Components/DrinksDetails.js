@@ -22,15 +22,48 @@ function DrinksDetails({ title }) {
   } = useRecipeDetails();
 
   const [isInProgress, setisInProgress] = useState();
+  const [checksObj, setChecksObj] = useState({});
 
   const history = useHistory();
 
+  const pathName = history.location.pathname;
+  const id = pathName.split('/')[2];
+
   useEffect(() => {
-    const pathNameId = history.location.pathname;
-    const path = pathNameId.split('/')[3];
+    const path = pathName.split('/')[3];
 
     setisInProgress(path);
-  }, [history.location.pathname]);
+  }, [pathName]);
+
+  useEffect(() => {
+    const inProgreesRecipes = JSON
+      .parse((localStorage.getItem('inProgressRecipes')));
+    if (inProgreesRecipes) {
+      const obj = Object
+        .values((inProgreesRecipes.drinks[id] || [])).reduce((acc, curr) => ({
+          // https://stackoverflow.com/questions/18418806/javascript-array-declaration-with-or
+          ...acc,
+          [curr]: true,
+        }), {});
+      setChecksObj(obj);
+    }
+  }, [id]);
+
+  const handleChecks = ({ target }) => {
+    const inProgreesRecipes = JSON
+      .parse((localStorage.getItem('inProgressRecipes')));
+    const { drinks } = inProgreesRecipes;
+    const { name, checked } = target;
+    if (checked) {
+      setChecksObj({ ...checksObj, [name]: true });
+      drinks[id] = [...(drinks[id] || []), name];
+    } else {
+      setChecksObj({ ...checksObj, [name]: false });
+      drinks[id] = [...drinks[id].filter((item) => item !== name)];
+    }
+    localStorage
+      .setItem('inProgressRecipes', JSON.stringify({ ...inProgreesRecipes, drinks }));
+  };
 
   const ingredientList = (
     <ul>
@@ -52,8 +85,17 @@ function DrinksDetails({ title }) {
           <label
             htmlFor={ i }
             data-testid={ `${index}-ingredient-step` }
+            style={ checksObj[i]
+              ? { textDecoration: 'line-through solid rgb(0, 0 , 0)' }
+              : { textDecoration: 'none' } }
           >
-            <input type="checkbox" name={ i } id={ i } />
+            <input
+              type="checkbox"
+              name={ i }
+              id={ i }
+              checked={ checksObj[i] }
+              onChange={ handleChecks }
+            />
             {`${i} : ${measure[index]}`}
           </label>
         </li>
