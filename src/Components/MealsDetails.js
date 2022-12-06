@@ -45,6 +45,22 @@ function MealsDetails({ title }) {
     </ul>
   );
 
+  const ingredientCheckList = (
+    <ul>
+      {ingredient.map((i, index) => (
+        <li key={ index }>
+          <label
+            htmlFor={ i }
+            data-testid={ `${index}-ingredient-step` }
+          >
+            <input type="checkbox" name={ i } id={ i } />
+            {`${i} : ${measure[index]}`}
+          </label>
+        </li>
+      ))}
+    </ul>
+  );
+
   return (
     <div>
       {recipe.map((item) => (
@@ -71,10 +87,9 @@ function MealsDetails({ title }) {
             </button>
             {isCopied && <p>Link copied!</p>}
           </div>
-
           <h1 data-testid="recipe-title">{item.strMeal}</h1>
           <p data-testid="recipe-category">{item.strCategory}</p>
-          {ingredientList}
+          {isInProgress ? ingredientCheckList : ingredientList}
           <p data-testid="instructions">{item.strInstructions}</p>
           <iframe
             data-testid="video"

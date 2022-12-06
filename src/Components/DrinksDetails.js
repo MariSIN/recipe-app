@@ -45,6 +45,22 @@ function DrinksDetails({ title }) {
     </ul>
   );
 
+  const ingredientCheckList = (
+    <ul>
+      {ingredient.map((i, index) => (
+        <li key={ index }>
+          <label
+            htmlFor={ i }
+            data-testid={ `${index}-ingredient-step` }
+          >
+            <input type="checkbox" name={ i } id={ i } />
+            {`${i} : ${measure[index]}`}
+          </label>
+        </li>
+      ))}
+    </ul>
+  );
+
   return (
     <div>
       {recipe.map((item) => (
@@ -74,7 +90,7 @@ function DrinksDetails({ title }) {
           </div>
           <h1 data-testid="recipe-title">{item.strDrink}</h1>
           <p data-testid="recipe-category">{item.strAlcoholic}</p>
-          {ingredientList}
+          {isInProgress ? ingredientCheckList : ingredientList}
           <p data-testid="instructions">{item.strInstructions}</p>
         </div>
       ))}
