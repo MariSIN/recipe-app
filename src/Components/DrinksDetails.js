@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { favoriteLocalStorage } from '../helpers/LocalStorage';
 import useRecipeDetails from '../hooks/useRecipeDetails';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
@@ -18,6 +20,17 @@ function DrinksDetails({ title }) {
     isFav,
     setIsFav,
   } = useRecipeDetails();
+
+  const [isInProgress, setisInProgress] = useState();
+
+  const history = useHistory();
+
+  useEffect(() => {
+    const pathNameId = history.location.pathname;
+    const path = pathNameId.split('/')[3];
+
+    setisInProgress(path);
+  }, [history.location.pathname]);
 
   const ingredientList = (
     <ul>
@@ -77,15 +90,24 @@ function DrinksDetails({ title }) {
           </div>
         ))}
       </div>
-      <button
-        data-testid="start-recipe-btn"
-        type="button"
-        style={ { position: 'fixed', bottom: '0px' } }
-        onClick={ inProgressRecipe }
-      >
-        {isSaved ? 'Continue Recipe' : 'Start Recipe'}
-
-      </button>
+      {isInProgress ? (
+        <button
+          data-testid="finish-recipe-btn"
+          type="button"
+          style={ { position: 'fixed', bottom: '0px' } }
+        >
+          Finish Recipe
+        </button>
+      ) : (
+        <button
+          data-testid="start-recipe-btn"
+          type="button"
+          style={ { position: 'fixed', bottom: '0px' } }
+          onClick={ inProgressRecipe }
+        >
+          {isSaved ? 'Continue Recipe' : 'Start Recipe'}
+        </button>
+      )}
     </div>
   );
 }
