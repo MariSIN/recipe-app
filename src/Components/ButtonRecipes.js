@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useContext, useEffect, useState } from 'react';
 import Context from '../Context/Context';
 
 const maxCategoria = 5;
@@ -41,8 +41,8 @@ function ButtonRecipes({ endpoit, chave }) {
         ALL
 
       </button>
-    </>
- 
+    </div>
+  );
 }
 
 ButtonRecipes.propTypes = {
