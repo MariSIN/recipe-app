@@ -54,7 +54,7 @@ function FavoriteRecipes() {
             <h3
               data-testid={ `${index}-horizontal-top-text` }
             >
-              {`${item.category} - ${item.nationality}`}
+              {`${item.nationality} - ${item.category}`}
             </h3>
             <h4
               data-testid={ `${index}-horizontal-name` }
