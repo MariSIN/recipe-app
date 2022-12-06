@@ -1,14 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import CardRecipes from '../Components/CardRecipes';
 import ButtonRecipes from '../Components/ButtonRecipes';
 import { MEALS_CATEGORY, DRINK_CATEGORY } from '../utilit/globalVariables';
+import Context from '../Context/Context';
 
 const maxFood = 12;
 
 function Recipes({ endpoit, chave }) {
   const [food, setFood] = useState([]);
-  const [foodFilter, setFoodFilter] = useState([]);
+  const { foodFilter, createFilter } = useContext(Context);
   useEffect(() => {
     fetch(endpoit)
       .then((promise) => promise.json())
@@ -18,7 +19,7 @@ function Recipes({ endpoit, chave }) {
   useEffect(() => {
     if (food.length !== 0) {
       const novoArray = food.filter((e, i) => i < maxFood);
-      setFoodFilter(novoArray);
+      createFilter(novoArray);
     }
   }, [food]);
   return (
@@ -33,6 +34,8 @@ function Recipes({ endpoit, chave }) {
               img={ e.strMealThumb }
               name={ e.strMeal }
               index={ i }
+              id={ e.idMeal }
+              rota="meals"
             />))}
         </>
 
@@ -45,6 +48,8 @@ function Recipes({ endpoit, chave }) {
               img={ e.strDrinkThumb }
               name={ e.strDrink }
               index={ i }
+              id={ e.idDrink }
+              rota="drinks"
             />))}
         </>
 
