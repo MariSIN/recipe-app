@@ -40,8 +40,6 @@ describe('Testa as receitas', () => {
     userEvent.click(buttonSearch);
 
     await waitFor(() => expect(global.fetch).toBeCalledWith('https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata'), { timeout: 3000 });
-    const oneMeal = await screen.findByRole('heading', { name: 'Spicy Arrabiata Penne' });
-    userEvent.click(oneMeal);
     await waitFor(() => expect(pathname).toBe('/meals/52771'));
   });
 });

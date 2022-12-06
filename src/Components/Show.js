@@ -3,6 +3,7 @@ import { useContext, useState } from 'react';
 import Context from '../Context/Context';
 import search from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
+import '../style/header.css';
 
 function Show({ title }) {
   const { handleChange, searchFilter } = useContext(Context);
@@ -17,6 +18,7 @@ function Show({ title }) {
       <button
         type="button"
         onClick={ showSearch }
+        className="btn-show"
       >
         <img
           data-testid="search-top-btn"
@@ -25,7 +27,7 @@ function Show({ title }) {
         />
       </button>
       {show && (
-        <div>
+        <div className="show">
           <input
             data-testid="search-input"
             type="text"
@@ -33,6 +35,7 @@ function Show({ title }) {
             value={ searchFilter.searchName }
             onChange={ handleChange }
             placeholder="Search Recipe"
+            className="input-search"
           />
           <SearchBar title={ title } />
         </div>

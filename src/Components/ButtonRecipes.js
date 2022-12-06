@@ -21,7 +21,7 @@ function ButtonRecipes({ endpoit, chave }) {
     }
   }, [categorias]);
   return (
-    <>
+    <div className="container-button-filter">
       {categoriasFilter.map((e, i) => (
         <button
           type="button"
@@ -42,7 +42,7 @@ function ButtonRecipes({ endpoit, chave }) {
 
       </button>
     </>
-  );
+ 
 }
 
 ButtonRecipes.propTypes = {

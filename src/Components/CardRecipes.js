@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import '../style/meals.css';
+
 
 function CardRecipes({ img, name, index, id, rota }) {
   return (
@@ -9,6 +11,26 @@ function CardRecipes({ img, name, index, id, rota }) {
         <img src={ img } alt="foto Comida" data-testid={ `${index}-card-img` } />
       </div>
     </Link>
+
+    <div
+      data-testid={ `${index}-recipe-card` }
+      className="card-recipe"
+    >
+      <p
+        data-testid={ `${index}-card-name` }
+        className="card-name"
+      >
+        {name}
+      </p>
+      <img
+        src={ img }
+        alt="foto Comida"
+        data-testid={ `${index}-card-img` }
+        className="card-img"
+      />
+
+    </div>
+
   );
 }
 
