@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import Context from '../Context/Context';
 
 const maxCategoria = 5;
 
 function ButtonRecipes({ endpoit, chave }) {
   const [categorias, setCategorias] = useState([]);
   const [categoriasFilter, setCategoriasFilter] = useState([]);
+  const { handleInitialFoodFilter, handleFoodFilter } = useContext(Context);
   useEffect(() => {
     fetch(endpoit)
       .then((promise) => promise.json())
@@ -25,12 +27,22 @@ function ButtonRecipes({ endpoit, chave }) {
           type="button"
           key={ i }
           data-testid={ `${e.strCategory}-category-filter` }
-          className="button-filter"
+          value={ e.strCategory }
+          onClick={ handleFoodFilter }
         >
           {e.strCategory}
         </button>))}
-    </div>
-  );
+
+      <button
+        type="button"
+        data-testid="All-category-filter"
+        onClick={ handleInitialFoodFilter }
+      >
+        ALL
+
+      </button>
+    </>
+ 
 }
 
 ButtonRecipes.propTypes = {
