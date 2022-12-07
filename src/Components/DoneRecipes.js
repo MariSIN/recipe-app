@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import Header from './Header';
 
+const copy = require('clipboard-copy');
+
 function DoneRecipes() {
   const [doneRecipes, setDoneRecipes] = useState([]);
 
@@ -27,6 +29,21 @@ function DoneRecipes() {
           />
           <p data-testid={ `${index}-horizontal-top-text` }>{recipe.category}</p>
           <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>
+          <p data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</p>
+          <div>
+            {recipe.tags.map((i) => (
+              <p data-testid={ `${index}-${i}-horizontal-tag` } key={ i }>{i}</p>
+            ))}
+          </div>
+          <button
+            data-testid={ `${index}-horizontal-share-btn` }
+            type="button"
+            onClick={ () => copy(`http://localhost:3000/${recipe.type}s/${recipe.id}`) }
+
+          >
+            Compartilhar
+
+          </button>
         </div>
       ))}
     </header>
