@@ -8,7 +8,6 @@ const copy = require('clipboard-copy');
 
 function FavoriteRecipes() {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
-  const [savedFavorites, setSavedFavorites] = useState(true);
   const [isCopy, setIsCopy] = useState('');
 
   const copyLink = ((i) => {
