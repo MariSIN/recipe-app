@@ -29,12 +29,21 @@ function DoneRecipes() {
             style={ { width: '200px' } }
           />
           <h1 data-testid={ `${index}-horizontal-name` }>{recipe.name}</h1>
-          <p
-            data-testid={ `${index}-horizontal-top-text` }
-          >
-            {`${recipe.nationality} - ${recipe.category}`}
+          {recipe.type === 'meal' ? (
+            <p
+              data-testid={ `${index}-horizontal-top-text` }
+            >
+              {`${recipe.nationality} - ${recipe.category}`}
 
-          </p>
+            </p>
+          ) : (
+            <p
+              data-testid={ `${index}-horizontal-top-text` }
+            >
+              {`${recipe.alcoholicOrNot}`}
+
+            </p>
+          )}
           <p data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</p>
           <div>
             {recipe.tags.slice(0, 2).map((i) => (
