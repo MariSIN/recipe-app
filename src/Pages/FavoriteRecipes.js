@@ -9,6 +9,7 @@ const copy = require('clipboard-copy');
 function FavoriteRecipes() {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const [isCopy, setIsCopy] = useState('');
+  const [filteredRecipes, setFilteredRecipes] = useState([]);
 
   const copyLink = ((i) => {
     copy(`http://localhost:3000/${favoriteRecipes[i].type}s/${favoriteRecipes[i].id}`);
@@ -29,15 +30,24 @@ function FavoriteRecipes() {
     const removeStorage = favorite.filter((item) => item.id !== id);
     console.log(removeStorage);
     setFavoriteRecipes(removeStorage);
+    setFilteredRecipes(removeStorage);
     localStorage.setItem('favoriteRecipes', JSON.stringify(removeStorage));
+  };
+
+  const handleFilter = ({ target }) => {
+    const { value } = target;
+    if (value === 'all') {
+      setFilteredRecipes(favoriteRecipes);
+    } else {
+      const filter = favoriteRecipes.filter((item) => item.type === value);
+      setFilteredRecipes(filter);
+    }
   };
 
   useEffect(() => {
     const favorite = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    if (favorite === undefined) {
-      return setFavoriteRecipes([null]);
-    }
-    setFavoriteRecipes(favorite);
+    setFavoriteRecipes(favorite || []);
+    setFilteredRecipes(favorite || []);
   }, []);
 
   return (
@@ -48,22 +58,28 @@ function FavoriteRecipes() {
       <button
         type="button"
         data-testid="filter-by-all-btn"
+        value="all"
+        onClick={ handleFilter }
       >
         All
       </button>
       <button
         type="button"
         data-testid="filter-by-meal-btn"
+        value="meal"
+        onClick={ handleFilter }
       >
         Meals
       </button>
       <button
         type="button"
         data-testid="filter-by-drink-btn"
+        value="drink"
+        onClick={ handleFilter }
       >
         Drinks
       </button>
-      {favoriteRecipes
+      {filteredRecipes
         ?.map((item, index) => (
           <main key={ index }>
             <h3
