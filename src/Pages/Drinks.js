@@ -1,15 +1,16 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import ButtonRecipes from '../Components/ButtonRecipes';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import Show from '../Components/Show';
 import Context from '../Context/Context';
-import { DRINK_RECIPES } from '../utilit/globalVariables';
+import { DRINK_CATEGORY, DRINK_RECIPES } from '../utilit/globalVariables';
 import Recipes from './Recipes';
 
 function Drinks() {
   const [drinks, setDrinks] = useState([]);
-  const { searchResult } = useContext(Context);
+  const { searchResult, showSearch } = useContext(Context);
 
   useEffect(() => {
     const maxRender = 11;
@@ -28,20 +29,26 @@ function Drinks() {
     <>
       <Header title="Drinks" />
       <Show title="Drinks" />
-      <Recipes endpoit={ DRINK_RECIPES } chave="drinks" />
-      {drinks.map((drink, index) => (
-        <Link to={ `/drinks/${drink.idDrink}` } key={ drink.idDrink }>
-          <div data-testid={ `${index}-recipe-card` }>
-            <h2 data-testid={ `${index}-card-name` }>{drink.strDrink}</h2>
-            <img
-              data-testid={ `${index}-card-img` }
-              src={ drink.strDrinkThumb }
-              alt={ drink.strDrink }
-              style={ { maxWidth: '200px' } }
-            />
-          </div>
-        </Link>
-      ))}
+      {!showSearch ? (
+        <Recipes endpoit={ DRINK_RECIPES } chave="drinks" />
+      ) : (
+        <>
+          <ButtonRecipes endpoit={ DRINK_CATEGORY } chave="drinks" />
+          {drinks.map((drink, index) => (
+            <Link to={ `/drinks/${drink.idDrink}` } key={ drink.idDrink }>
+              <div data-testid={ `${index}-recipe-card` }>
+                <h2 data-testid={ `${index}-card-name` }>{drink.strDrink}</h2>
+                <img
+                  data-testid={ `${index}-card-img` }
+                  src={ drink.strDrinkThumb }
+                  alt={ drink.strDrink }
+                  style={ { maxWidth: '200px' } }
+                />
+              </div>
+            </Link>
+          ))}
+        </>
+      )}
       <Footer />
     </>
   );

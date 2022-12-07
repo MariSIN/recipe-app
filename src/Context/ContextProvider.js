@@ -14,9 +14,12 @@ function ContextProvider({ children }) {
   const [foodFilter, setFoodFilter] = useState([]);
   const [initialFoodFilter, setInitialFoodFilter] = useState([]);
   const [toggle, setToggle] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
 
   const createFilter = (ArrayFilter) => {
     setFoodFilter(ArrayFilter);
+    setShowSearch(false);
+
     if (initialFoodFilter.length === 0) {
       setInitialFoodFilter(ArrayFilter);
     }
@@ -24,6 +27,7 @@ function ContextProvider({ children }) {
 
   const handleInitialFoodFilter = () => {
     setFoodFilter(initialFoodFilter);
+    setShowSearch(false);
   };
 
   const handleFoodFilter = async ({ target }) => {
@@ -44,9 +48,11 @@ function ContextProvider({ children }) {
     if (toggle === false) {
       setFoodFilter(novoArray);
       setToggle(true);
+      setShowSearch(false);
     } else {
       setToggle(false);
       setFoodFilter(initialFoodFilter);
+      setShowSearch(false);
     }
   };
 
@@ -68,6 +74,8 @@ function ContextProvider({ children }) {
     handleInitialFoodFilter,
     handleFoodFilter,
     searchResult,
+    showSearch,
+    setShowSearch,
   }), [searchFilter, handleChange, searchResult, foodFilter, initialFoodFilter]);
 
   return (
