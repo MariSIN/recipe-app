@@ -5,7 +5,11 @@ import Context from '../Context/Context';
 import '../style/header.css';
 
 function SearchBar({ title }) {
-  const { handleChange, searchFilter, setSearchResult, setShowSearch } = useContext(Context);
+  const {
+    handleChange,
+    searchFilter,
+    setSearchResult,
+    setShowSearch } = useContext(Context);
   const history = useHistory();
 
   const dataMeals = (data) => {
