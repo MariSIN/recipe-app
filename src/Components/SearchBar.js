@@ -5,7 +5,7 @@ import Context from '../Context/Context';
 import '../style/header.css';
 
 function SearchBar({ title }) {
-  const { handleChange, searchFilter, setSearchResult } = useContext(Context);
+  const { handleChange, searchFilter, setSearchResult, setShowSearch } = useContext(Context);
   const history = useHistory();
 
   const dataMeals = (data) => {
@@ -29,6 +29,7 @@ function SearchBar({ title }) {
         const response = await fetch(url);
         const data = await response.json();
         setSearchResult(data.meals);
+        setShowSearch(true);
         dataMeals(data);
       } catch (error) {
         console.log(error);
@@ -40,6 +41,8 @@ function SearchBar({ title }) {
         const response = await fetch(url);
         const data = await response.json();
         setSearchResult(data.meals);
+        setShowSearch(true);
+
         dataMeals(data);
       } catch (error) {
         console.log(error);
@@ -54,6 +57,8 @@ function SearchBar({ title }) {
         const response = await fetch(url);
         const data = await response.json();
         setSearchResult(data.meals);
+        setShowSearch(true);
+
         dataMeals(data);
       } catch (error) {
         console.log(error);
@@ -68,6 +73,8 @@ function SearchBar({ title }) {
         const response = await fetch(url);
         const data = await response.json();
         setSearchResult(data.drinks);
+        setShowSearch(true);
+
         dataDrink(data);
       } catch (error) {
         console.log(error);
@@ -79,6 +86,8 @@ function SearchBar({ title }) {
         const response = await fetch(url);
         const data = await response.json();
         setSearchResult(data.drinks);
+        setShowSearch(true);
+
         dataDrink(data);
       } catch (error) {
         console.log(error);
@@ -93,6 +102,8 @@ function SearchBar({ title }) {
         const response = await fetch(url);
         const data = await response.json();
         setSearchResult(data.drinks);
+        setShowSearch(true);
+
         dataDrink();
       } catch (error) {
         console.log(error);
