@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
@@ -82,22 +83,24 @@ function FavoriteRecipes() {
       {filteredRecipes
         ?.map((item, index) => (
           <main key={ index }>
-            <h3
-              data-testid={ `${index}-horizontal-top-text` }
-            >
-              {`${item.nationality} - ${item.category} ${item.alcoholicOrNot}`}
-            </h3>
-            <h4
-              data-testid={ `${index}-horizontal-name` }
-            >
-              {item.name}
-            </h4>
-            <img
-              data-testid={ `${index}-horizontal-image` }
-              src={ item.image }
-              alt={ item.name }
-              style={ { width: '200px' } }
-            />
+            <Link to={ `/${item.type}s/${item.id}` }>
+              <h3
+                data-testid={ `${index}-horizontal-top-text` }
+              >
+                {`${item.nationality} - ${item.category} ${item.alcoholicOrNot}`}
+              </h3>
+              <h4
+                data-testid={ `${index}-horizontal-name` }
+              >
+                {item.name}
+              </h4>
+              <img
+                data-testid={ `${index}-horizontal-image` }
+                src={ item.image }
+                alt={ item.name }
+                style={ { width: '200px' } }
+              />
+            </Link>
             <button
               type="button"
               onClick={ () => copyLink(index) }
