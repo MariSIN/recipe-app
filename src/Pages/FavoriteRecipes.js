@@ -2,20 +2,17 @@ import { useEffect, useState } from 'react';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
 
 const copy = require('clipboard-copy');
 
 function FavoriteRecipes() {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
-  const [savedFavorites, setSavedFavorites] = useState(false);
+  const [savedFavorites, setSavedFavorites] = useState(true);
   const [isCopy, setIsCopy] = useState('');
 
-  const favorite = JSON.parse(localStorage.getItem('favoriteRecipes'));
-
   const copyLink = ((i) => {
-    copy(`http://localhost:3000/${favorite[i].type}s/${favorite[i].id}`);
+    copy(`http://localhost:3000/${favoriteRecipes[i].type}s/${favoriteRecipes[i].id}`);
     const copyTime = 3000;
     const disappearMessage = 200;
 
@@ -27,20 +24,23 @@ function FavoriteRecipes() {
     }, disappearMessage);
   });
 
+  const removeSave = (id) => {
+    const favorite = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    console.log(id);
+    const removeStorage = favorite.filter((item) => item.id !== id);
+    console.log(removeStorage);
+    setFavoriteRecipes(removeStorage);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(removeStorage));
+  };
+
   useEffect(() => {
-    JSON.parse(localStorage.getItem(favorite));
+    const favorite = JSON.parse(localStorage.getItem('favoriteRecipes'));
     if (favorite === undefined) {
       return setFavoriteRecipes([null]);
     }
     setFavoriteRecipes(favorite);
   }, []);
 
-  const toggleSave = (i, index) => {
-    setSavedFavorites(!savedFavorites);
-    if (savedFavorites) {
-      return localStorage.removeItem(i[index]);
-    }
-  };
   return (
     <>
       <header>
@@ -81,6 +81,7 @@ function FavoriteRecipes() {
               data-testid={ `${index}-horizontal-image` }
               src={ item.image }
               alt={ item.name }
+              style={ { width: '200px' } }
             />
             <button
               type="button"
@@ -95,11 +96,11 @@ function FavoriteRecipes() {
             <span>{isCopy}</span>
             <button
               type="button"
-              onClick={ () => toggleSave(item, index) }
+              onClick={ () => removeSave(item.id) }
             >
               <img
                 data-testid={ `${index}-horizontal-favorite-btn` }
-                src={ savedFavorites ? whiteHeartIcon : blackHeartIcon }
+                src={ blackHeartIcon }
                 alt="favoriteIcon"
               />
             </button>
