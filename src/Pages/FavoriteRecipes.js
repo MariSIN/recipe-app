@@ -5,11 +5,27 @@ import blackHeartIcon from '../images/blackHeartIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
 
+const copy = require('clipboard-copy');
+
 function FavoriteRecipes() {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const [savedFavorites, setSavedFavorites] = useState(false);
+  const [isCopy, setIsCopy] = useState('');
 
   const favorite = JSON.parse(localStorage.getItem('favoriteRecipes'));
+
+  const copyLink = ((i) => {
+    copy(`http://localhost:3000/${favorite[i].type}s/${favorite[i].id}`);
+    const copyTime = 3000;
+    const disappearMessage = 200;
+
+    setTimeout(() => {
+      setIsCopy('Link copied!');
+      setTimeout(() => {
+        setIsCopy('');
+      }, copyTime);
+    }, disappearMessage);
+  });
 
   useEffect(() => {
     JSON.parse(localStorage.getItem(favorite));
@@ -68,7 +84,7 @@ function FavoriteRecipes() {
             />
             <button
               type="button"
-              onClick={ () => toggleSave(item, index) }
+              onClick={ () => copyLink(index) }
             >
               <img
                 data-testid={ `${index}-horizontal-share-btn` }
@@ -76,6 +92,7 @@ function FavoriteRecipes() {
                 alt="shareIcon"
               />
             </button>
+            <span>{isCopy}</span>
             <button
               type="button"
               onClick={ () => toggleSave(item, index) }

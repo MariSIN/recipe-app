@@ -41,7 +41,7 @@ describe('Testa as bebidas', () => {
   });
 
   it.skip('Testa se existe um botão de desfavoritar', async () => {
-    const { history } = renderWithRouter(
+    renderWithRouter(
       <ContextProvider>
         <App />
         ,
