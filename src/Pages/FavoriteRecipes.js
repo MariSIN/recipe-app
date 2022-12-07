@@ -11,8 +11,6 @@ function FavoriteRecipes() {
   const [savedFavorites, setSavedFavorites] = useState(true);
   const [isCopy, setIsCopy] = useState('');
 
-  const favorite = JSON.parse(localStorage.getItem('favoriteRecipes'));
-
   const copyLink = ((i) => {
     copy(`http://localhost:3000/${favoriteRecipes[i].type}s/${favoriteRecipes[i].id}`);
     const copyTime = 3000;
@@ -26,23 +24,23 @@ function FavoriteRecipes() {
     }, disappearMessage);
   });
 
+  const removeSave = (id) => {
+    const favorite = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    console.log(id);
+    const removeStorage = favorite.filter((item) => item.id !== id);
+    console.log(removeStorage);
+    setFavoriteRecipes(removeStorage);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(removeStorage));
+  };
+
   useEffect(() => {
-    JSON.parse(localStorage.getItem(favorite));
+    const favorite = JSON.parse(localStorage.getItem('favoriteRecipes'));
     if (favorite === undefined) {
       return setFavoriteRecipes([null]);
     }
     setFavoriteRecipes(favorite);
   }, []);
 
-  const removeSave = (id) => {
-    setSavedFavorites(savedFavorites);
-    if (savedFavorites) {
-      const removeLocalStorage = favoriteRecipes.filter((item) => item.id !== id);
-      JSON.parse(localStorage.removeItem('favoriteRecipes'));
-      JSON.stringify(localStorage.setItem('favoriteRecipes', removeLocalStorage));
-      return setFavoriteRecipes(removeLocalStorage);
-    }
-  };
   return (
     <>
       <header>
@@ -83,6 +81,7 @@ function FavoriteRecipes() {
               data-testid={ `${index}-horizontal-image` }
               src={ item.image }
               alt={ item.name }
+              style={ { width: '200px' } }
             />
             <button
               type="button"
