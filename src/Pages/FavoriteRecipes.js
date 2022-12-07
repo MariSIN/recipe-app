@@ -2,20 +2,19 @@ import { useEffect, useState } from 'react';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
 
 const copy = require('clipboard-copy');
 
 function FavoriteRecipes() {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
-  const [savedFavorites, setSavedFavorites] = useState(false);
+  const [savedFavorites, setSavedFavorites] = useState(true);
   const [isCopy, setIsCopy] = useState('');
 
   const favorite = JSON.parse(localStorage.getItem('favoriteRecipes'));
 
   const copyLink = ((i) => {
-    copy(`http://localhost:3000/${favorite[i].type}s/${favorite[i].id}`);
+    copy(`http://localhost:3000/${favoriteRecipes[i].type}s/${favoriteRecipes[i].id}`);
     const copyTime = 3000;
     const disappearMessage = 200;
 
@@ -35,10 +34,13 @@ function FavoriteRecipes() {
     setFavoriteRecipes(favorite);
   }, []);
 
-  const toggleSave = (i, index) => {
-    setSavedFavorites(!savedFavorites);
+  const removeSave = (id) => {
+    setSavedFavorites(savedFavorites);
     if (savedFavorites) {
-      return localStorage.removeItem(i[index]);
+      const removeLocalStorage = favoriteRecipes.filter((item) => item.id !== id);
+      JSON.parse(localStorage.removeItem('favoriteRecipes'));
+      JSON.stringify(localStorage.setItem('favoriteRecipes', removeLocalStorage));
+      return setFavoriteRecipes(removeLocalStorage);
     }
   };
   return (
@@ -95,11 +97,11 @@ function FavoriteRecipes() {
             <span>{isCopy}</span>
             <button
               type="button"
-              onClick={ () => toggleSave(item, index) }
+              onClick={ () => removeSave(item.id) }
             >
               <img
                 data-testid={ `${index}-horizontal-favorite-btn` }
-                src={ savedFavorites ? whiteHeartIcon : blackHeartIcon }
+                src={ blackHeartIcon }
                 alt="favoriteIcon"
               />
             </button>
