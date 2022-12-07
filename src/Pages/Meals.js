@@ -5,7 +5,7 @@ import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import Show from '../Components/Show';
 import Context from '../Context/Context';
-import '../style/meals.css';
+// import '../style/meals.css';
 import { MEALS_CATEGORY, MEALS_RECIPES } from '../utilit/globalVariables';
 import Recipes from './Recipes';
 
