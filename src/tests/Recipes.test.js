@@ -7,7 +7,6 @@ import Recipes from '../Pages/Recipes';
 import { DRINK_RECIPES, MEALS_RECIPES } from '../utilit/globalVariables';
 import drinkCategories from '../../cypress/mocks/drinkCategories';
 
-
 describe('Testando pagina Recipes parte Meals', () => {
   test('testando se há os botão na pagina meals,', async () => {
     jest.spyOn(global, 'fetch').mockResolvedValue({
