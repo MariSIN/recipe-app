@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import shareIcon from '../images/shareIcon.svg';
 import Header from './Header';
 
 const copy = require('clipboard-copy');
@@ -27,22 +28,29 @@ function DoneRecipes() {
             alt={ recipe.name }
             style={ { width: '200px' } }
           />
-          <p data-testid={ `${index}-horizontal-top-text` }>{recipe.category}</p>
-          <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>
+          <h1 data-testid={ `${index}-horizontal-name` }>{recipe.name}</h1>
+          <p
+            data-testid={ `${index}-horizontal-top-text` }
+          >
+            {`${recipe.nationality} - ${recipe.category}`}
+
+          </p>
           <p data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</p>
           <div>
-            {recipe.tags.map((i) => (
+            {recipe.tags.slice(0, 2).map((i) => (
               <p data-testid={ `${index}-${i}-horizontal-tag` } key={ i }>{i}</p>
             ))}
           </div>
           <button
-            data-testid={ `${index}-horizontal-share-btn` }
             type="button"
             onClick={ () => copy(`http://localhost:3000/${recipe.type}s/${recipe.id}`) }
 
           >
-            Compartilhar
-
+            <img
+              data-testid={ `${index}-horizontal-share-btn` }
+              src={ shareIcon }
+              alt="shareIcon"
+            />
           </button>
         </div>
       ))}
