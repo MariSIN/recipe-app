@@ -12,3 +12,7 @@ export const userEmail = 'nome@nome.com';
 export const placeholderEmail = 'Digite seu email';
 export const placeholderSenha = 'Digite sua senha';
 export const email = 'leonardoelias802@gmail.com';
+export const filterByAllFavorites = 'filter-by-all-btn';
+export const filterByMealsFavorites = 'filter-by-meal-btn';
+export const filterByDrinksFavorites = 'filter-by-drink-btn';
+export const routeFavoriteRecipes = 'favorite-recipes';
