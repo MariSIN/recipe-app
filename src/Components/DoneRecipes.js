@@ -6,11 +6,17 @@ const copy = require('clipboard-copy');
 
 function DoneRecipes() {
   const [doneRecipes, setDoneRecipes] = useState([]);
+  const [isShared, setIsShared] = useState('');
 
   useEffect(() => {
     const recipes = JSON.parse(localStorage.getItem('doneRecipes'));
     setDoneRecipes((recipes || []));
   }, []);
+
+  const handleShare = (recipe) => {
+    copy(`http://localhost:3000/${recipe.type}s/${recipe.id}`);
+    setIsShared(recipe.name);
+  };
 
   return (
     <header>
@@ -52,7 +58,7 @@ function DoneRecipes() {
           </div>
           <button
             type="button"
-            onClick={ () => copy(`http://localhost:3000/${recipe.type}s/${recipe.id}`) }
+            onClick={ () => handleShare(recipe) }
 
           >
             <img
@@ -61,6 +67,7 @@ function DoneRecipes() {
               alt="shareIcon"
             />
           </button>
+          {isShared === recipe.name && <p>Link copied!</p>}
         </div>
       ))}
     </header>
