@@ -1,9 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import DoneRecipes from './Components/DoneRecipes';
 import RecipeDetails from './Components/RecipeDetails';
 import RecipeInProgress from './Components/RecipeInProgress';
-import DoneRecipes from './Pages/DoneRecipes';
 import Drinks from './Pages/Drinks';
 import FavoriteRecipes from './Pages/FavoriteRecipes';
 import Login from './Pages/Login';
