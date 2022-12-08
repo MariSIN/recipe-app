@@ -43,7 +43,6 @@ function DoneRecipes() {
           onClick={ handleFilter }
         >
           Meals
-
         </button>
         <button
           type="button"
