@@ -16,6 +16,7 @@ export const filterByAllFavorites = 'filter-by-all-btn';
 export const filterByMealsFavorites = 'filter-by-meal-btn';
 export const filterByDrinksFavorites = 'filter-by-drink-btn';
 export const routeFavoriteRecipes = 'favorite-recipes';
+export const btnShare = '0-horizontal-share-btn';
 export const doneRecipes = [
   {
     alcoholicOrNot: 'Optional alcohol',

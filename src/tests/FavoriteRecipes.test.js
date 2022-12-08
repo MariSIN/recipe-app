@@ -6,7 +6,7 @@ import App from '../App';
 import ContextProvider from '../Context/ContextProvider';
 import renderWithRouter from '../renderWithRouter';
 import { filterByAllFavorites, filterByMealsFavorites, filterByDrinksFavorites,
-  routeFavoriteRecipes, localStorageFavoriteRecipes } from './dataBase';
+  routeFavoriteRecipes, localStorageFavoriteRecipes, btnShare } from './dataBase';
 
 describe('Testa as bebidas', () => {
   beforeEach(() => {
@@ -58,7 +58,7 @@ describe('Testa as bebidas', () => {
     expect(await screen.findByTestId('1-horizontal-name')).toBeInTheDocument();
     expect(await screen.findByTestId('1-horizontal-image')).toBeInTheDocument();
     expect(await screen.findByTestId('0-horizontal-favorite-btn')).toBeInTheDocument();
-    expect(await screen.findByTestId('0-horizontal-share-btn')).toBeInTheDocument();
+    expect(await screen.findByTestId(btnShare)).toBeInTheDocument();
   });
   it('Testa se ao clicar no botão de desfavoritar o elemento some', async () => {
     const { history } = renderWithRouter(
@@ -126,7 +126,7 @@ describe('Testa as bebidas', () => {
     );
     act(() => history.push(routeFavoriteRecipes));
 
-    const drinkShare = screen.getByTestId('0-horizontal-share-btn');
+    const drinkShare = screen.getByTestId(btnShare);
     userEvent.click(drinkShare);
     expect(clipboardData).toContain('http://localhost:3000/meals/52977');
   });
