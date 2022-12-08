@@ -1,9 +1,9 @@
-import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import React from 'react';
 import App from '../App';
-import renderWithRouter from '../renderWithRouter';
 import ContextProvider from '../Context/ContextProvider';
+import renderWithRouter from '../renderWithRouter';
 import { btnLogin, inputEmail, inputPassword, searchInput, showButton, userEmail } from './dataBase';
 
 describe('Testa <Header />', () => {
@@ -24,7 +24,9 @@ describe('Testa <Header />', () => {
     userEvent.type(password, '1234567');
     userEvent.click(login);
 
-    expect(screen.getByRole('heading', { level: 1 })).toBeInTheDocument();
+    screen.logTestingPlaygroundURL();
+
+    expect(screen.getByRole('heading', { name: /meals/i })).toBeInTheDocument();
   });
 
   it('Testa se é renderizado um botão que mostra e esconde um input', () => {
