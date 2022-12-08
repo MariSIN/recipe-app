@@ -1,12 +1,11 @@
 import { screen } from '@testing-library/react';
 import React from 'react';
-import ContextProvider from '../Context/ContextProvider';
-import renderWithRouter from '../renderWithRouter';
-import mealCategories from '../../cypress/mocks/mealCategories';
-import Recipes from '../Pages/Recipes';
-import { DRINK_RECIPES, MEALS_RECIPES } from '../utilit/globalVariables';
 import drinkCategories from '../../cypress/mocks/drinkCategories';
-
+import mealCategories from '../../cypress/mocks/mealCategories';
+import ContextProvider from '../Context/ContextProvider';
+import Recipes from '../Pages/Recipes';
+import renderWithRouter from '../renderWithRouter';
+import { DRINK_RECIPES, MEALS_RECIPES } from '../utilit/globalVariables';
 
 describe('Testando pagina Recipes parte Meals', () => {
   test('testando se há os botão na pagina meals,', async () => {
