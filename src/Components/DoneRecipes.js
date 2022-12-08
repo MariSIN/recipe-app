@@ -12,8 +12,8 @@ function DoneRecipes() {
 
   useEffect(() => {
     const recipes = JSON.parse(localStorage.getItem('doneRecipes'));
-    setDoneRecipes((recipes || []));
-    setFilteredRecipes(recipes || []);
+    setDoneRecipes((recipes));
+    setFilteredRecipes(recipes);
   }, []);
 
   const handleShare = (recipe) => {
@@ -25,7 +25,7 @@ function DoneRecipes() {
     const { value } = target;
     if (value === 'all') {
       const recipes = JSON.parse(localStorage.getItem('doneRecipes'));
-      setFilteredRecipes((recipes || []));
+      setFilteredRecipes((recipes));
     } else {
       const filter = doneRecipes.filter((item) => item.type === value);
       setFilteredRecipes(filter);
@@ -64,7 +64,7 @@ function DoneRecipes() {
 
         </button>
       </div>
-      {filteredRecipes.map((recipe, index) => (
+      {filteredRecipes?.map((recipe, index) => (
         <>
           <Link to={ `/${recipe.type}s/${recipe.id}` } key={ index }>
             <div>
