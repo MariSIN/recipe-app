@@ -23,6 +23,7 @@ function MealsDetails({ title }) {
 
   const [isInProgress, setisInProgress] = useState();
   const [checksObj, setChecksObj] = useState({});
+  const [isDone, setIsDone] = useState(false);
 
   const history = useHistory();
 
@@ -31,9 +32,14 @@ function MealsDetails({ title }) {
 
   useEffect(() => {
     const path = pathName.split('/')[3];
-
     setisInProgress(path);
   }, [pathName]);
+
+  useEffect(() => {
+    const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+    const verify = doneRecipes?.some((i) => i.id === recipe[0]?.idMeal);
+    setIsDone(verify);
+  }, [recipe]);
 
   useEffect(() => {
     const inProgreesRecipes = JSON
@@ -189,7 +195,7 @@ function MealsDetails({ title }) {
         <button
           data-testid="finish-recipe-btn"
           type="button"
-          style={ { position: 'fixed', bottom: '0px' } }
+          style={ isDone ? { display: 'none' } : { position: 'fixed', bottom: '0px' } }
           disabled={ !isDisabled() }
           onClick={ finishRecipe }
         >
@@ -199,7 +205,7 @@ function MealsDetails({ title }) {
         <button
           data-testid="start-recipe-btn"
           type="button"
-          style={ { position: 'fixed', bottom: '0px' } }
+          style={ isDone ? { display: 'none' } : { position: 'fixed', bottom: '0px' } }
           onClick={ inProgressRecipe }
         >
           {isSaved ? 'Continue Recipe' : 'Start Recipe'}
