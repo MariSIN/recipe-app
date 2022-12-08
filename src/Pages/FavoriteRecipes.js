@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
@@ -9,6 +11,7 @@ const copy = require('clipboard-copy');
 function FavoriteRecipes() {
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const [isCopy, setIsCopy] = useState('');
+  const [filteredRecipes, setFilteredRecipes] = useState([]);
 
   const copyLink = ((i) => {
     copy(`http://localhost:3000/${favoriteRecipes[i].type}s/${favoriteRecipes[i].id}`);
@@ -29,15 +32,24 @@ function FavoriteRecipes() {
     const removeStorage = favorite.filter((item) => item.id !== id);
     console.log(removeStorage);
     setFavoriteRecipes(removeStorage);
+    setFilteredRecipes(removeStorage);
     localStorage.setItem('favoriteRecipes', JSON.stringify(removeStorage));
+  };
+
+  const handleFilter = ({ target }) => {
+    const { value } = target;
+    if (value === 'all') {
+      setFilteredRecipes(favoriteRecipes);
+    } else {
+      const filter = favoriteRecipes.filter((item) => item.type === value);
+      setFilteredRecipes(filter);
+    }
   };
 
   useEffect(() => {
     const favorite = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    if (favorite === undefined) {
-      return setFavoriteRecipes([null]);
-    }
-    setFavoriteRecipes(favorite);
+    setFavoriteRecipes(favorite || []);
+    setFilteredRecipes(favorite || []);
   }, []);
 
   return (
@@ -48,40 +60,48 @@ function FavoriteRecipes() {
       <button
         type="button"
         data-testid="filter-by-all-btn"
+        value="all"
+        onClick={ handleFilter }
       >
         All
       </button>
       <button
         type="button"
         data-testid="filter-by-meal-btn"
+        value="meal"
+        onClick={ handleFilter }
       >
         Meals
       </button>
       <button
         type="button"
         data-testid="filter-by-drink-btn"
+        value="drink"
+        onClick={ handleFilter }
       >
         Drinks
       </button>
-      {favoriteRecipes
+      {filteredRecipes
         ?.map((item, index) => (
           <main key={ index }>
-            <h3
-              data-testid={ `${index}-horizontal-top-text` }
-            >
-              {`${item.nationality} - ${item.category} ${item.alcoholicOrNot}`}
-            </h3>
-            <h4
-              data-testid={ `${index}-horizontal-name` }
-            >
-              {item.name}
-            </h4>
-            <img
-              data-testid={ `${index}-horizontal-image` }
-              src={ item.image }
-              alt={ item.name }
-              style={ { width: '200px' } }
-            />
+            <Link to={ `/${item.type}s/${item.id}` }>
+              <h3
+                data-testid={ `${index}-horizontal-top-text` }
+              >
+                {`${item.nationality} - ${item.category} ${item.alcoholicOrNot}`}
+              </h3>
+              <h4
+                data-testid={ `${index}-horizontal-name` }
+              >
+                {item.name}
+              </h4>
+              <img
+                data-testid={ `${index}-horizontal-image` }
+                src={ item.image }
+                alt={ item.name }
+                style={ { width: '200px' } }
+              />
+            </Link>
             <button
               type="button"
               onClick={ () => copyLink(index) }
