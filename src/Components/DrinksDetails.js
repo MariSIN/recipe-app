@@ -23,6 +23,7 @@ function DrinksDetails({ title }) {
 
   const [isInProgress, setisInProgress] = useState();
   const [checksObj, setChecksObj] = useState({});
+  const [isDone, setIsDone] = useState(false);
 
   const history = useHistory();
 
@@ -30,8 +31,13 @@ function DrinksDetails({ title }) {
   const id = pathName.split('/')[2];
 
   useEffect(() => {
-    const path = pathName.split('/')[3];
+    const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+    const verify = doneRecipes?.some((i) => i.id === recipe[0]?.idDrink);
+    setIsDone(verify);
+  }, [recipe]);
 
+  useEffect(() => {
+    const path = pathName.split('/')[3];
     setisInProgress(path);
   }, [pathName]);
 
@@ -182,10 +188,9 @@ function DrinksDetails({ title }) {
         <button
           data-testid="finish-recipe-btn"
           type="button"
-          style={ { position: 'fixed', bottom: '0px' } }
+          style={ isDone ? { display: 'none' } : { position: 'fixed', bottom: '0px' } }
           disabled={ !isDisabled() }
           onClick={ finishRecipe }
-
         >
           Finish Recipe
         </button>
@@ -193,7 +198,7 @@ function DrinksDetails({ title }) {
         <button
           data-testid="start-recipe-btn"
           type="button"
-          style={ { position: 'fixed', bottom: '0px' } }
+          style={ isDone ? { display: 'none' } : { position: 'fixed', bottom: '0px' } }
           onClick={ inProgressRecipe }
         >
           {isSaved ? 'Continue Recipe' : 'Start Recipe'}
