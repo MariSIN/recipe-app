@@ -12,17 +12,14 @@ function FavoriteRecipes() {
   const [isCopy, setIsCopy] = useState('');
   const [filteredRecipes, setFilteredRecipes] = useState([]);
 
-  const copyLink = ((i) => {
+  const copyLink = ((i, item) => {
     copy(`http://localhost:3000/${favoriteRecipes[i].type}s/${favoriteRecipes[i].id}`);
     const copyTime = 3000;
-    const disappearMessage = 200;
 
+    setIsCopy(item.name);
     setTimeout(() => {
-      setIsCopy('Link copied!');
-      setTimeout(() => {
-        setIsCopy('');
-      }, copyTime);
-    }, disappearMessage);
+      setIsCopy('');
+    }, copyTime);
   });
 
   const removeSave = (id) => {
@@ -47,8 +44,8 @@ function FavoriteRecipes() {
 
   useEffect(() => {
     const favorite = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    setFavoriteRecipes(favorite || []);
-    setFilteredRecipes(favorite || []);
+    setFavoriteRecipes(favorite);
+    setFilteredRecipes(favorite);
   }, []);
 
   return (
@@ -103,7 +100,7 @@ function FavoriteRecipes() {
             </Link>
             <button
               type="button"
-              onClick={ () => copyLink(index) }
+              onClick={ () => copyLink(index, item) }
             >
               <img
                 data-testid={ `${index}-horizontal-share-btn` }
@@ -111,7 +108,7 @@ function FavoriteRecipes() {
                 alt="shareIcon"
               />
             </button>
-            <span>{isCopy}</span>
+            {isCopy === item.name && <span>Link copied!</span>}
             <button
               type="button"
               onClick={ () => removeSave(item.id) }
