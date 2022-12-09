@@ -22,7 +22,7 @@ function DrinksDetails({ title }) {
   } = useRecipeDetails();
 
   const [isInProgress, setisInProgress] = useState();
-  const [checksObj, setChecksObj] = useState({});
+  const [checksObj, setChecksObj] = useState([]);
   const [isDone, setIsDone] = useState(false);
 
   const history = useHistory();
@@ -46,11 +46,10 @@ function DrinksDetails({ title }) {
       .parse((localStorage.getItem('inProgressRecipes')));
     if (inProgreesRecipes) {
       const obj = Object
-        .values((inProgreesRecipes.drinks[id] || [])).reduce((acc, curr) => ({
+        .values((inProgreesRecipes.drinks[id] || [])).reduce((acc, curr) => ([
           // https://stackoverflow.com/questions/18418806/javascript-array-declaration-with-or
-          ...acc,
-          [curr]: true,
-        }), {});
+          ...acc, curr,
+        ]), []);
       setChecksObj(obj);
     }
   }, [id]);
@@ -61,12 +60,13 @@ function DrinksDetails({ title }) {
     const { drinks } = inProgreesRecipes;
     const { name, checked } = target;
     if (checked) {
-      setChecksObj({ ...checksObj, [name]: true });
+      setChecksObj([...checksObj, name]);
       drinks[id] = [...(drinks[id] || []), name];
     } else {
-      setChecksObj({ ...checksObj, [name]: false });
+      setChecksObj([...checksObj.filter((i) => i !== name)]);
       drinks[id] = [...drinks[id].filter((item) => item !== name)];
     }
+    console.log(drinks);
     localStorage
       .setItem('inProgressRecipes', JSON.stringify({ ...inProgreesRecipes, drinks }));
   };
@@ -121,7 +121,7 @@ function DrinksDetails({ title }) {
           <label
             htmlFor={ i }
             data-testid={ `${index}-ingredient-step` }
-            style={ checksObj[i]
+            style={ checksObj.some((item) => item === i)
               ? { textDecoration: 'line-through solid rgb(0, 0 , 0)' }
               : { textDecoration: 'none' } }
           >
@@ -129,7 +129,7 @@ function DrinksDetails({ title }) {
               type="checkbox"
               name={ i }
               id={ i }
-              checked={ checksObj[i] }
+              checked={ checksObj.some((item) => item === i) }
               onChange={ handleChecks }
             />
             {`${i} : ${measure[index]}`}
