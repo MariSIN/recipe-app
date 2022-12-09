@@ -14,14 +14,14 @@ describe('Testa as receitas', () => {
   });
 
   it('Testa se é possível pesquisar por nome da receita', async () => {
-    const { history } = renderWithRouter(
+    renderWithRouter(
       <ContextProvider>
         <App />
         ,
       </ContextProvider>,
 
     );
-    const { pathname } = history.location;
+    // const { pathname } = history.location;
     const login = screen.getByTestId(btnLogin);
 
     const email = screen.getByTestId(inputEmail);
