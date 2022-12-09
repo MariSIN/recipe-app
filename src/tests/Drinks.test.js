@@ -1,16 +1,17 @@
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
+import fetch from '../../cypress/mocks/fetch';
 import App from '../App';
 import ContextProvider from '../Context/ContextProvider';
 import renderWithRouter from '../renderWithRouter';
-import fetch from '../../cypress/mocks/fetch';
-import { showButton, searchInput, execSearch, searchName, searchLetter, searchIngredient, btnLogin, inputEmail, inputPassword, userEmail, drinkBtn } from './dataBase';
+import { btnLogin, drinkBtn, execSearch, inputEmail, inputPassword, searchIngredient, searchInput, searchLetter, searchName, showButton, userEmail } from './dataBase';
 
 describe('Testa as bebidas', () => {
-  global.fetch = fetch;
-
-  jest.spyOn(global, 'fetch');
+  beforeEach(() => {
+    global.fetch = fetch;
+    jest.spyOn(global, 'fetch');
+  });
   it('Testa se é possível pesquisar pelo nome da bebida', async () => {
     renderWithRouter(
       <ContextProvider>
