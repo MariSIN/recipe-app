@@ -22,7 +22,7 @@ function MealsDetails({ title }) {
   } = useRecipeDetails();
 
   const [isInProgress, setisInProgress] = useState();
-  const [checksObj, setChecksObj] = useState({});
+  const [checksArr, setChecksArr] = useState([]);
   const [isDone, setIsDone] = useState(false);
 
   const history = useHistory();
@@ -44,12 +44,14 @@ function MealsDetails({ title }) {
   useEffect(() => {
     const inProgreesRecipes = JSON
       .parse((localStorage.getItem('inProgressRecipes')));
-    const obj = Object
-      .values((inProgreesRecipes.meals[id] || [])).reduce((acc, curr) => ({
-        ...acc,
-        [curr]: true,
-      }), {});
-    setChecksObj(obj);
+    if (inProgreesRecipes) {
+      const obj = Object
+        .values((inProgreesRecipes.meals[id] || [])).reduce((acc, curr) => ([
+          // https://stackoverflow.com/questions/18418806/javascript-array-declaration-with-or
+          ...acc, curr,
+        ]), []);
+      setChecksArr(obj);
+    }
   }, [id]);
 
   const handleChecks = ({ target }) => {
@@ -58,11 +60,10 @@ function MealsDetails({ title }) {
     const { meals } = inProgreesRecipes;
     const { name, checked } = target;
     if (checked) {
-      setChecksObj({ ...checksObj, [name]: true });
+      setChecksArr([...checksArr, name]);
       meals[id] = [...(meals[id] || []), name];
-      // https://stackoverflow.com/questions/18418806/javascript-array-declaration-with-or
     } else {
-      setChecksObj({ ...checksObj, [name]: false });
+      setChecksArr([...checksArr.filter((i) => i !== name)]);
       meals[id] = [...meals[id].filter((item) => item !== name)];
     }
     localStorage
@@ -120,7 +121,7 @@ function MealsDetails({ title }) {
           <label
             htmlFor={ i }
             data-testid={ `${index}-ingredient-step` }
-            style={ checksObj[i]
+            style={ checksArr?.some((item) => item === i)
               ? { textDecoration: 'line-through solid rgb(0, 0 , 0)' }
               : { textDecoration: 'none' } }
           >
@@ -129,7 +130,7 @@ function MealsDetails({ title }) {
               name={ i }
               id={ i }
               onChange={ handleChecks }
-              checked={ checksObj[i] }
+              checked={ checksArr?.some((item) => item === i) }
             />
             {`${i} : ${measure[index]}`}
           </label>

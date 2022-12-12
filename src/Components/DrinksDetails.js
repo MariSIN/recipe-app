@@ -22,7 +22,7 @@ function DrinksDetails({ title }) {
   } = useRecipeDetails();
 
   const [isInProgress, setisInProgress] = useState();
-  const [checksObj, setChecksObj] = useState([]);
+  const [checksArr, setChecksArr] = useState([]);
   const [isDone, setIsDone] = useState(false);
 
   const history = useHistory();
@@ -50,7 +50,7 @@ function DrinksDetails({ title }) {
           // https://stackoverflow.com/questions/18418806/javascript-array-declaration-with-or
           ...acc, curr,
         ]), []);
-      setChecksObj(obj);
+      setChecksArr(obj);
     }
   }, [id]);
 
@@ -60,10 +60,10 @@ function DrinksDetails({ title }) {
     const { drinks } = inProgreesRecipes;
     const { name, checked } = target;
     if (checked) {
-      setChecksObj([...checksObj, name]);
+      setChecksArr([...checksArr, name]);
       drinks[id] = [...(drinks[id] || []), name];
     } else {
-      setChecksObj([...checksObj.filter((i) => i !== name)]);
+      setChecksArr([...checksArr.filter((i) => i !== name)]);
       drinks[id] = [...drinks[id].filter((item) => item !== name)];
     }
     console.log(drinks);
@@ -121,7 +121,7 @@ function DrinksDetails({ title }) {
           <label
             htmlFor={ i }
             data-testid={ `${index}-ingredient-step` }
-            style={ checksObj.some((item) => item === i)
+            style={ checksArr.some((item) => item === i)
               ? { textDecoration: 'line-through solid rgb(0, 0 , 0)' }
               : { textDecoration: 'none' } }
           >
@@ -129,7 +129,7 @@ function DrinksDetails({ title }) {
               type="checkbox"
               name={ i }
               id={ i }
-              checked={ checksObj.some((item) => item === i) }
+              checked={ checksArr.some((item) => item === i) }
               onChange={ handleChecks }
             />
             {`${i} : ${measure[index]}`}
