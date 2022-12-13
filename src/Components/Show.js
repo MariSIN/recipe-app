@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useContext, useState } from 'react';
 import Context from '../Context/Context';
 import search from '../images/searchIcon.svg';
-// import '../style/header.css';
+import '../style/header.css';
 import SearchBar from './SearchBar';
 
 function Show({ title }) {

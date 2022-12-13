@@ -5,7 +5,7 @@ import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import Show from '../Components/Show';
 import Context from '../Context/Context';
-// import '../style/meals.css';
+import '../style/meals.css';
 import { MEALS_CATEGORY, MEALS_RECIPES } from '../utilit/globalVariables';
 import Recipes from './Recipes';
 
@@ -30,42 +30,54 @@ function Meals() {
     <div className="content-meals">
       <Header title="Meals" />
       <Show title="Meals" />
-
       <div className="meals-column">
         {!showSearch ? (
-          <Recipes endpoit={ MEALS_RECIPES } chave="meals" />
+          <div className="all-recipes-card">
+            <Recipes
+              endpoit={ MEALS_RECIPES }
+              chave="meals"
+            />
+          </div>
         ) : (
-          <>
-            <ButtonRecipes endpoit={ MEALS_CATEGORY } chave="meals" />
-            {recipes?.map((recipe, index) => (
-              <div key={ index } className="map-meals-container card-recipe">
-                <Link
-                  to={ `/meals/${recipe.idMeal}` }
-                  key={ recipe.idMeal }
-                  className="link-meals"
-                >
-                  <div
-                    data-testid={ `${index}-recipe-card` }
-                    className="meals-card meals-column"
-                  >
-                    <h2
-                      data-testid={ `${index}-card-name` }
-                      className="card-name text-name"
+          <div className="all">
+            <ButtonRecipes
+              endpoit={ MEALS_CATEGORY }
+              chave="meals"
+              className="buttons-filter"
+            />
+            <div className="all-meals">
+              <div className="all-content">
+                {recipes?.map((recipe, index) => (
+                  <div key={ index } className="map-meals-container card-recipe">
+                    <Link
+                      to={ `/meals/${recipe.idMeal}` }
+                      key={ recipe.idMeal }
+                      className="link-meals"
                     >
-                      {recipe.strMeal}
-                    </h2>
-                    <img
-                      data-testid={ `${index}-card-img` }
-                      src={ recipe.strMealThumb }
-                      alt={ recipe.strMeal }
-                      style={ { maxWidth: '200px' } }
-                      className="card-img"
-                    />
+                      <div
+                        data-testid={ `${index}-recipe-card` }
+                        className="meals-card meals-column"
+                      >
+                        <h2
+                          data-testid={ `${index}-card-name` }
+                          className="text-name"
+                        >
+                          {recipe.strMeal}
+                        </h2>
+                        <img
+                          data-testid={ `${index}-card-img` }
+                          src={ recipe.strMealThumb }
+                          alt={ recipe.strMeal }
+                          style={ { maxWidth: '200px' } }
+                          className="card-img"
+                        />
+                      </div>
+                    </Link>
                   </div>
-                </Link>
+                ))}
               </div>
-            ))}
-          </>
+            </div>
+          </div>
         )}
       </div>
       <Footer />
