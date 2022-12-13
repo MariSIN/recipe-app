@@ -1,8 +1,22 @@
 import PropTypes from 'prop-types';
 import { useContext, useEffect, useState } from 'react';
 import Context from '../Context/Context';
+import beef from '../images/beef.png';
+import breakfast from '../images/breakfast.png';
+import chicken from '../images/chicken.png';
+import dessert from '../images/dessert.png';
+import goat from '../images/goat.png';
+import recipes from '../images/recipes.png';
+import '../style/meals.css';
 
 const maxCategoria = 5;
+const objImgs = {
+  beef,
+  breakfast,
+  chicken,
+  dessert,
+  goat,
+};
 
 function ButtonRecipes({ endpoit, chave }) {
   const [categorias, setCategorias] = useState([]);
@@ -20,6 +34,15 @@ function ButtonRecipes({ endpoit, chave }) {
       setCategoriasFilter(novoArray);
     }
   }, [categorias]);
+
+  const categories = (e) => (
+    <img
+      src={ objImgs[e.toLowerCase()] }
+      alt={ e.toLowerCase() }
+      className="img-filter"
+    />
+  );
+
   return (
     <div className="container-button-filter">
       {categoriasFilter.map((e, i) => (
@@ -28,17 +51,21 @@ function ButtonRecipes({ endpoit, chave }) {
           key={ i }
           data-testid={ `${e.strCategory}-category-filter` }
           value={ e.strCategory }
+          className="button-filter"
           onClick={ handleFoodFilter }
         >
-          {e.strCategory}
+          {categories(e.strCategory)}
+          <p className="name-category all">{e.strCategory}</p>
         </button>))}
 
       <button
         type="button"
         data-testid="All-category-filter"
         onClick={ handleInitialFoodFilter }
+        className="button-filter"
       >
-        ALL
+        <img src={ recipes } alt="ALL-Recipes" className="img-filter" />
+        <p className="name-category all">All</p>
 
       </button>
     </div>

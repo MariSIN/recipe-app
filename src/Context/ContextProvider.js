@@ -32,27 +32,30 @@ function ContextProvider({ children }) {
 
   const handleFoodFilter = async ({ target }) => {
     const { value } = target;
+    console.log(value);
     let url = '';
     let chave = '';
-    if (drinks.includes(value)) {
-      url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${value}`;
-      chave = 'drinks';
-    } else {
-      url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${value}`;
-      chave = 'meals';
-    }
-    const result = await fetch(url);
-    const data = await result.json();
-    const arrayFood = data[chave];
-    const novoArray = arrayFood.filter((e, i) => i < maxFood);
-    if (toggle === false) {
-      setFoodFilter(novoArray);
-      setToggle(true);
-      setShowSearch(false);
-    } else {
-      setToggle(false);
-      setFoodFilter(initialFoodFilter);
-      setShowSearch(false);
+    if (value) {
+      if (drinks.includes(value)) {
+        url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${value}`;
+        chave = 'drinks';
+      } else {
+        url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${value}`;
+        chave = 'meals';
+      }
+      const result = await fetch(url);
+      const data = await result.json();
+      const arrayFood = await data[chave];
+      const novoArray = await arrayFood.filter((e, i) => i < maxFood);
+      if (toggle === false) {
+        setFoodFilter(novoArray);
+        setToggle(true);
+        setShowSearch(false);
+      } else {
+        setToggle(false);
+        setFoodFilter(initialFoodFilter);
+        setShowSearch(false);
+      }
     }
   };
 
