@@ -6,6 +6,7 @@ import useRecipeDetails from '../hooks/useRecipeDetails';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import '../style/mealsDetails.css';
 
 function MealsDetails({ title }) {
   const {
@@ -102,7 +103,7 @@ function MealsDetails({ title }) {
   };
 
   const ingredientList = (
-    <ul>
+    <ul className="ingredient-list">
       {ingredient.map((i, index) => (
         <li
           data-testid={ `${index}-ingredient-name-and-measure` }
@@ -115,7 +116,7 @@ function MealsDetails({ title }) {
   );
 
   const ingredientCheckList = (
-    <ul>
+    <ul className="ingredient-list-check ingredient-list">
       {ingredient.map((i, index) => (
         <li key={ index }>
           <label
@@ -140,47 +141,85 @@ function MealsDetails({ title }) {
   );
 
   return (
-    <div>
+    <div className="details-container">
       {recipe.map((item) => (
-        <div key={ Number(item.idMeal) }>
+        <div key={ Number(item.idMeal) } className="recipe-card">
           <img
             data-testid="recipe-photo"
             src={ item.strMealThumb }
             alt={ item.strMeal }
-            style={ { maxWidth: '200px' } }
+            className="recipe-img"
           />
           <div>
-            <button type="button" data-testid="share-btn" onClick={ copyLink }>
-              <img src={ shareIcon } alt="share-icon" />
-            </button>
-            <button
-              type="button"
-              onClick={ () => favoriteLocalStorage(recipe, title, setIsFav) }
-            >
-              <img
-                data-testid="favorite-btn"
-                src={ isFav ? blackHeartIcon : whiteHeartIcon }
-                alt="favoriteIcon"
-              />
-            </button>
+            <div className="favorite-and-share">
+              <button type="button" data-testid="share-btn" onClick={ copyLink }>
+                <img src={ shareIcon } alt="share-icon" />
+              </button>
+              <button
+                type="button"
+                onClick={ () => favoriteLocalStorage(recipe, title, setIsFav) }
+              >
+                <img
+                  data-testid="favorite-btn"
+                  src={ isFav ? blackHeartIcon : whiteHeartIcon }
+                  alt="favoriteIcon"
+                />
+              </button>
+            </div>
             {isCopied && <p>Link copied!</p>}
           </div>
-          <h1 data-testid="recipe-title">{item.strMeal}</h1>
-          <p data-testid="recipe-category">{item.strCategory}</p>
-          {isInProgress ? ingredientCheckList : ingredientList}
-          <p data-testid="instructions">{item.strInstructions}</p>
-          <iframe
-            data-testid="video"
-            title={ item.strMeal }
-            width="420"
-            height="315"
-            src={ item.strYoutube?.replace('watch?v=', 'embed/') }
-            frameBorder="0"
-            allowFullScreen
-          />
+          <div className="recipe-name">
+            <h1 data-testid="recipe-title">{item.strMeal}</h1>
+            <p data-testid="recipe-category">{item.strCategory}</p>
+          </div>
+          <div className="list">
+            <h1 className="section-titles">Ingredients</h1>
+            {isInProgress ? ingredientCheckList : ingredientList}
+          </div>
+          <div>
+            <h1 className="section-titles">Instructions</h1>
+            <div className="ingredient-list instructions">
+              <p data-testid="instructions">{item.strInstructions}</p>
+            </div>
+          </div>
+          <div className="ingredient-list iframe-container">
+            <h1 className="section-titles">Video</h1>
+            <iframe
+              data-testid="video"
+              title={ item.strMeal }
+              width="420"
+              height="315"
+              src={ item.strYoutube?.replace('watch?v=', 'embed/') }
+              allowFullScreen
+            />
+          </div>
         </div>
       ))}
-      <div style={ { display: 'flex', overflowY: 'hidden', overflowX: 'scroll' } }>
+      <div className="button-container">
+        {isInProgress ? (
+          <button
+            data-testid="finish-recipe-btn"
+            type="button"
+            style={ isDone ? { display: 'none' } : { display: 'block' } }
+            disabled={ !isDisabled() }
+            onClick={ finishRecipe }
+            className="start-or-finish-button"
+          >
+            Finish Recipe
+          </button>
+        ) : (
+          <button
+            data-testid="start-recipe-btn"
+            type="button"
+            style={ isDone ? { display: 'none' } : { display: 'block' } }
+            onClick={ inProgressRecipe }
+            className="start-or-finish-button"
+          >
+            {isSaved ? 'Continue Recipe' : 'Start Recipe'}
+          </button>
+        )}
+      </div>
+      <div className="carrousel">
         {recomendations.map((i, index) => (
           <div key={ Number(i.idDrink) } data-testid={ `${index}-recommendation-card` }>
             <img
@@ -192,26 +231,6 @@ function MealsDetails({ title }) {
           </div>
         ))}
       </div>
-      {isInProgress ? (
-        <button
-          data-testid="finish-recipe-btn"
-          type="button"
-          style={ isDone ? { display: 'none' } : { position: 'fixed', bottom: '0px' } }
-          disabled={ !isDisabled() }
-          onClick={ finishRecipe }
-        >
-          Finish Recipe
-        </button>
-      ) : (
-        <button
-          data-testid="start-recipe-btn"
-          type="button"
-          style={ isDone ? { display: 'none' } : { position: 'fixed', bottom: '0px' } }
-          onClick={ inProgressRecipe }
-        >
-          {isSaved ? 'Continue Recipe' : 'Start Recipe'}
-        </button>
-      )}
     </div>
 
   );
