@@ -56,7 +56,7 @@ function Meals() {
                     >
                       <div
                         data-testid={ `${index}-recipe-card` }
-                        className="meals-card meals-column"
+                        className="meals-card"
                       >
                         <h2
                           data-testid={ `${index}-card-name` }

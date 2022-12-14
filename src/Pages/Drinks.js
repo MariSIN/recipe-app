@@ -7,6 +7,7 @@ import Show from '../Components/Show';
 import Context from '../Context/Context';
 import { DRINK_CATEGORY, DRINK_RECIPES } from '../utilit/globalVariables';
 import Recipes from './Recipes';
+import '../style/meals.css';
 
 function Drinks() {
   const [drinks, setDrinks] = useState([]);
@@ -26,31 +27,51 @@ function Drinks() {
   }, [searchResult]);
 
   return (
-    <>
+    <div className="content-meals">
       <Header title="Drinks" />
       <Show title="Drinks" />
-      {!showSearch ? (
-        <Recipes endpoit={ DRINK_RECIPES } chave="drinks" />
-      ) : (
-        <>
-          <ButtonRecipes endpoit={ DRINK_CATEGORY } chave="drinks" />
-          {drinks.map((drink, index) => (
-            <Link to={ `/drinks/${drink.idDrink}` } key={ drink.idDrink }>
-              <div data-testid={ `${index}-recipe-card` }>
-                <h2 data-testid={ `${index}-card-name` }>{drink.strDrink}</h2>
-                <img
-                  data-testid={ `${index}-card-img` }
-                  src={ drink.strDrinkThumb }
-                  alt={ drink.strDrink }
-                  style={ { maxWidth: '200px' } }
-                />
+      <div className="meals-column">
+        {!showSearch ? (
+          <div className="all-recipes-card">
+            <Recipes endpoit={ DRINK_RECIPES } chave="drinks" />
+          </div>
+        ) : (
+          <div className="all">
+            <ButtonRecipes endpoit={ DRINK_CATEGORY } chave="drinks" />
+            <div className="all-meals">
+              <div className="all-content">
+                {drinks.map((drink, index) => (
+                  <div key={ index } className="map-meals-container card-recipe">
+                    <Link
+                      to={ `/drinks/${drink.idDrink}` }
+                      key={ drink.idDrink }
+                      className="link-meals"
+                    >
+                      <div data-testid={ `${index}-recipe-card` } className="meals-card">
+                        <h2
+                          data-testid={ `${index}-card-name` }
+                          className="text-name"
+                        >
+                          {drink.strDrink}
+                        </h2>
+                        <img
+                          data-testid={ `${index}-card-img` }
+                          src={ drink.strDrinkThumb }
+                          alt={ drink.strDrink }
+                          style={ { maxWidth: '200px' } }
+                          className="card-img"
+                        />
+                      </div>
+                    </Link>
+                  </div>
+                ))}
               </div>
-            </Link>
-          ))}
-        </>
-      )}
-      <Footer />
-    </>
+            </div>
+          </div>
+        )}
+        <Footer />
+      </div>
+    </div>
   );
 }
 

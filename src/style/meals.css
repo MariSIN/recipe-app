@@ -10,7 +10,7 @@
 .card-img {
   border: 0.5px solid rgba(0, 0, 0, 0.418);
   border-radius: 5px 5px 0 0;
-  margin-bottom: -10px;
+  margin-bottom: -12px;
   width: 165px;
 }
 
@@ -95,17 +95,27 @@
 .button-filter {
   align-items: center;
   border: none;
-  border-radius: 50%;
+  border-radius: 20px;
   box-shadow: 2px 3px black;
   display: flex;
-  height: 60px;
-  justify-content: center;
-  width: 60px;
+  height: 40px;
+  padding-right: 10px;
+  width: 160px;
 }
 
 .img-filter {
-  font-size: 25px;
-  text-align: center;
+  margin-left: 8px;
+  width: 40px;
+}
+
+.name-category {
+  display: flex;
+  font-weight: 500;
+  justify-content: center;
+  letter-spacing: 0.5px;
+  margin-right: 5px;
+  margin-top: 15px;
+  width: 100%;
 }
 
 .map-meals-container {
@@ -115,6 +125,7 @@
 
 .title-recipes {
   align-self: center;
+  display: flex;
   text-align: center;
 }
 
@@ -164,8 +175,16 @@
     width: 100%;
   }
 
+  .title-recipes {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    width: 320px;
+  }
+
   .card-img, .card-name, .text-name {
-    box-shadow: 3px 0px rgb(0, 0, 0);
+    border: none;
+    box-shadow: 2px 0 3px rgba(0, 0, 0, 0.253);
     width: 155px;
   }
 
@@ -174,8 +193,21 @@
   }
 
   .card-name, .text-name {
+    background-color: rgb(249, 125, 58);
     border-top: none;
-    box-shadow: 2px 3px rgb(0, 0, 0);
+    box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.164);
+    color: rgb(249, 244, 243);
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+
+  .meals-card {
+    align-items: center;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 0;
+    width: 163px;
   }
 
   .meals-column {
@@ -190,7 +222,9 @@
   }
 
   .all-meals {
+    display: flex;
     margin: 0;
+    width: 100%;
   }
 
   .content-meals {
@@ -218,7 +252,7 @@
 
   .all-content {
     display: grid;
-    gap: 20px;
+    gap: 0;
     grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
     width: 100%;
   }
@@ -232,17 +266,36 @@
   }
 
   .container-button-filter {
+    display: grid;
     gap: 8px;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
   }
 
   .button-filter {
-    display: flex;
-    height: 40px;
-    width: 160px;
+    background-color: rgb(240, 215, 195);
+    border-radius: 25px;
+    box-shadow: 2px 3px 2.3px rgba(0, 0, 0, 0.235);
+    color: rgb(79, 35, 35);
+    display: grid;
+    font-weight: 400;
+    grid-template-columns: 50px 90px;
+    height: 45px;
+    width: 150px;
   }
 
   .img-filter {
-    width: 35px;
+    background-color: rgb(246, 156, 108);
+    border-radius: 50%;
+    display: flex;
+    margin-left: 5px;
+    width: 40px;
+  }
+
+  .name-category {
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 
 }
