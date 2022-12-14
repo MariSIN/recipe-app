@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import '../style/login.css';
 import { DRINKS_TOKEN_KEY, MEALS_TOKEN_KEY, USER_KEY } from '../utilit/globalVariables';
 
 const tamanhoSenha = 6;
@@ -42,15 +43,12 @@ function Login() {
   };
 
   return (
-    <>
-      <h1>Login</h1>
-      <br />
-
-      <form>
-
+    <div className="login-container">
+      <form className="form-login">
+        <h1>Login</h1>
         <input
           type="text"
-          placeholder="Digite seu email"
+          placeholder="email"
           data-testid="email-input"
           value={ inputs.email }
           onChange={ mudarInput }
@@ -58,7 +56,7 @@ function Login() {
         />
         <input
           type="password"
-          placeholder="Digite sua senha"
+          placeholder="password"
           data-testid="password-input"
           value={ inputs.senha }
           onChange={ mudarInput }
@@ -75,7 +73,7 @@ function Login() {
         </button>
       </form>
 
-    </>
+    </div>
   );
 }
 
