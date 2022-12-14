@@ -68,7 +68,6 @@ function Meals() {
                           data-testid={ `${index}-card-img` }
                           src={ recipe.strMealThumb }
                           alt={ recipe.strMeal }
-                          style={ { maxWidth: '200px' } }
                           className="card-img"
                         />
                       </div>

@@ -1,19 +1,21 @@
-import { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import CardRecipes from '../Components/CardRecipes';
+import { useContext, useEffect, useState } from 'react';
 import ButtonRecipes from '../Components/ButtonRecipes';
-import { MEALS_CATEGORY, DRINK_CATEGORY } from '../utilit/globalVariables';
+import CardRecipes from '../Components/CardRecipes';
 import Context from '../Context/Context';
+import { DRINK_CATEGORY, MEALS_CATEGORY } from '../utilit/globalVariables';
 
 const maxFood = 12;
 
 function Recipes({ endpoit, chave }) {
   const [food, setFood] = useState([]);
-  const { foodFilter, createFilter } = useContext(Context);
+  const { foodFilter, createFilter, isLoading, setIsLoading } = useContext(Context);
+
   useEffect(() => {
     fetch(endpoit)
       .then((promise) => promise.json())
       .then((data) => setFood(data[chave]));
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
@@ -22,6 +24,7 @@ function Recipes({ endpoit, chave }) {
       createFilter(novoArray, chave);
     }
   }, [food]);
+  if (isLoading) { return (<h1>Loading...</h1>); }
   return (
     <>
       <h1 className="title-recipes">Recipes</h1>

@@ -9,7 +9,9 @@ function SearchBar({ title }) {
     handleChange,
     searchFilter,
     setSearchResult,
-    setShowSearch } = useContext(Context);
+    setShowSearch,
+    setIsLoading,
+  } = useContext(Context);
   const history = useHistory();
 
   const dataMeals = (data) => {
@@ -27,6 +29,7 @@ function SearchBar({ title }) {
   };
 
   const fetchMeals = async () => {
+    setIsLoading(true);
     if (searchFilter.selectedFilter === 'Ingredient') {
       try {
         const url = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchFilter.searchName}`;
@@ -71,6 +74,7 @@ function SearchBar({ title }) {
   };
 
   const fetchDrinks = async () => {
+    setIsLoading(true);
     if (searchFilter.selectedFilter === 'Ingredient') {
       try {
         const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${searchFilter.searchName}`;
@@ -113,6 +117,7 @@ function SearchBar({ title }) {
         console.log(error);
       }
     }
+    setIsLoading(false);
   };
 
   return (
