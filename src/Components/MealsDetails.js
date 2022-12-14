@@ -82,7 +82,6 @@ function MealsDetails({ title }) {
 
   const finishRecipe = () => {
     const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
-
     const finishObj = {
       id: recipe[0].idMeal,
       type: 'meal',
@@ -93,7 +92,7 @@ function MealsDetails({ title }) {
       image: recipe[0].strMealThumb,
       doneDate: new Date().toISOString(),
       // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-      tags: recipe[0].strTags.split(','),
+      tags: recipe[0].strTags !== null ? recipe[0].strTags.split(',') : '',
     };
 
     localStorage

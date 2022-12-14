@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../Components/Header';
 import Footer from '../Components/Footer';
+import Header from '../Components/Header';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
+import '../style/doneRecipes.css';
 
 const copy = require('clipboard-copy');
 
@@ -53,77 +54,88 @@ function FavoriteRecipes() {
       <header>
         <Header title="Favorite Recipes" />
       </header>
-      <button
-        type="button"
-        data-testid="filter-by-all-btn"
-        value="all"
-        onClick={ handleFilter }
-      >
-        All
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-meal-btn"
-        value="meal"
-        onClick={ handleFilter }
-      >
-        Meals
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-drink-btn"
-        value="drink"
-        onClick={ handleFilter }
-      >
-        Drinks
-      </button>
-      {filteredRecipes
-        ?.map((item, index) => (
-          <main key={ index }>
-            <Link to={ `/${item.type}s/${item.id}` }>
-              <h3
-                data-testid={ `${index}-horizontal-top-text` }
-              >
-                {`${item.nationality} - ${item.category} ${item.alcoholicOrNot}`}
-              </h3>
-              <h4
-                data-testid={ `${index}-horizontal-name` }
-              >
-                {item.name}
-              </h4>
-              <img
-                data-testid={ `${index}-horizontal-image` }
-                src={ item.image }
-                alt={ item.name }
-                style={ { width: '200px' } }
-              />
-            </Link>
-            <button
-              type="button"
-              onClick={ () => copyLink(index, item) }
-            >
-              <img
-                data-testid={ `${index}-horizontal-share-btn` }
-                src={ shareIcon }
-                alt="shareIcon"
-              />
-            </button>
-            {isCopy === item.name && <span>Link copied!</span>}
-            <button
-              type="button"
-              onClick={ () => removeSave(item.id) }
-            >
-              <img
-                data-testid={ `${index}-horizontal-favorite-btn` }
-                src={ blackHeartIcon }
-                alt="favoriteIcon"
-              />
-            </button>
-          </main>
-        ))}
-      <footer>
-        <Footer />
-      </footer>
+      <div className="teste">
+        <div>
+          <button
+            type="button"
+            data-testid="filter-by-all-btn"
+            value="all"
+            onClick={ handleFilter }
+          >
+            All
+          </button>
+          <button
+            type="button"
+            data-testid="filter-by-meal-btn"
+            value="meal"
+            onClick={ handleFilter }
+          >
+            Meals
+          </button>
+          <button
+            type="button"
+            data-testid="filter-by-drink-btn"
+            value="drink"
+            onClick={ handleFilter }
+          >
+            Drinks
+          </button>
+        </div>
+        {filteredRecipes
+          ?.map((item, index) => (
+            <main key={ index }>
+              <Link to={ `/${item.type}s/${item.id}` }>
+                <div className="recipes">
+                  <img
+                    data-testid={ `${index}-horizontal-image` }
+                    src={ item.image }
+                    alt={ item.name }
+                  />
+                  <div className="recipes-infos">
+                    <h1
+                      data-testid={ `${index}-horizontal-name` }
+                    >
+                      {item.name}
+                    </h1>
+                    <p
+                      data-testid={ `${index}-horizontal-top-text` }
+                    >
+                      {`${item.nationality} - ${item.category} ${item.alcoholicOrNot}`}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+              <div className="buttons">
+                <button
+                  type="button"
+                  onClick={ () => copyLink(index, item) }
+                  className="share-btn"
+                >
+                  <img
+                    data-testid={ `${index}-horizontal-share-btn` }
+                    src={ shareIcon }
+                    alt="shareIcon"
+                  />
+                </button>
+                {isCopy === item.name && <span>Link copied!</span>}
+                <button
+                  type="button"
+                  className="share-btn"
+                  onClick={ () => removeSave(item.id) }
+                >
+                  <img
+                    data-testid={ `${index}-horizontal-favorite-btn` }
+                    src={ blackHeartIcon }
+                    alt="favoriteIcon"
+                  />
+                </button>
+              </div>
+            </main>
+          ))}
+        <footer>
+          <Footer />
+        </footer>
+      </div>
     </>
   );
 }
