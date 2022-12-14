@@ -10,7 +10,6 @@ function SearchBar({ title }) {
     searchFilter,
     setSearchResult,
     setShowSearch,
-    setIsLoading,
   } = useContext(Context);
   const history = useHistory();
 
@@ -73,7 +72,6 @@ function SearchBar({ title }) {
   };
 
   const fetchDrinks = async () => {
-    setIsLoading(true);
     if (searchFilter.selectedFilter === 'Ingredient') {
       try {
         const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${searchFilter.searchName}`;
@@ -116,7 +114,6 @@ function SearchBar({ title }) {
         console.log(error);
       }
     }
-    setIsLoading(false);
   };
 
   return (
