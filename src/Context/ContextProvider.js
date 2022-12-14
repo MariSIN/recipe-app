@@ -12,22 +12,30 @@ function ContextProvider({ children }) {
   });
   const [searchResult, setSearchResult] = useState([]);
   const [foodFilter, setFoodFilter] = useState([]);
-  const [initialFoodFilter, setInitialFoodFilter] = useState([]);
-  const [toggle, setToggle] = useState(false);
+  const [initialMealsFilter, setInitialMealsFilter] = useState([]);
+  const [initialDrinkFilter, setInitialDrinksFilter] = useState([]);
   const [showSearch, setShowSearch] = useState(false);
 
-  const createFilter = (ArrayFilter) => {
-    setFoodFilter(ArrayFilter);
-    setShowSearch(false);
-
-    if (initialFoodFilter.length === 0) {
-      setInitialFoodFilter(ArrayFilter);
+  const createFilter = (ArrayFilter, chave) => {
+    if (chave === 'meals') {
+      setFoodFilter(ArrayFilter);
+      setInitialMealsFilter(ArrayFilter);
+      setShowSearch(false);
+    } else {
+      setFoodFilter(ArrayFilter);
+      setInitialDrinksFilter(ArrayFilter);
+      setShowSearch(false);
     }
   };
 
-  const handleInitialFoodFilter = () => {
-    setFoodFilter(initialFoodFilter);
-    setShowSearch(false);
+  const handleInitialFoodFilter = (chave) => {
+    if (chave === 'meals') {
+      setFoodFilter(initialMealsFilter);
+      setShowSearch(false);
+    } else {
+      setFoodFilter(initialDrinkFilter);
+      setShowSearch(false);
+    }
   };
 
   const handleFoodFilter = async ({ target }) => {
@@ -47,15 +55,8 @@ function ContextProvider({ children }) {
       const data = await result.json();
       const arrayFood = await data[chave];
       const novoArray = await arrayFood.filter((e, i) => i < maxFood);
-      if (toggle === false) {
-        setFoodFilter(novoArray);
-        setToggle(true);
-        setShowSearch(false);
-      } else {
-        setToggle(false);
-        setFoodFilter(initialFoodFilter);
-        setShowSearch(false);
-      }
+      setFoodFilter(novoArray);
+      setShowSearch(false);
     }
   };
 
@@ -69,7 +70,6 @@ function ContextProvider({ children }) {
   const value = useMemo(() => ({
     searchFilter,
     foodFilter,
-    initialFoodFilter,
     setSearchFilter,
     handleChange,
     setSearchResult,
@@ -79,7 +79,8 @@ function ContextProvider({ children }) {
     searchResult,
     showSearch,
     setShowSearch,
-  }), [searchFilter, handleChange, searchResult, foodFilter, initialFoodFilter]);
+  }), [searchFilter, handleChange, searchResult, foodFilter,
+    initialDrinkFilter, initialMealsFilter]);
 
   return (
     <Context.Provider value={ value }>
