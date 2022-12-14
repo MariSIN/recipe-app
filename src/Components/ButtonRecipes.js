@@ -70,7 +70,7 @@ function ButtonRecipes({ endpoit, chave }) {
       <button
         type="button"
         data-testid="All-category-filter"
-        onClick={ handleInitialFoodFilter }
+        onClick={ () => handleInitialFoodFilter(chave) }
         className="button-filter"
       >
         <img src={ recipes } alt="ALL-Recipes" className="img-filter" />

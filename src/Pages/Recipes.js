@@ -19,7 +19,7 @@ function Recipes({ endpoit, chave }) {
   useEffect(() => {
     if (food.length !== 0) {
       const novoArray = food.filter((e, i) => i < maxFood);
-      createFilter(novoArray);
+      createFilter(novoArray, chave);
     }
   }, [food]);
   return (
