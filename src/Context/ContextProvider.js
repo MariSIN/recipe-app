@@ -15,7 +15,6 @@ function ContextProvider({ children }) {
   const [initialMealsFilter, setInitialMealsFilter] = useState([]);
   const [initialDrinkFilter, setInitialDrinksFilter] = useState([]);
   const [showSearch, setShowSearch] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   const createFilter = (ArrayFilter, chave) => {
     if (chave === 'meals') {
@@ -51,26 +50,12 @@ function ContextProvider({ children }) {
         url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${value}`;
         chave = 'meals';
       }
-      setIsLoading(true);
       const result = await fetch(url);
       const data = await result.json();
       const arrayFood = await data[chave];
       const novoArray = await arrayFood.filter((e, i) => i < maxFood);
-<<<<<<< HEAD
       setFoodFilter(novoArray);
       setShowSearch(false);
-=======
-      if (toggle === false) {
-        setFoodFilter(novoArray);
-        setToggle(true);
-        setShowSearch(false);
-      } else {
-        setToggle(false);
-        setFoodFilter(initialFoodFilter);
-        setShowSearch(false);
-      }
-      setIsLoading(false);
->>>>>>> 72d0c9d0 ([style] : Profile)
     }
   };
 
@@ -93,14 +78,8 @@ function ContextProvider({ children }) {
     searchResult,
     showSearch,
     setShowSearch,
-<<<<<<< HEAD
   }), [searchFilter, handleChange, searchResult, foodFilter,
     initialDrinkFilter, initialMealsFilter]);
-=======
-    setIsLoading,
-    isLoading,
-  }), [searchFilter, handleChange, searchResult, foodFilter, initialFoodFilter]);
->>>>>>> 72d0c9d0 ([style] : Profile)
 
   return (
     <Context.Provider value={ value }>

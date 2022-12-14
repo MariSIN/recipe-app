@@ -9,13 +9,12 @@ const maxFood = 12;
 
 function Recipes({ endpoit, chave }) {
   const [food, setFood] = useState([]);
-  const { foodFilter, createFilter, isLoading, setIsLoading } = useContext(Context);
+  const { foodFilter, createFilter } = useContext(Context);
 
   useEffect(() => {
     fetch(endpoit)
       .then((promise) => promise.json())
       .then((data) => setFood(data[chave]));
-    setIsLoading(false);
   }, []);
 
   useEffect(() => {

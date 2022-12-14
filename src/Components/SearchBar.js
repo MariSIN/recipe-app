@@ -29,7 +29,6 @@ function SearchBar({ title }) {
   };
 
   const fetchMeals = async () => {
-    setIsLoading(true);
     if (searchFilter.selectedFilter === 'Ingredient') {
       try {
         const url = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchFilter.searchName}`;
