@@ -71,7 +71,7 @@ function DoneRecipes() {
           <>
             <div key={ index.toString() }>
               <Link to={ `/${recipe.type}s/${recipe.id}` }>
-                <div className="recipes">
+                <div className="recipe">
                   <img
                     data-testid={ `${index}-horizontal-image` }
                     src={ recipe.image }

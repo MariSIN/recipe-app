@@ -25,9 +25,7 @@ function FavoriteRecipes() {
 
   const removeSave = (id) => {
     const favorite = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    console.log(id);
     const removeStorage = favorite.filter((item) => item.id !== id);
-    console.log(removeStorage);
     setFavoriteRecipes(removeStorage);
     setFilteredRecipes(removeStorage);
     localStorage.setItem('favoriteRecipes', JSON.stringify(removeStorage));
@@ -85,7 +83,7 @@ function FavoriteRecipes() {
           ?.map((item, index) => (
             <main key={ index }>
               <Link to={ `/${item.type}s/${item.id}` }>
-                <div className="recipes">
+                <div className="recipe">
                   <img
                     data-testid={ `${index}-horizontal-image` }
                     src={ item.image }
@@ -99,6 +97,7 @@ function FavoriteRecipes() {
                     </h1>
                     <p
                       data-testid={ `${index}-horizontal-top-text` }
+                      className="recipe-category"
                     >
                       {`${item.nationality} - ${item.category} ${item.alcoholicOrNot}`}
                     </p>

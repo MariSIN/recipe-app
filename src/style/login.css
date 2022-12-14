@@ -57,7 +57,7 @@
     width: 325px;
   }
 
-  .form-login input, button {
+  .form-login input, .form-login button {
     background: white;
     height: 40px;
     width: 273px;
