@@ -1,15 +1,28 @@
 import { Link } from 'react-router-dom';
-import drinkIcon from '../images/drinkIcon.svg';
-import mealIcon from '../images/mealIcon.svg';
+import { GiKnifeFork } from 'react-icons/gi';
+import { BiDrink } from 'react-icons/bi';
+import '../style/footer.css';
 
 function Footer() {
   return (
-    <footer data-testid="footer" style={ { position: 'fixed', bottom: '0px' } }>
+    <footer
+      className="footer"
+      data-testid="footer"
+      style={ { position: 'fixed', bottom: '0px' } }
+    >
       <Link to="/meals">
-        <img data-testid="meals-bottom-btn" src={ mealIcon } alt="mealIcon" />
+        <GiKnifeFork
+          data-testid="meals-bottom-btn"
+          alt="mealIcon"
+          className="icon-footer"
+        />
       </Link>
       <Link to="/drinks">
-        <img data-testid="drinks-bottom-btn" src={ drinkIcon } alt="drinkIcon" />
+        <BiDrink
+          data-testid="drinks-bottom-btn"
+          alt="drinkIcon"
+          className="icon-footer"
+        />
       </Link>
     </footer>
   );

@@ -1,33 +1,121 @@
+.header-content {
+  height: 40px;
+}
+
 .header {
+  align-items: center;
+  background-color: rgb(221, 91, 21);
+  color: rgb(235, 226, 205);
   display: flex;
-  width: 100%;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  position: relative;
+  width: 360px;
 }
 
 .show {
   align-items: center;
+  background-color: rgb(237, 158, 109);
+  border-radius: 10px;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.164);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-bottom: 50px;
-  width: 280px;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  width: 320px;
+}
+
+.options-search {
+  color: rgba(255, 255, 255, 0.903);
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
 }
 
 .search-option {
+  font-size: 14px;
   margin: 20px 5px;
+  margin-bottom: 12px;
+}
+
+.search-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90%;
 }
 
 .btn-search, .input-search {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.164);
+}
+
+.input-search {
+  background-color: rgb(246, 244, 242);
+  height: 40px;
+  margin-bottom: -20px;
+  padding-left: 10px;
+  width: 320px;
+}
+
+.btn-search {
+  background-color: rgb(247, 225, 212);
+  color: rgba(158, 82, 25, 0.95);
+  font-weight: 500;
+  height: 25px;
   width: 280px;
+}
+
+.btn-search:focus, .input-search:focus {
+  outline: none;
 }
 
 .btn-show {
   background-color: transparent;
   border: none;
-  right: 900px;
-  top: 5px;
+  color: rgba(240, 229, 208, 0.966);
+  font-size: 35px;
+  position: absolute;
+  right: 0%;
+  top: -4px;
+  width: 40px;
 }
 
 .btn-show:focus {
   outline: none;
+}
+
+.recipe-title-header {
+  align-items: center;
+  color: rgba(240, 229, 208, 0.873);
+  display: flex;
+  font-style: italic;
+  font-weight: 300;
+  justify-self: center;
+  margin-top: 5px;
+}
+
+.recipe-app {
+  color: rgb(250, 240, 221);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+.icon-profile {
+  color: rgba(240, 229, 208, 0.966);
+  font-size: 35px;
+  position: absolute;
+  right: 12%;
+  top: 6px;
+}
+
+.img-food {
+  margin-right: 5px;
+  width: 35px;
 }
 

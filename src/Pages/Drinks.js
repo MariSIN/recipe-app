@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { BiDrink } from 'react-icons/bi';
 import ButtonRecipes from '../Components/ButtonRecipes';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
@@ -28,8 +29,12 @@ function Drinks() {
 
   return (
     <div className="content-meals">
-      <Header title="Drinks" />
+      <header className="header">
+        <Header title="Drinks" />
+      </header>
       <Show title="Drinks" />
+      <BiDrink className="icon-title-meals" />
+      <h1 className="title-recipes">Drinks</h1>
       <div className="meals-column">
         {!showSearch ? (
           <div className="all-recipes-card">

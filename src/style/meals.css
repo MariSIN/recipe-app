@@ -1,3 +1,7 @@
+body {
+  background-color: rgb(252, 234, 213);
+}
+
 .content-meals, .meals-card {
   align-items: center;
   display: flex;
@@ -9,7 +13,7 @@
 
 .card-img {
   border: 0.5px solid rgba(0, 0, 0, 0.418);
-  border-radius: 5px 5px 0 0;
+  border-radius: 10px 10px 0 0;
   margin-bottom: -12px;
   width: 165px;
 }
@@ -26,7 +30,7 @@
 
 .card-name, .text-name {
   border: 0.5px solid rgba(0, 0, 0, 0.418);
-  border-radius: 0 0 5px 5px;
+  border-radius: 0 0 10px 10px;
   color: black;
   font-size: 20px;
   font-weight: 600;
@@ -125,6 +129,7 @@
 
 .title-recipes {
   align-self: center;
+  color: rgb(200, 91, 2);
   display: flex;
   text-align: center;
 }
@@ -178,7 +183,8 @@
   .title-recipes {
     display: flex;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
+    margin-top: 5px;
     width: 320px;
   }
 
@@ -190,6 +196,12 @@
 
   .card-img {
     border-bottom: none;
+  }
+
+  .icon-title-meals {
+    color: rgb(200, 91, 2);
+    font-size: 40px;
+    margin-bottom: -10px;
   }
 
   .card-name, .text-name {
@@ -224,11 +236,13 @@
   .all-meals {
     display: flex;
     margin: 0;
+    margin-top: -35px;
     width: 100%;
   }
 
   .content-meals {
     margin: 0;
+    margin-bottom: 70px;
   }
 
   .card-recipe {
@@ -273,7 +287,7 @@
   }
 
   .button-filter {
-    background-color: rgb(240, 215, 195);
+    background-color: rgb(255, 192, 141);
     border-radius: 25px;
     box-shadow: 2px 3px 2.3px rgba(0, 0, 0, 0.235);
     color: rgb(79, 35, 35);
@@ -285,7 +299,7 @@
   }
 
   .img-filter {
-    background-color: rgb(246, 156, 108);
+    background-color: rgb(246, 138, 79);
     border-radius: 50%;
     display: flex;
     margin-left: 5px;

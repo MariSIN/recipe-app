@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useContext, useState } from 'react';
+import { HiSearch } from 'react-icons/hi';
 import Context from '../Context/Context';
-import search from '../images/searchIcon.svg';
 import '../style/header.css';
 import SearchBar from './SearchBar';
 
@@ -14,16 +14,14 @@ function Show({ title }) {
   };
 
   return (
-    <div>
+    <div className="search-container">
       <button
         type="button"
         onClick={ showSearch }
         className="btn-show"
       >
-        <img
+        <HiSearch
           data-testid="search-top-btn"
-          src={ search }
-          alt="search"
           // style={ { left: '600px', position: 'absolute' } }
         />
       </button>

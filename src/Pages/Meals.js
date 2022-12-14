@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { GiMeal } from 'react-icons/gi';
 import ButtonRecipes from '../Components/ButtonRecipes';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import Show from '../Components/Show';
 import Context from '../Context/Context';
 import '../style/meals.css';
+import '../style/header.css';
 import { MEALS_CATEGORY, MEALS_RECIPES } from '../utilit/globalVariables';
 import Recipes from './Recipes';
 
@@ -28,8 +30,12 @@ function Meals() {
 
   return (
     <div className="content-meals">
-      <Header title="Meals" />
+      <header className="header">
+        <Header title="Meals" />
+      </header>
       <Show title="Meals" />
+      <GiMeal className="icon-title-meals" />
+      <h1 className="title-recipes">Meals</h1>
       <div className="meals-column">
         {!showSearch ? (
           <div className="all-recipes-card">
