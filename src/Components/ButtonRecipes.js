@@ -1,21 +1,18 @@
 import PropTypes from 'prop-types';
 import { useContext, useEffect, useState } from 'react';
+import { GiMeal, GiSteak, GiChickenOven, GiGoat } from 'react-icons/gi';
+import { CgCoffee } from 'react-icons/cg';
+import { RiCake3Fill } from 'react-icons/ri';
 import Context from '../Context/Context';
-import beef from '../images/beef.png';
-import breakfast from '../images/breakfast.png';
-import chicken from '../images/chicken.png';
-import dessert from '../images/dessert.png';
-import goat from '../images/goat.png';
-import recipes from '../images/recipes.png';
 import '../style/meals.css';
 
 const maxCategoria = 5;
 const objImgs = {
-  beef,
-  breakfast,
-  chicken,
-  dessert,
-  goat,
+  beef: <GiSteak />,
+  breakfast: <CgCoffee />,
+  chicken: <GiChickenOven />,
+  dessert: <RiCake3Fill />,
+  goat: <GiGoat />,
 };
 
 function ButtonRecipes({ endpoit, chave }) {
@@ -36,11 +33,7 @@ function ButtonRecipes({ endpoit, chave }) {
   }, [categorias]);
 
   const categories = (e) => (
-    <img
-      src={ objImgs[e.toLowerCase()] }
-      alt={ e.toLowerCase() }
-      className="img-filter"
-    />
+    <span className="img-filter">{objImgs[e.toLowerCase()] }</span>
   );
 
   return (
@@ -55,7 +48,6 @@ function ButtonRecipes({ endpoit, chave }) {
           onClick={ handleFoodFilter }
         >
           {categories(e.strCategory)}
-          <p className="name-category all">{e.strCategory}</p>
         </button>))}
 
       <button
@@ -64,8 +56,7 @@ function ButtonRecipes({ endpoit, chave }) {
         onClick={ handleInitialFoodFilter }
         className="button-filter"
       >
-        <img src={ recipes } alt="ALL-Recipes" className="img-filter" />
-        <p className="name-category all">All</p>
+        <sapn className="img-filter"><GiMeal /></sapn>
 
       </button>
     </div>
