@@ -20,7 +20,7 @@
   width: 525px;
 }
 
-.form-login input, button {
+.form-login input, .form-login button {
   background: white;
   border: 1px solid black;
   border-radius: 5px;
