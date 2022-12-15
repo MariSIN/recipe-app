@@ -56,7 +56,7 @@ function FavoriteRecipes() {
         <Header title="Favorite Recipes" />
       </header>
       <div className="teste">
-        <h1 className="title-recipes title-done">Done Recipes</h1>
+        <h1 className="title-recipes title-done">Favorite Recipes</h1>
         <div className="container-buttons-filter">
           <button
             type="button"
@@ -65,7 +65,8 @@ function FavoriteRecipes() {
             onClick={ handleFilter }
             className="button-filter-recipe"
           >
-            <GiMeal />
+            <GiMeal className="icon-done" />
+            Meals
           </button>
           <button
             type="button"
@@ -74,7 +75,8 @@ function FavoriteRecipes() {
             onClick={ handleFilter }
             className="button-filter-recipe"
           >
-            <BiDrink />
+            <BiDrink className="icon-done" />
+            Drinks
           </button>
           <button
             type="button"
@@ -83,7 +85,8 @@ function FavoriteRecipes() {
             onClick={ handleFilter }
             className="button-filter-recipe"
           >
-            <MdFastfood />
+            <MdFastfood className="icon-done" />
+            All
           </button>
         </div>
         {filteredRecipes

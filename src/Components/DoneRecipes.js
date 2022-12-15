@@ -51,7 +51,8 @@ function DoneRecipes() {
             onClick={ handleFilter }
             className="button-filter-recipe"
           >
-            <GiMeal />
+            <GiMeal className="icon-done" />
+            Meals
           </button>
           <button
             type="button"
@@ -60,7 +61,8 @@ function DoneRecipes() {
             onClick={ handleFilter }
             className="button-filter-recipe"
           >
-            <BiDrink />
+            <BiDrink className="icon-done" />
+            Drinks
 
           </button>
           <button
@@ -70,7 +72,8 @@ function DoneRecipes() {
             onClick={ handleFilter }
             className="button-filter-recipe"
           >
-            <MdFastfood />
+            <MdFastfood className="icon-done" />
+            All
 
           </button>
         </div>
