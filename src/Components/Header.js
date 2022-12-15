@@ -22,11 +22,12 @@ function Header({ title }) {
         <Link to="/profile">
           <HiOutlineUserCircle
             data-testid="profile-top-btn"
-            className="icon-profile"
+            className="icon-profile icon-favorite-profile"
           />
         </Link>
         <h1
           data-testid="page-title"
+          className="none"
           style={ { color: 'rgb(0, 255, 255, 0)' } }
         >
           {title}

@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import shareIcon from '../images/shareIcon.svg';
+import { GiMeal, GiShare } from 'react-icons/gi';
+import { BiDrink } from 'react-icons/bi';
+import { MdFastfood } from 'react-icons/md';
+import Footer from './Footer';
 import '../style/doneRecipes.css';
 import Header from './Header';
 
@@ -39,22 +42,25 @@ function DoneRecipes() {
         <Header title="Done Recipes" />
       </header>
       <div className="teste">
-        <div>
+        <h1 className="title-recipes title-done">Done Recipes</h1>
+        <div className="container-buttons-filter">
           <button
             type="button"
             data-testid="filter-by-meal-btn"
             value="meal"
             onClick={ handleFilter }
+            className="button-filter-recipe"
           >
-            Meals
+            <GiMeal />
           </button>
           <button
             type="button"
             data-testid="filter-by-drink-btn"
             value="drink"
             onClick={ handleFilter }
+            className="button-filter-recipe"
           >
-            Drinks
+            <BiDrink />
 
           </button>
           <button
@@ -62,8 +68,9 @@ function DoneRecipes() {
             data-testid="filter-by-all-btn"
             value="all"
             onClick={ handleFilter }
+            className="button-filter-recipe"
           >
-            All
+            <MdFastfood />
 
           </button>
         </div>
@@ -109,9 +116,9 @@ function DoneRecipes() {
               onClick={ () => handleShare(recipe) }
               className="share-btn"
             >
-              <img
+              <GiShare
                 data-testid={ `${index}-horizontal-share-btn` }
-                src={ shareIcon }
+                className="button-share"
                 alt="shareIcon"
               />
             </button>
@@ -119,6 +126,7 @@ function DoneRecipes() {
           </>
         ))}
       </div>
+      <Footer />
     </>
   );
 }

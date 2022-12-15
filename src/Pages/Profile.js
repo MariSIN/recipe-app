@@ -22,7 +22,7 @@ function Profile() {
           <p data-testid="profile-email">{email?.email}</p>
         </div>
         <div className="path-buttons">
-          <div>
+          <div className="button-favorite-recipes">
             <HiOutlineCheck className="icons-profile" />
             <button
               data-testid="profile-done-btn"
@@ -32,7 +32,7 @@ function Profile() {
               Done Recipes
             </button>
           </div>
-          <div>
+          <div className="button-favorite-recipes">
             <HiHeart className="icons-profile" />
             <button
               data-testid="profile-favorite-btn"
@@ -42,7 +42,7 @@ function Profile() {
               Favorite Recipes
             </button>
           </div>
-          <div>
+          <div className="button-favorite-recipes">
             <HiLogout className="icons-profile" />
             <button
               data-testid="profile-logout-btn"

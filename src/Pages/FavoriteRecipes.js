@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { GiMeal, GiShare } from 'react-icons/gi';
+import { BsHeartFill } from 'react-icons/bs';
+import { BiDrink } from 'react-icons/bi';
+import { MdFastfood } from 'react-icons/md';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
-import shareIcon from '../images/shareIcon.svg';
 import '../style/doneRecipes.css';
+import '../style/header.css';
 
 const copy = require('clipboard-copy');
 
@@ -48,35 +51,38 @@ function FavoriteRecipes() {
   }, []);
 
   return (
-    <>
-      <header>
+    <div className="container-favorite-recipe">
+      <header className="header header-favorite">
         <Header title="Favorite Recipes" />
       </header>
       <div className="teste">
-        <div>
-          <button
-            type="button"
-            data-testid="filter-by-all-btn"
-            value="all"
-            onClick={ handleFilter }
-          >
-            All
-          </button>
+        <div className="container-buttons-filter">
           <button
             type="button"
             data-testid="filter-by-meal-btn"
             value="meal"
             onClick={ handleFilter }
+            className="button-filter-recipe"
           >
-            Meals
+            <GiMeal />
           </button>
           <button
             type="button"
             data-testid="filter-by-drink-btn"
             value="drink"
             onClick={ handleFilter }
+            className="button-filter-recipe"
           >
-            Drinks
+            <BiDrink />
+          </button>
+          <button
+            type="button"
+            data-testid="filter-by-all-btn"
+            value="all"
+            onClick={ handleFilter }
+            className="button-filter-recipe"
+          >
+            <MdFastfood />
           </button>
         </div>
         {filteredRecipes
@@ -110,9 +116,9 @@ function FavoriteRecipes() {
                   onClick={ () => copyLink(index, item) }
                   className="share-btn"
                 >
-                  <img
+                  <GiShare
                     data-testid={ `${index}-horizontal-share-btn` }
-                    src={ shareIcon }
+                    className="button-share"
                     alt="shareIcon"
                   />
                 </button>
@@ -122,20 +128,21 @@ function FavoriteRecipes() {
                   className="share-btn"
                   onClick={ () => removeSave(item.id) }
                 >
-                  <img
+                  <BsHeartFill
                     data-testid={ `${index}-horizontal-favorite-btn` }
-                    src={ blackHeartIcon }
                     alt="favoriteIcon"
+                    className="button-share"
+                    style={ { width: '33px' } }
                   />
                 </button>
               </div>
             </main>
           ))}
-        <footer>
-          <Footer />
-        </footer>
       </div>
-    </>
+      <footer>
+        <Footer />
+      </footer>
+    </div>
   );
 }
 

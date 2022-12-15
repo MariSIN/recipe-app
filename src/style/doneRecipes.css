@@ -1,9 +1,10 @@
 .recipe {
   align-items: center;
-  border: 0.5px solid #b1b1b1;
+  background-color: #f6c396;
+  border: 1px solid rgba(226, 115, 24, 0.346);
   border-radius: 5px;
-  box-shadow: 5px 5px 10px black;
-  color: black;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.172);
+  color: rgba(133, 63, 6, 0.923);
   display: flex;
   height: 135px;
   justify-content: space-between;
@@ -47,7 +48,7 @@ a {
 }
 
 .recipe-category {
-  color: #797d86;
+  color: #d74607;
   font-size: 9px;
   font-weight: 300;
   line-height: 9px;
@@ -61,9 +62,12 @@ a {
 }
 
 .tags {
-  background: #d9d9d9;
+  align-items: center;
+  background: #f3dfc1;
   border-radius: 10px;
-  height: 14px;
+  display: flex;
+  height: 20px;
+  justify-content: center;
   margin: 0 auto;
   width: 50%;
 }
@@ -73,4 +77,39 @@ a {
   gap: 10px;
   justify-content: center;
   margin-top: 5px;
+}
+
+.container-buttons-filter {
+  display: flex;
+  gap: 40px;
+}
+
+.button-filter-recipe {
+  background-color: #f3c7a1;
+  border: 1px solid rgba(226, 115, 24, 0.225);
+  border-radius: 50%;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.172);
+  color: rgb(191, 78, 3);
+  font-size: 30px;
+  height: 50px;
+  margin-bottom: 20px;
+  margin-top: 30px;
+  width: 50px;
+}
+
+.button-share {
+  color: rgb(191, 78, 3);
+  font-size: 40px;
+}
+
+.teste .title-done {
+  margin-top: 40px;
+}
+
+div .header-favorite {
+  margin-bottom: 10px;
+}
+
+.none {
+  display: none;
 }
