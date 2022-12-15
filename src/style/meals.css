@@ -298,6 +298,10 @@ body {
     width: 150px;
   }
 
+  .button-filter:focus {
+    background-color: rgb(246, 138, 79);
+  }
+
   .img-filter {
     background-color: rgb(246, 138, 79);
     border-radius: 50%;
