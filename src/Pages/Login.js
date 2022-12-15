@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import food from '../images/food.png';
 import '../style/login.css';
 import { DRINKS_TOKEN_KEY, MEALS_TOKEN_KEY, USER_KEY } from '../utilit/globalVariables';
 
@@ -45,7 +46,17 @@ function Login() {
   return (
     <div className="login-container">
       <form className="form-login">
-        <h1>Login</h1>
+        <h1
+          className="recipe-title-header"
+        >
+          <img src={ food } alt="food" className="img-food" />
+          Recipes
+          <span
+            className="recipe-app"
+          >
+            app
+          </span>
+        </h1>
         <input
           type="text"
           placeholder="email"
@@ -68,8 +79,7 @@ function Login() {
           disabled={ buttonDisabled }
           onClick={ entrar }
         >
-          Enter
-
+          Login
         </button>
       </form>
 

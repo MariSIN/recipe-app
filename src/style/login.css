@@ -7,58 +7,57 @@
 
 .form-login {
   align-items: center;
-  background: white;
+  background: rgb(238, 125, 64);
   border-radius: 10px;
   box-shadow: 9px 9px 13px rgba(3, 107, 82, 0.3);
   display: flex;
   flex-direction: column;
   height: 356px;
   justify-content: center;
-  margin: auto;
   margin-top: 120px;
   opacity: 0.9;
   width: 525px;
 }
 
+.form-login input {
+  background: #fcead5;
+  border: solid 1px #e0ad72;
+  padding: 15px;
+
+}
+
 .form-login input, .form-login button {
   background: white;
-  border: 1px solid black;
   border-radius: 5px;
   height: 40px;
   margin-top: 10px;
-  padding: 10px;
   width: 330px;
 }
 
 .form-login button {
-  background: #003be5;
-  border: 1px solid #003be5;
-  color: white;
-  font-size: 14px;
-  font-weight: 700;
+  background: rgb(170, 62, 0);
+  border: 1px solid rgb(221, 91, 21);
+  color: #fcead5;
+  font-size: 18px;
+  font-weight: 900;
+  text-align: center;
   transition-duration: 1000ms;
 }
 
 .form-login button:disabled {
-  background: #0241ff;
+  background: rgb(163, 82, 38);
+  border: 1px solid rgb(221, 91, 21);
   opacity: 0.5;
-}
-
-.form-login button:hover {
-  background: #012fb6;
-  transition-duration: 500ms;
 }
 
 @media screen and ( max-width : 500px ) and ( min-width : 320px ) {
 
   .form-login {
     height: 300px;
-    margin-top: 170px;
     width: 325px;
   }
 
   .form-login input, .form-login button {
-    background: white;
     height: 40px;
     width: 273px;
   }

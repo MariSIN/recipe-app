@@ -15,8 +15,3 @@ RecipeDetails.propTypes = {
 };
 
 export default RecipeDetails;
-
-// allow="a
-// ccelerometer; autoplay;
-// clipboard-write; encrypited-media; gyroscop; picture-in-picture"
-// allowFullScreen
