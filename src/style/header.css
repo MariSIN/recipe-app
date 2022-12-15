@@ -79,8 +79,8 @@
   color: rgba(240, 229, 208, 0.966);
   font-size: 35px;
   position: absolute;
-  right: 0%;
-  top: -4px;
+  right: 1%;
+  top: -3.5px;
   width: 40px;
 }
 
@@ -92,18 +92,22 @@
   align-items: center;
   color: rgba(240, 229, 208, 0.873);
   display: flex;
+  font-family: Montserrat , sans-serif;
   font-style: italic;
   font-weight: 300;
   justify-self: center;
-  margin-top: 5px;
+  letter-spacing: -0.5px;
+  margin-top: 10px;
 }
 
 .recipe-app {
   color: rgb(250, 240, 221);
-  font-size: 18px;
+  font-family: Contrail One , cursive;
+  font-size: 20px;
   font-style: normal;
   font-weight: 600;
   margin-left: 4px;
+  margin-top: 10px;
 }
 
 .icon-profile {
@@ -111,11 +115,12 @@
   font-size: 35px;
   position: absolute;
   right: 12%;
-  top: 6px;
+  top: 8px;
 }
 
 .img-food {
   margin-right: 5px;
+  margin-top: -7px;
   width: 35px;
 }
 

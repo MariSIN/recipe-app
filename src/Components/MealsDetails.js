@@ -116,6 +116,7 @@ function MealsDetails({ title }) {
   );
 
   const ingredientCheckList = (
+
     <ul className="ingredient-list-check ingredient-list">
       {ingredient.map((i, index) => (
         <li key={ index }>
@@ -125,6 +126,7 @@ function MealsDetails({ title }) {
             style={ checksArr?.some((item) => item === i)
               ? { textDecoration: 'line-through solid rgb(0, 0 , 0)' }
               : { textDecoration: 'none' } }
+            className="container-checkbox"
           >
             <input
               type="checkbox"
@@ -132,12 +134,14 @@ function MealsDetails({ title }) {
               id={ i }
               onChange={ handleChecks }
               checked={ checksArr?.some((item) => item === i) }
+              className="checkbox"
             />
             {`${i} : ${measure[index]}`}
           </label>
         </li>
       ))}
     </ul>
+
   );
 
   return (
@@ -223,6 +227,7 @@ function MealsDetails({ title }) {
         )}
       </div>
       <div className="carrousel">
+
         {recomendations.map((i, index) => (
           <div key={ Number(i.idDrink) } data-testid={ `${index}-recommendation-card` }>
             <img
@@ -230,9 +235,10 @@ function MealsDetails({ title }) {
               alt={ i.strDrink }
               style={ { maxWidth: '300px' } }
             />
-            <p data-testid={ `${index}-recommendation-title` }>{ i.strDrink }</p>
+            <h1 data-testid={ `${index}-recommendation-title` }>{ i.strDrink }</h1>
           </div>
         ))}
+
       </div>
       <Footer />
     </div>
