@@ -214,7 +214,7 @@ function DrinksDetails({ title }) {
               alt={ i.strMeal }
               style={ { maxWidth: '300px' } }
             />
-            <p data-testid={ `${index}-recommendation-title` }>{ i.strMeal }</p>
+            <h1 data-testid={ `${index}-recommendation-title` }>{ i.strMeal }</h1>
           </div>
         ))}
       </div>
