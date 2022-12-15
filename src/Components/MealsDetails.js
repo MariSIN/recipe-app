@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import { BsHeart, BsHeartFill } from 'react-icons/bs';
+import { GiShare } from 'react-icons/gi';
 import { useHistory } from 'react-router-dom';
 import { favoriteLocalStorage } from '../helpers/LocalStorage';
 import useRecipeDetails from '../hooks/useRecipeDetails';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
-import shareIcon from '../images/shareIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import '../style/mealsDetails.css';
 import Footer from './Footer';
 
@@ -157,17 +156,16 @@ function MealsDetails({ title }) {
           <div>
             <div className="favorite-and-share">
               <button type="button" data-testid="share-btn" onClick={ copyLink }>
-                <img src={ shareIcon } alt="share-icon" />
+                <GiShare />
               </button>
               <button
                 type="button"
                 onClick={ () => favoriteLocalStorage(recipe, title, setIsFav) }
               >
-                <img
-                  data-testid="favorite-btn"
-                  src={ isFav ? blackHeartIcon : whiteHeartIcon }
-                  alt="favoriteIcon"
-                />
+                <span>
+                  { isFav ? <BsHeartFill /> : <BsHeart /> }
+                </span>
+
               </button>
             </div>
             {isCopied && <p>Link copied!</p>}

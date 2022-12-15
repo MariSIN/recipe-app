@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { GiMeal, GiShare } from 'react-icons/gi';
-import { BsHeartFill } from 'react-icons/bs';
 import { BiDrink } from 'react-icons/bi';
+import { BsHeartFill } from 'react-icons/bs';
+import { GiMeal, GiShare } from 'react-icons/gi';
 import { MdFastfood } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import '../style/doneRecipes.css';
