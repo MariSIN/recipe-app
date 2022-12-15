@@ -25,9 +25,7 @@ function MealsDetails({ title }) {
   const [isInProgress, setisInProgress] = useState();
   const [checksArr, setChecksArr] = useState([]);
   const [isDone, setIsDone] = useState(false);
-
   const history = useHistory();
-
   const pathName = history.location.pathname;
   const id = pathName.split('/')[2];
 
@@ -140,7 +138,6 @@ function MealsDetails({ title }) {
         </li>
       ))}
     </ul>
-
   );
 
   return (
@@ -243,9 +240,7 @@ function MealsDetails({ title }) {
 
   );
 }
-
 MealsDetails.propTypes = {
   title: PropTypes.string.isRequired,
 };
-
 export default MealsDetails;
