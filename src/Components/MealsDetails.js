@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import Footer from './Footer';
 import { favoriteLocalStorage } from '../helpers/LocalStorage';
 import useRecipeDetails from '../hooks/useRecipeDetails';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import '../style/mealsDetails.css';
+import Footer from './Footer';
 
 function MealsDetails({ title }) {
   const {
@@ -173,7 +173,7 @@ function MealsDetails({ title }) {
             <p data-testid="recipe-category">{item.strCategory}</p>
           </div>
           <div className="list">
-            <h1 className="section-titles">Ingredients</h1>
+            <h1 className="section-titles" id="list">Ingredients</h1>
             {isInProgress ? ingredientCheckList : ingredientList}
           </div>
           <div>
@@ -208,15 +208,18 @@ function MealsDetails({ title }) {
             Finish Recipe
           </button>
         ) : (
-          <button
-            data-testid="start-recipe-btn"
-            type="button"
-            style={ isDone ? { display: 'none' } : { display: 'block' } }
-            onClick={ inProgressRecipe }
-            className="start-or-finish-button"
-          >
-            {isSaved ? 'Continue Recipe' : 'Start Recipe'}
-          </button>
+          <a href="#list">
+            <button
+              data-testid="start-recipe-btn"
+              type="button"
+              style={ isDone ? { display: 'none' } : { display: 'block' } }
+              onClick={ inProgressRecipe }
+              className="start-or-finish-button"
+            >
+              {isSaved ? 'Continue Recipe' : 'Start Recipe'}
+            </button>
+          </a>
+
         )}
       </div>
       <div className="carrousel">
