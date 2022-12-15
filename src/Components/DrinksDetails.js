@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { BsHeart, BsHeartFill } from 'react-icons/bs';
+import { GiShare } from 'react-icons/gi';
 import { favoriteLocalStorage } from '../helpers/LocalStorage';
 import useRecipeDetails from '../hooks/useRecipeDetails';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
-import shareIcon from '../images/shareIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import '../style/mealsDetails.css';
 import Footer from './Footer';
 
@@ -154,17 +153,15 @@ function DrinksDetails({ title }) {
           <div>
             <div className="favorite-and-share">
               <button type="button" data-testid="share-btn" onClick={ copyLink }>
-                <img src={ shareIcon } alt="share-icon" />
+                <GiShare alt="share-icon" />
               </button>
               <button
                 type="button"
                 onClick={ () => favoriteLocalStorage(recipe, title, setIsFav) }
               >
-                <img
-                  data-testid="favorite-btn"
-                  src={ isFav ? blackHeartIcon : whiteHeartIcon }
-                  alt="favoriteIcon"
-                />
+                <span data-testid="favorite-btn">
+                  { isFav ? <BsHeartFill /> : <BsHeart /> }
+                </span>
               </button>
             </div>
             {isCopied && <p>Link copied!</p>}
@@ -187,18 +184,16 @@ function DrinksDetails({ title }) {
       ))}
       <div className="button-container">
         {isInProgress ? (
-          <div className="favorite-and-share">
-            <button
-              data-testid="finish-recipe-btn"
-              type="button"
-              style={ isDone ? { display: 'none' } : { display: 'block' } }
-              disabled={ !isDisabled() }
-              onClick={ finishRecipe }
-              className="start-or-finish-button"
-            >
-              Finish Recipe
-            </button>
-          </div>
+          <button
+            data-testid="finish-recipe-btn"
+            type="button"
+            style={ isDone ? { display: 'none' } : { display: 'block' } }
+            disabled={ !isDisabled() }
+            onClick={ finishRecipe }
+            className="start-or-finish-button"
+          >
+            Finish Recipe
+          </button>
         ) : (
           <button
             data-testid="start-recipe-btn"
