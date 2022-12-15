@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import Footer from './Footer';
 import { favoriteLocalStorage } from '../helpers/LocalStorage';
 import useRecipeDetails from '../hooks/useRecipeDetails';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
@@ -230,6 +231,7 @@ function MealsDetails({ title }) {
           </div>
         ))}
       </div>
+      <Footer />
     </div>
 
   );

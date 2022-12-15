@@ -56,6 +56,7 @@ function FavoriteRecipes() {
         <Header title="Favorite Recipes" />
       </header>
       <div className="teste">
+        <h1 className="title-recipes title-done">Done Recipes</h1>
         <div className="container-buttons-filter">
           <button
             type="button"
