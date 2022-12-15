@@ -187,16 +187,18 @@ function DrinksDetails({ title }) {
       ))}
       <div className="button-container">
         {isInProgress ? (
-          <button
-            data-testid="finish-recipe-btn"
-            type="button"
-            style={ isDone ? { display: 'none' } : { display: 'block' } }
-            disabled={ !isDisabled() }
-            onClick={ finishRecipe }
-            className="start-or-finish-button"
-          >
-            Finish Recipe
-          </button>
+          <div className="favorite-and-share">
+            <button
+              data-testid="finish-recipe-btn"
+              type="button"
+              style={ isDone ? { display: 'none' } : { display: 'block' } }
+              disabled={ !isDisabled() }
+              onClick={ finishRecipe }
+              className="start-or-finish-button"
+            >
+              Finish Recipe
+            </button>
+          </div>
         ) : (
           <button
             data-testid="start-recipe-btn"
