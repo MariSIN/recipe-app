@@ -7,6 +7,7 @@ import blackHeartIcon from '../images/blackHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import '../style/mealsDetails.css';
+import Footer from './Footer';
 
 function DrinksDetails({ title }) {
   const {
@@ -220,6 +221,7 @@ function DrinksDetails({ title }) {
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   );
 }

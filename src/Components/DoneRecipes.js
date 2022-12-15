@@ -79,7 +79,7 @@ function DoneRecipes() {
         </div>
         {filteredRecipes?.map((recipe, index) => (
           <>
-            <div key={ index.toString() }>
+            <div key={ index.toString() } className="container-recipe">
               <Link to={ `/${recipe.type}s/${recipe.id}` }>
                 <div className="recipe">
                   <img
