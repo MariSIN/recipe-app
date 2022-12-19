@@ -175,7 +175,7 @@ function MealsDetails({ title }) {
             <h1 className="section-titles" id="list">Ingredients</h1>
             {isInProgress ? ingredientCheckList : ingredientList}
           </div>
-          <div>
+          <div className="instructions-container">
             <h1 className="section-titles">Instructions</h1>
             <div className="ingredient-list instructions">
               <p data-testid="instructions">{item.strInstructions}</p>

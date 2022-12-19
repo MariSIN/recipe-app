@@ -12,9 +12,9 @@ body {
 }
 
 .card-img {
-  border: 0.5px solid rgba(0, 0, 0, 0.418);
+  border: none;
   border-radius: 10px 10px 0 0;
-  margin-bottom: -12px;
+  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.164);
   width: 165px;
 }
 
@@ -22,19 +22,20 @@ body {
   align-items: center;
   display: flex;
   flex-direction: column-reverse;
-  gap: 10px;
-  height: 252px;
   justify-content: center;
   width: 166px;
 }
 
 .card-name, .text-name {
-  border: 0.5px solid rgba(0, 0, 0, 0.418);
+  background-color: rgb(249, 125, 58);
   border-radius: 0 0 10px 10px;
-  color: black;
+  border-top: none;
+  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.164);
+  color: rgb(249, 244, 243);
   font-size: 20px;
   font-weight: 600;
   letter-spacing: 1px;
+  margin-bottom: 0;
   overflow: hidden;
   padding-bottom: 5px;
   padding-left: 10px;
@@ -45,13 +46,16 @@ body {
   word-wrap: break-word;
 }
 
+.card-name {
+  margin-bottom: 20px;
+}
+
 .all-content {
   align-items: center;
   display: flex;
   flex-flow: row wrap;
-  gap: 50px;
+  gap: 22px;
   justify-content: center;
-  margin-top: 40px;
   width: 80%;
 }
 
@@ -64,7 +68,6 @@ body {
 .text-name {
   flex-flow: wrap;
   height: 42px;
-  margin-top: -11px;
   order: 2;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -78,6 +81,7 @@ body {
   display: flex;
   gap: 20px;
   justify-content: center;
+  margin-bottom: 50px;
   width: 80%;
 }
 
@@ -98,17 +102,29 @@ body {
 
 .button-filter {
   align-items: center;
+  background-color: rgb(255, 192, 141);
   border: none;
-  border-radius: 20px;
-  box-shadow: 2px 3px black;
-  display: flex;
-  height: 40px;
-  padding-right: 10px;
-  width: 160px;
+  border-radius: 25px;
+  box-shadow: 2px 3px 2.3px rgba(0, 0, 0, 0.235);
+  color: rgb(79, 35, 35);
+  display: grid;
+  font-weight: 400;
+  grid-template-columns: 50px 90px;
+  height: 45px;
+  margin-bottom: 40px;
+  margin-top: 40px;
+  width: 150px;
+}
+
+.button-filter:focus {
+  background-color: rgb(246, 138, 79);
 }
 
 .img-filter {
-  margin-left: 8px;
+  background-color: rgb(246, 138, 79);
+  border-radius: 50%;
+  display: flex;
+  margin-left: 5px;
   width: 40px;
 }
 
@@ -122,15 +138,11 @@ body {
   width: 100%;
 }
 
-.map-meals-container {
-  margin-top: 20px;
-  width: 170px;
-}
-
 .title-recipes {
   align-self: center;
   color: rgb(200, 91, 2);
   display: flex;
+  font-size: 45px;
   text-align: center;
 }
 
@@ -138,6 +150,7 @@ body {
   align-items: center;
   display: flex;
   justify-content: center;
+  margin-bottom: 60px;
   width: 100%;
 }
 
@@ -152,7 +165,14 @@ body {
   margin: 0;
 }
 
-@media screen and ( max-width : 700px ) and ( min-width : 569px ) {
+.icon-title-meals {
+  color: rgb(200, 91, 2);
+  font-size: 40px;
+  margin-bottom: -10px;
+}
+
+
+@media screen and ( max-width : 970px ) and ( min-width : 569px ) {
 
   .all-content {
     grid-template-columns: repeat(3, 163px);
@@ -162,21 +182,34 @@ body {
     width: 40px;
   }
 
-  .button-filter {
-    border-radius: 5px;
-    display: flex;
-    height: 40px;
-    width: 140px;
+  .container-button-filter {
+    display: grid;
+    gap: 0;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    margin-bottom: 20px;
   }
+
+  .button-filter {
+    display: grid;
+    font-weight: 400;
+    grid-template-columns: 50px 90px;
+    margin: 10px;
+  }
+
 }
 
 @media screen and ( max-width : 570px ) and ( min-width : 320px ) {
+
+  .header {
+    margin-bottom: 20px;
+  }
 
   .all-recipes-card {
     display: grid;
     gap: 0;
     grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
-    margin: 0;
+    margin: -10px;
     width: 100%;
   }
 
@@ -190,7 +223,7 @@ body {
 
   .card-img, .card-name, .text-name {
     border: none;
-    box-shadow: 2px 0 3px rgba(0, 0, 0, 0.253);
+    box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.164);
     width: 155px;
   }
 
@@ -207,9 +240,8 @@ body {
   .card-name, .text-name {
     background-color: rgb(249, 125, 58);
     border-top: none;
-    box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.164);
     color: rgb(249, 244, 243);
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 0;
   }
 
@@ -246,7 +278,7 @@ body {
   }
 
   .card-recipe {
-    margin-bottom: -40px;
+    margin-bottom: 10px;
   }
 
   .text-name {
@@ -268,6 +300,7 @@ body {
     display: grid;
     gap: 0;
     grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+    margin-top: 35px;
     width: 100%;
   }
 
@@ -281,21 +314,17 @@ body {
 
   .container-button-filter {
     display: grid;
-    gap: 8px;
+    gap: 0;
     grid-template-columns: 1fr 1fr;
     justify-content: center;
+    margin-bottom: 20px;
   }
 
   .button-filter {
-    background-color: rgb(255, 192, 141);
-    border-radius: 25px;
-    box-shadow: 2px 3px 2.3px rgba(0, 0, 0, 0.235);
-    color: rgb(79, 35, 35);
     display: grid;
     font-weight: 400;
     grid-template-columns: 50px 90px;
-    height: 45px;
-    width: 150px;
+    margin: 10px;
   }
 
   .button-filter:focus {
