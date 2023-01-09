@@ -3,7 +3,7 @@
 Link do site: https://recipe-app-mariana.vercel.app/drinks
 
 <details>
-  <summary><strong>👨‍💻 O que foi desenvolvido/strong></summary><br />
+  <summary><strong>👨‍💻 O que foi desenvolvido</strong></summary><br />
 
   Um app de receitas, utilizando o que há de mais moderno dentro do ecossistema React: Hooks e Context API!
 
