@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-max-depth */
+/* eslint-disable max-len */
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { GiMeal, GiShare } from 'react-icons/gi';
