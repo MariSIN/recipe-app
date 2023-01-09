@@ -1,12 +1,16 @@
-/* eslint-disable react/jsx-max-depth */
+/* eslint-disable react/jsx-indent */
+/* eslint-disable react/jsx-indent-props */
+/* eslint-disable no-tabs */
+/* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable max-len */
+/* eslint-disable react/jsx-max-depth */
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { GiMeal, GiShare } from 'react-icons/gi';
 import { BiDrink } from 'react-icons/bi';
+import { GiMeal, GiShare } from 'react-icons/gi';
 import { MdFastfood } from 'react-icons/md';
-import Footer from './Footer';
+import { Link } from 'react-router-dom';
 import '../style/doneRecipes.css';
+import Footer from './Footer';
 import Header from './Header';
 
 const copy = require('clipboard-copy');
@@ -18,7 +22,7 @@ function DoneRecipes() {
 
   useEffect(() => {
     const recipes = JSON.parse(localStorage.getItem('doneRecipes'));
-    setDoneRecipes((recipes));
+    setDoneRecipes(recipes);
     setFilteredRecipes(recipes);
   }, []);
 
@@ -31,7 +35,7 @@ function DoneRecipes() {
     const { value } = target;
     if (value === 'all') {
       const recipes = JSON.parse(localStorage.getItem('doneRecipes'));
-      setFilteredRecipes((recipes));
+      setFilteredRecipes(recipes);
     } else {
       const filter = doneRecipes.filter((item) => item.type === value);
       setFilteredRecipes(filter);
@@ -54,7 +58,7 @@ function DoneRecipes() {
             className="button-filter-recipe"
           >
             <GiMeal className="icon-done" />
-            Meals
+						Meals
           </button>
           <button
             type="button"
@@ -64,8 +68,7 @@ function DoneRecipes() {
             className="button-filter-recipe"
           >
             <BiDrink className="icon-done" />
-            Drinks
-
+						Drinks
           </button>
           <button
             type="button"
@@ -75,13 +78,15 @@ function DoneRecipes() {
             className="button-filter-recipe"
           >
             <MdFastfood className="icon-done" />
-            All
-
+						All
           </button>
         </div>
         {filteredRecipes?.map((recipe, index) => (
           <>
-            <div key={ index.toString() } className="container-recipe">
+            <div
+              key={ index.toString() }
+              className="container-recipe"
+            >
               <Link to={ `/${recipe.type}s/${recipe.id}` }>
                 <div className="recipe">
                   <img
@@ -90,14 +95,15 @@ function DoneRecipes() {
                     alt={ recipe.name }
                   />
                   <div className="recipes-infos">
-                    <h1 data-testid={ `${index}-horizontal-name` }>{recipe.name}</h1>
+                    <h1 data-testid={ `${index}-horizontal-name` }>
+                      {recipe.name}
+                    </h1>
                     {recipe.type === 'meal' ? (
                       <p
                         className="recipe-category"
                         data-testid={ `${index}-horizontal-top-text` }
                       >
                         {`${recipe.nationality} - ${recipe.category}`}
-
                       </p>
                     ) : (
                       <p
@@ -105,13 +111,21 @@ function DoneRecipes() {
                         className="recipe-category"
                       >
                         {`${recipe.alcoholicOrNot}`}
-
                       </p>
                     )}
-                    <p data-testid={ `${index}-horizontal-done-date` }>{`done in : ${recipe.doneDate.split('T')[0]}`}</p>
-                    {recipe.tags && recipe.tags.slice(0, 2).map((i) => (
-                      <p data-testid={ `${index}-${i}-horizontal-tag` } key={ i } className="tags">{i}</p>
-                    ))}
+                    <p data-testid={ `${index}-horizontal-done-date` }>
+                      {`done in : ${recipe.doneDate.split('T')[0]}`}
+                    </p>
+                    {recipe.tags
+											&& recipe.tags.slice(0, 2).map((i) => (
+											  <p
+											    key={ i }
+											    data-testid={ `${index}-${i}-horizontal-tag` }
+											    className="tags"
+											  >
+											    {i}
+											  </p>
+											))}
                   </div>
                 </div>
               </Link>
