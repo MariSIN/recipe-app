@@ -9,7 +9,7 @@ Link do site: https://recipe-app-mariana.vercel.app/drinks
 
   Nele é possível: ver, buscar, filtrar, favoritar e acompanhar o progresso de preparação de receitas de comidas e bebidas!
 
-  ⚠️ A base de dados serão 2 APIs distintas, uma para comidas e outra para bebidas.
+  ⚠️ A base de dados são 2 APIs distintas, uma para comidas e outra para bebidas.
 
   O layout tem como foco dispositivos móveis, dessa forma todos os protótipos vão estar desenvolvidos em telas menores.
 </details>
