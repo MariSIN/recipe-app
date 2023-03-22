@@ -11,7 +11,7 @@
 
   ⚠️ A base de dados são 2 APIs distintas, uma para comidas e outra para bebidas.
 
-  O layout tem como foco dispositivos móveis, dessa forma todos os protótipos vão estar desenvolvidos em telas menores.
+  O layout tem como foco dispositivos móveis, mas tem design responsivo para telas maiores também.
 </details>
 
 <details> 
