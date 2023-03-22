@@ -18,8 +18,6 @@
   <summary><strong>Habilidades</strong></summary><br />
     Nesse projeto, você será capaz de:
 
-    - Utilizar Redux para gerenciar estado
-    - Utilizar a biblioteca React-Redux
     - Utilizar a Context API do React para gerenciar estado
     - Utilizar o React Hook useState
     - Utilizar o React Hook useContext
