@@ -1,6 +1,6 @@
 # Boas-vindas ao repositório do projeto App de Receitas!
 
-:paperclip: https://recipe-app-mariana.vercel.app/drinks
+:paperclip: https://recipe-app-mariana.vercel.app/meals
 
 <details>
   <summary><strong>👨‍💻 O que foi desenvolvido</strong></summary><br />
