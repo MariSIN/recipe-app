@@ -190,7 +190,7 @@
     </details>
 </details>
 
-  * <details><summary><b>Observações técnicas :information_source:</b></summary> *
+   <details><summary><b>Observações técnicas :information_source:</b></summary>
     Algumas coisas devem seguir um padrão pré-estabelecido para que os testes de correção funcionem corretamente.
 
     * <details><summary><b> Rotas</b></summary>
