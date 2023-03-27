@@ -12,8 +12,6 @@
 
 <details> 
   <summary><strong>Habilidades</strong></summary><br />
-    Nesse projeto, você será capaz de:
-
     - Utilizar a Context API do React para gerenciar estado
     - Utilizar o React Hook useState
     - Utilizar o React Hook useContext
@@ -21,10 +19,6 @@
     - Criar Hooks customizados
   </details>
   <details><summary><b> APIs :gear:</b></summary><br/>
-
-    🚨 **IMPORTANTE**
-
-    Para fazer as requisições, você deve utilizar apenas o `fetch`!! Outros bibliotecas como o Axios podem causar problemas no avaliador.
 
     * <details><summary><b> TheMealDB API</b></summary>
 
