@@ -20,7 +20,7 @@
     - Utilizar o React Hook useEffect
     - Criar Hooks customizados
   </details>
- * <details><summary><b> APIs :gear:</b></summary><br/>
+  <details><summary><b> APIs :gear:</b></summary><br/>
 
     🚨 **IMPORTANTE**
 
