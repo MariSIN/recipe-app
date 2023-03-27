@@ -2,13 +2,11 @@
 
 :paperclip: https://recipe-app-mariana.vercel.app/meals
 
-  Um app de receitas, utilizando o que há de mais moderno dentro do ecossistema React: Hooks e Context API!
-
+  Este projeto é um app de receitas que foi desenvolvido em grupo e com o que há de mais moderno dentro do ecossistema React: Hooks e Context API! 
   Nele é possível: ver, buscar, filtrar, favoritar e acompanhar o progresso de preparação de receitas de comidas e bebidas!
-
   ⚠️ A base de dados são 2 APIs distintas, uma para comidas e outra para bebidas.
-
   O layout tem como foco dispositivos móveis, mas tem design responsivo para telas maiores também.
+  
 
 <details> 
   <summary><strong>Habilidades</strong></summary><br />
