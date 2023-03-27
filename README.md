@@ -20,7 +20,31 @@
   </details>
   <details>
   <summary><strong>:convenience_store: Desenvolvimento </strong></summary><br />
-   * <details><summary><b> APIs :gear:</b></summary><br/>
+
+  * <details><summary><b> Como desenvolver :technologist:</b></summary>
+
+    Este repositório **já conta com uma `main-group` para cada grupo**, identificada como `main-group-1` para o grupo 1, `main-group-2` para o grupo 2, e assim por diante. Para desenvolver, você sempre deve:
+
+      * **Criar sua branch de desenvolvimento a partir da sua branch main**. Para isso, clone este repositório, faça o `git checkout main-group-XX && git pull` e em seguida o `git checkout -b main-group-XX-minha-feature`.
+      * Para criar uma Pull Request para fazer **Code Review**, intitule-a `[GRUPO XX] Meu título` e **sempre aponte a Pull Request da sua branch para a branch `main-group-XX` do seu grupo, como no exemplo abaixo:**
+
+    <details><summary> Exemplo de como apontar um PR para a branch main do grupo</summary>
+
+      ![Exemplo de como apontar uma Pull Request para a branch main do grupo](pull-request-para-branch-do-grupo.png)
+    </details>
+
+      * Quando várias pessoas desenvolvem para um mesmo projeto podem ocorrer **conflitos de merge** que precisarão ser resolvidos. Prestem atenção a isso!
+
+      ⚠ **ATENÇÃO! É POSSÍVEL COMMITAR, POR ENGANO, NA BRANCH DE OUTRO GRUPO, ENTÃO TOME MUITO CUIDADO** ⚠
+
+      Você verá que os requisitos do projeto possuem, além das observações técnicas e do que será validado, descrições tais quais se veriam em um projeto real. É muito importante ser capaz de ler descrições como essa e transformá-las em produtos ou, se houver dúvida, saber tirá-las! Seguimos à disposição no Slack para isso.
+
+      Este repositório já contem um _template_ com um App React criado, configurado e com os testes automatizados que fazem parte da correção. Ele também conta com uma branch **main-group** para cada grupo, identificada como `main-group-1` para o grupo 1, `main-group-2` para o grupo 2 e assim por diante.
+
+      **⚠️ Lembre-se de escrever testes unitários e sinta-se livre para alterar a UI do protótipo, só respeite os atributos `data-testid`, eles serão usados na correção do exercício.**
+    </details>
+
+  * <details><summary><b> APIs :gear:</b></summary><br/>
 
     🚨 **IMPORTANTE**
 
@@ -189,4 +213,165 @@
       Os ingredientes seguem uma ordem lógica onde o nome dele (<code>strIngredient1</code>) e a quantidade (<code>strMeasure1</code>) tem o mesmo número no final (1, nesse caso).
       </details>
     </details>
-  </details>
+
+  * <details><summary><b>Requisitos do Projeto :memo:</b></summary>
+
+    Os requisitos são organizados por telas e dessa vez, vocês que irão definir as prioridades! Usem com sabedoria!
+
+    Recomendamos que os requisitos de uma mesma tela sejam feitos em sequência ou paralelamente por pessoas que irão comunicar-se bastante para que não haja conflitos. Requisitos de uma mesma tela com prioridades iguais possam ser feitos em paralelo, mas isso exigirá organização por parte das pessoas que estão dividindo a tarefa para não  haver conflitos.
+
+    * Os requisitos do seu projeto são avaliados automaticamente, sendo utilizada a resolução de tela de `360 x 640` (360 pixels de largura por 640 pixels de altura).
+
+        - ⚠️ Logo, recomenda-se desenvolver seu projeto usando a mesma resolução, via instalação [deste plugin](https://chrome.google.com/webstore/detail/window-resizer/kkelicaakdanhinjdeammmilcgefonfh?hl=en) do `Chrome` para facilitar a configuração da resolução. ⚠️
+    </details>
+
+  * <details><summary><b>Observações técnicas :information_source:</b></summary>
+
+    Algumas coisas devem seguir um padrão pré-estabelecido para que os testes de correção funcionem corretamente.
+
+    ⚠️ Leia-os atentamente e siga à risca o que for pedido. O não cumprimento de um requisito, total ou parcialmente, impactará em sua avaliação. ⚠️
+
+    * <details><summary><b> Rotas</b></summary>
+
+      As rotas a serem utilizadas na aplicação devem ser as seguintes:
+
+      * Tela de login: `/`;
+      * Tela principal de receitas de comidas: `/meals`;
+      * Tela principal de receitas de bebidas: `/drinks`;
+      * Tela de detalhes de uma receita de comida: `/meals/:id-da-receita`;
+      * Tela de detalhes de uma receita de bebida: `/drinks/:id-da-receita`;
+      * Tela de receita em progresso de comida: `/meals/:id-da-receita/in-progress`;
+      * Tela de receita em progresso de bebida: `/drinks/:id-da-receita/in-progress`;
+      * Tela de perfil: `/profile`;
+      * Tela de receitas feitas: `/done-recipes`;
+      * Tela de receitas favoritas: `/favorite-recipes`.
+      </details>
+      
+    * <details><summary><b> LocalStorage</b></summary>
+
+      O uso de `localStorage` é necessário para que as informações não se percam caso a pessoa atualize a página. O correto é usar os valores para iniciar sua store ou seu context.
+
+      No `localStorage` do navegador:
+
+      * a chave `user` deve conter a seguinte estrutura:
+      ```js
+      {
+          email: email-da-pessoa
+      }
+      ```
+
+      * a chave `doneRecipes` deve conter a seguinte estrutura:
+      ```js
+      [{
+          id: id-da-receita,
+          type: meal-ou-drink,
+          nationality: nacionalidade-da-receita-ou-texto-vazio,
+          category: categoria-da-receita-ou-texto-vazio,
+          alcoholicOrNot: alcoholic-ou-non-alcoholic-ou-texto-vazio,
+          name: nome-da-receita,
+          image: imagem-da-receita,
+          doneDate: quando-a-receita-foi-concluida,
+          tags: array-de-tags-da-receita-ou-array-vazio
+      }]
+      ```
+
+      * a chave `favoriteRecipes` deve conter a seguinte estrutura:
+      ```js
+      [{
+          id: id-da-receita,
+          type: meal-ou-drink,
+          nationality: nacionalidade-da-receita-ou-texto-vazio,
+          category: categoria-da-receita-ou-texto-vazio,
+          alcoholicOrNot: alcoholic-ou-non-alcoholic-ou-texto-vazio,
+          name: nome-da-receita,
+          image: imagem-da-receita
+      }]
+      ```
+
+      * a chave `inProgressRecipes` deve conter a seguinte estrutura:
+      ```js
+      {
+          drinks: {
+              id-da-bebida: [lista-de-ingredientes-utilizados],
+              ...
+          },
+          meals: {
+              id-da-comida: [lista-de-ingredientes-utilizados],
+              ...
+          }
+      }
+      ```
+
+      **Observações técnicas**
+
+      * `id-da-bebida` e `id-da-comida` representam o ID de uma bebida e comida, respectivamente, e cada item da lista de ingredientes da respectiva receita deve ser representado apenas pelo número do ingrediente no formato numérico.
+      </details>
+    
+    * <details><summary><b> Ícones</b></summary>
+
+      Os ícones a serem utilizados na aplicação estão disponíveis do diretório `src/image/`. Esses ícones serão utilizados pelos testes da avaliação automatizada, então certifique-se de utilizá-los nos requisitos e de não renomeá-los.
+
+      Os ícones são:
+
+      * `profileIcon.svg`;
+      * `searchIcon.svg`;
+      * `drinkIcon.svg`;
+      * `mealIcon.svg`;
+      * `shareIcon.svg`;
+      * `whiteHeartIcon.svg`;
+      * `blackHeartIcon.svg`;
+      </details>
+
+    * <details><summary><b> Biblioteca <code>clipboard-copy</code></b></summary>
+
+      Para os componentes que contêm a funcionalidade de favoritar comidas ou bebidas, será necessário utilizar a biblioteca `clipboard-copy` para copiar as informações da receita. Essa biblioteca já vem instalada no projeto.
+
+      Para mais informações, consulte a [documentação](https://www.npmjs.com/package/clipboard-copy)
+      </details>
+
+    * <details><summary><b> Biblioteca <code>Bootstrap</code> (opcional)</b></summary>
+
+      Para os grupos que quiserem implementar estilizações no app, recomendamos o uso da lib `Bootstrap`. Ela já vem instalada por padrão neste projeto, bastando apenas implementar nos seus componentes. Por exemplo, caso queira implementar um [botão](https://react-bootstrap.github.io/components/buttons/):
+
+      ``` jsx
+      import Button from 'react-bootstrap/Button';
+
+      const MeuComponente = () => (
+        <Button variant="success">
+          Botão Verde
+        </Button>
+      );
+      ...
+      ```
+
+      Para mais informações, consulte a [documentação](https://react-bootstrap.github.io/getting-started/introduction/)
+      </details>
+    </details><br />
+</details>
+
+<details>
+  <summary><strong>🗣 Nos dê feedbacks sobre o projeto!</strong></summary><br />
+
+Ao finalizar e submeter o projeto, não se esqueça de avaliar sua experiência preenchendo o formulário. 
+**Leva menos de 3 minutos!**
+
+[FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://be-trybe.typeform.com/to/ZTeR4IbH)
+
+</details>
+
+<details>
+  <summary><strong>💻 Protótipo do projeto no Figma</strong></summary><br />
+
+Além da qualidade do código e do atendimento aos requisitos, um bom layout é um dos aspectos responsáveis por melhorar a usabilidade de uma aplicação e turbinar seu portfólio!
+
+Você pode estar se perguntando: *"Como deixo meu projeto com um layout mais atrativo?"* 🤔
+
+Para isso, disponibilizamos esse [protótipo do Figma](https://www.figma.com/file/9WXNFMewKRBC5ZawU1EXYG/%5BProjeto%5D%5BFrontend%5D-Recipes-App?node-id=0%3A1) para lhe ajudar !
+
+⚠️ A estilização de sua aplicação não será avaliada nesse projeto, portanto esse protótipo é apenas uma **sugestão** e seu uso é **opcional**. Sinta-se à vontade para modificar o layout e deixá-lo do seu jeito.
+
+**⚠️ Para visualizar os comentários sobre cada componente, basta clicar no ícone de comentários no Figma (lado esquerdo superior).**
+
+![image](https://res.cloudinary.com/drdpedroso/image/upload/c_scale,w_400/v1575815877/Screenshot_2019-12-08_at_11.37.25_kzt7rl.png)
+
+</details>
