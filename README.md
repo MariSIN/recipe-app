@@ -190,17 +190,7 @@
       Os ingredientes seguem uma ordem lógica onde o nome dele (<code>strIngredient1</code>) e a quantidade (<code>strMeasure1</code>) tem o mesmo número no final (1, nesse caso).
       </details>
     </details>
-
-  * <details><summary><b>Requisitos do Projeto :memo:</b></summary>
-
-    Os requisitos são organizados por telas e dessa vez, vocês que irão definir as prioridades! Usem com sabedoria!
-
-    Recomendamos que os requisitos de uma mesma tela sejam feitos em sequência ou paralelamente por pessoas que irão comunicar-se bastante para que não haja conflitos. Requisitos de uma mesma tela com prioridades iguais possam ser feitos em paralelo, mas isso exigirá organização por parte das pessoas que estão dividindo a tarefa para não  haver conflitos.
-
-    * Os requisitos do seu projeto são avaliados automaticamente, sendo utilizada a resolução de tela de `360 x 640` (360 pixels de largura por 640 pixels de altura).
-
-        - ⚠️ Logo, recomenda-se desenvolver seu projeto usando a mesma resolução, via instalação [deste plugin](https://chrome.google.com/webstore/detail/window-resizer/kkelicaakdanhinjdeammmilcgefonfh?hl=en) do `Chrome` para facilitar a configuração da resolução. ⚠️
-    </details>
+</details>
 
   * <details><summary><b>Observações técnicas :information_source:</b></summary>
 
