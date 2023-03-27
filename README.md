@@ -196,8 +196,6 @@
 
     Algumas coisas devem seguir um padrão pré-estabelecido para que os testes de correção funcionem corretamente.
 
-    ⚠️ Leia-os atentamente e siga à risca o que for pedido. O não cumprimento de um requisito, total ou parcialmente, impactará em sua avaliação. ⚠️
-
     * <details><summary><b> Rotas</b></summary>
 
       As rotas a serem utilizadas na aplicação devem ser as seguintes:
@@ -314,31 +312,4 @@
       Para mais informações, consulte a [documentação](https://react-bootstrap.github.io/getting-started/introduction/)
       </details>
     </details><br />
-</details>
-
-<details>
-  <summary><strong>🗣 Nos dê feedbacks sobre o projeto!</strong></summary><br />
-
-Ao finalizar e submeter o projeto, não se esqueça de avaliar sua experiência preenchendo o formulário. 
-**Leva menos de 3 minutos!**
-
-[FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://be-trybe.typeform.com/to/ZTeR4IbH)
-
-</details>
-
-<details>
-  <summary><strong>💻 Protótipo do projeto no Figma</strong></summary><br />
-
-Além da qualidade do código e do atendimento aos requisitos, um bom layout é um dos aspectos responsáveis por melhorar a usabilidade de uma aplicação e turbinar seu portfólio!
-
-Você pode estar se perguntando: *"Como deixo meu projeto com um layout mais atrativo?"* 🤔
-
-Para isso, disponibilizamos esse [protótipo do Figma](https://www.figma.com/file/9WXNFMewKRBC5ZawU1EXYG/%5BProjeto%5D%5BFrontend%5D-Recipes-App?node-id=0%3A1) para lhe ajudar !
-
-⚠️ A estilização de sua aplicação não será avaliada nesse projeto, portanto esse protótipo é apenas uma **sugestão** e seu uso é **opcional**. Sinta-se à vontade para modificar o layout e deixá-lo do seu jeito.
-
-**⚠️ Para visualizar os comentários sobre cada componente, basta clicar no ícone de comentários no Figma (lado esquerdo superior).**
-
-![image](https://res.cloudinary.com/drdpedroso/image/upload/c_scale,w_400/v1575815877/Screenshot_2019-12-08_at_11.37.25_kzt7rl.png)
-
 </details>
