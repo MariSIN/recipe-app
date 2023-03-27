@@ -19,9 +19,7 @@
     - Criar Hooks customizados <br />
   </details>
   <details>
-  <summary><strong>:convenience_store: API's </strong></summary><br />
-  
-    * <details><summary><b> APIs :gear:</b></summary><br/>
+   * <details><summary><b> APIs :gear:</b></summary><br/>
 
     🚨 **IMPORTANTE**
 
@@ -190,37 +188,4 @@
       Os ingredientes seguem uma ordem lógica onde o nome dele (<code>strIngredient1</code>) e a quantidade (<code>strMeasure1</code>) tem o mesmo número no final (1, nesse caso).
       </details>
     </details>
-                  "strIngredient7":null,
-                  "strIngredient8":null,
-                  "strIngredient9":null,
-                  "strIngredient10":null,
-                  "strIngredient11":null,
-                  "strIngredient12":null,
-                  "strIngredient13":null,
-                  "strIngredient14":null,
-                  "strIngredient15":null,
-                  "strMeasure1":"1 1\/2 oz",
-                  "strMeasure2":"1 1\/2 oz",
-                  "strMeasure3":"1 tsp",
-                  "strMeasure4":"2 dashes",
-                  "strMeasure5":null,
-                  "strMeasure6":null,
-                  "strMeasure7":null,
-                  "strMeasure8":null,
-                  "strMeasure9":null,
-                  "strMeasure10":null,
-                  "strMeasure11":null,
-                  "strMeasure12":null,
-                  "strMeasure13":null,
-                  "strMeasure14":null,
-                  "strMeasure15":null,
-                  "strCreativeCommonsConfirmed":"No",
-                  "dateModified":"2017-12-19 18:34:15"
-                }
-            ]
-          }
-        ```
-        </details>
-      Os ingredientes seguem uma ordem lógica onde o nome dele (<code>strIngredient1</code>) e a quantidade (<code>strMeasure1</code>) tem o mesmo número no final (1, nesse caso).
-      </details>
-    </details>
+  </details>
