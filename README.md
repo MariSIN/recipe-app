@@ -13,6 +13,8 @@
     - Utilizar o React Hook useContext <br />
     - Utilizar o React Hook useEffect <br />
     - Criar Hooks customizados <br />
+    <br />
+    <br />
     
   <details>
   <summary><strong>:convenience_store: Desenvolvimento </strong></summary><br />
@@ -288,5 +290,4 @@
       </details>
 
     </details><br />
-</details>
-</details>
+
