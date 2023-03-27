@@ -267,7 +267,8 @@
       }
       ```
 
-      *Observações técnicas*
+   
+  * <details><summary><b> Observações técnicas</b></summary><br/>
 
       * `id-da-bebida` e `id-da-comida` representam o ID de uma bebida e comida, respectivamente, e cada item da lista de ingredientes da respectiva receita deve ser representado apenas pelo número do ingrediente no formato numérico.
       </details>
@@ -294,22 +295,5 @@
       Para mais informações, consulte a [documentação](https://www.npmjs.com/package/clipboard-copy)
       </details>
 
-    * <details><summary><b> Biblioteca <code>Bootstrap</code> (opcional)</b></summary>
-
-      Para os grupos que quiserem implementar estilizações no app, recomendamos o uso da lib `Bootstrap`. Ela já vem instalada por padrão neste projeto, bastando apenas implementar nos seus componentes. Por exemplo, caso queira implementar um [botão](https://react-bootstrap.github.io/components/buttons/):
-
-      ``` jsx
-      import Button from 'react-bootstrap/Button';
-
-      const MeuComponente = () => (
-        <Button variant="success">
-          Botão Verde
-        </Button>
-      );
-      ...
-      ```
-
-      Para mais informações, consulte a [documentação](https://react-bootstrap.github.io/getting-started/introduction/)
-      </details>
     </details><br />
 </details>
