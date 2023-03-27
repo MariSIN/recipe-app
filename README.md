@@ -7,15 +7,13 @@
   ⚠️ A base de dados são 2 APIs distintas, uma para comidas e outra para bebidas.<br/>
   O layout tem como foco dispositivos móveis, mas tem design responsivo para telas maiores também.
   
-
-<details> 
   <summary><strong>Habilidades</strong></summary><br />
     - Utilizar a Context API do React para gerenciar estado <br />
     - Utilizar o React Hook useState <br />
     - Utilizar o React Hook useContext <br />
     - Utilizar o React Hook useEffect <br />
     - Criar Hooks customizados <br />
-  </details>
+    
   <details>
   <summary><strong>:convenience_store: Desenvolvimento </strong></summary><br />
   
