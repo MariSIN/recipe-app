@@ -20,7 +20,13 @@
   </details>
   <details><summary><b> APIs :gear:</b></summary><br/>
 
-    <details><summary><b> TheMealDB API</b></summary>
+  * <details><summary><b> APIs :gear:</b></summary><br/>
+
+    🚨 **IMPORTANTE**
+
+    Para fazer as requisições, você deve utilizar apenas o `fetch`!! Outros bibliotecas como o Axios podem causar problemas no avaliador.
+
+    * <details><summary><b> TheMealDB API</b></summary>
 
       O [TheMealDB](https://www.themealdb.com/) é um banco de dados aberto, mantido pela comunidade, com receitas e ingredientes de todo o mundo.
 
