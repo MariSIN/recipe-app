@@ -267,7 +267,7 @@
       }
       ```
 
-      **Observações técnicas**
+      *Observações técnicas*
 
       * `id-da-bebida` e `id-da-comida` representam o ID de uma bebida e comida, respectivamente, e cada item da lista de ingredientes da respectiva receita deve ser representado apenas pelo número do ingrediente no formato numérico.
       </details>
