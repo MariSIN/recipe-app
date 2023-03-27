@@ -19,6 +19,7 @@
     - Criar Hooks customizados <br />
   </details>
   <details>
+  <summary><strong>:convenience_store: Desenvolvimento </strong></summary><br />
    * <details><summary><b> APIs :gear:</b></summary><br/>
 
     🚨 **IMPORTANTE**
