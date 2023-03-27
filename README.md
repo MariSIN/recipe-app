@@ -20,6 +20,8 @@
   </details>
   <details>
   <summary><strong>:convenience_store: API's </strong></summary><br />
+  
+    * <details><summary><b> APIs :gear:</b></summary><br/>
 
     🚨 **IMPORTANTE**
 
