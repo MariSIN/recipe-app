@@ -372,53 +372,7 @@
       }
       ```
 
-      **Observações técnicas**
-
-      * `id-da-bebida` e `id-da-comida` representam o ID de uma bebida e comida, respectivamente, e cada item da lista de ingredientes da respectiva receita deve ser representado apenas pelo número do ingrediente no formato numérico.
-      </details>
-    
-    * <details><summary><b> Ícones</b></summary>
-
-      Os ícones a serem utilizados na aplicação estão disponíveis do diretório `src/image/`. Esses ícones serão utilizados pelos testes da avaliação automatizada, então certifique-se de utilizá-los nos requisitos e de não renomeá-los.
-
-      Os ícones são:
-
-      * `profileIcon.svg`;
-      * `searchIcon.svg`;
-      * `drinkIcon.svg`;
-      * `mealIcon.svg`;
-      * `shareIcon.svg`;
-      * `whiteHeartIcon.svg`;
-      * `blackHeartIcon.svg`;
-      </details>
-
-    * <details><summary><b> Biblioteca <code>clipboard-copy</code></b></summary>
-
-      Para os componentes que contêm a funcionalidade de favoritar comidas ou bebidas, será necessário utilizar a biblioteca `clipboard-copy` para copiar as informações da receita. Essa biblioteca já vem instalada no projeto.
-
-      Para mais informações, consulte a [documentação](https://www.npmjs.com/package/clipboard-copy)
-      </details>
-
-    * <details><summary><b> Biblioteca <code>Bootstrap</code> (opcional)</b></summary>
-
-      Para os grupos que quiserem implementar estilizações no app, recomendamos o uso da lib `Bootstrap`. Ela já vem instalada por padrão neste projeto, bastando apenas implementar nos seus componentes. Por exemplo, caso queira implementar um [botão](https://react-bootstrap.github.io/components/buttons/):
-
-      ``` jsx
-      import Button from 'react-bootstrap/Button';
-
-      const MeuComponente = () => (
-        <Button variant="success">
-          Botão Verde
-        </Button>
-      );
-      ...
-      ```
-
-      Para mais informações, consulte a [documentação](https://react-bootstrap.github.io/getting-started/introduction/)
-      </details>
-    </details><br />
-</details>
-
+     
 # Requisitos
 
 Nesse projeto, a pessoa que estiver utilizando o app pode procurar uma receita específica, explorar receitas baseado em diferentes critérios, favoritar e fazer as receitas, entre outras funcionalidades.
