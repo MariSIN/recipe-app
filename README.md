@@ -187,7 +187,7 @@
         </details>
       Os ingredientes seguem uma ordem lógica onde o nome dele (<code>strIngredient1</code>) e a quantidade (<code>strMeasure1</code>) tem o mesmo número no final (1, nesse caso).
       </details>
-    </details>
+
 
   * <details><summary><b>Observações técnicas :information_source:</b></summary>
     Algumas coisas devem seguir um padrão pré-estabelecido para que os testes de correção funcionem corretamente.
