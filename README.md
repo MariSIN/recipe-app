@@ -305,7 +305,6 @@ As telas sofrem variações dependendo do tipo da receita (se é comida ou bebid
 ## Testes unitários
 
 ### 1 - Desenvolva os testes unitários de maneira que a cobertura seja de, no mínimo, 90%
-<br />
 
 ---
 
