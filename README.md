@@ -1,6 +1,6 @@
 # Boas-vindas ao repositório do projeto App de Receitas!
 
-:paperclip: https://recipe-app-mariana.vercel.app/meals
+:paperclip: https://recipe-app-mariana.vercel.app/
 
   Este projeto é um app de receitas que foi desenvolvido em grupo e com o que há de mais moderno dentro do ecossistema React: Hooks e Context API! <br/>
   Nele é possível: ver, buscar, filtrar, favoritar e acompanhar o progresso de preparação de receitas de comidas e bebidas!<br/>
